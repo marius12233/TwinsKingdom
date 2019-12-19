@@ -59,9 +59,9 @@ public final class Forest extends World {
         GrabbableStar star1 = new GrabbableStar(2688, 2750, 32, 32); //2688,2750
         GrabbableStar star2 = new GrabbableStar(450, 958, 32, 32);  //450,958
         GrabbableStar star3 = new GrabbableStar(1920, 1570, 32, 32); //1920,1570
-        star1 = new GrabbableStar(150, 190, 32, 32); //2688,2750
-        star2 = new GrabbableStar(150, 200, 32, 32);  //450,958
-        star3 = new GrabbableStar(180, 170, 32, 32); //1920,1570
+        star1 = new GrabbableStar(204,200, 32, 32); //2688,2750
+        star2 = new GrabbableStar(260,187, 32, 32);  //450,958
+        star3 = new GrabbableStar(359,187, 32, 32); //1920,1570
 
         star1.addObserver(starCollection);
         star2.addObserver(starCollection);

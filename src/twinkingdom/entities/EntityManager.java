@@ -17,6 +17,7 @@ import twinkingdom.GameHandler;
  *
  * @author mario
  */
+
 public final class EntityManager {
 
     private GameHandler handler;
@@ -38,21 +39,24 @@ public final class EntityManager {
     }
 
     public void tick() {
-        int size = entities.size();
-        for(int i = size - 1; i >= 0 ; i--)  {
+
+        for(int i = entities.size() - 1; i >= 0 ; i--)  {
             if(entities.isEmpty())
                 break;
             try{
             Entity e = entities.get(i);
            
             e.tick();
-            if(! e.isActive())
+            if(!e.isActive())
                 entities.remove(i);
-        }catch(Exception ex){continue;}
-            
+
+        }catch(Exception ex) {
+            continue;
         }
+        
 
         entities.sort(renderSorter);
+    }
     }
 
     public void render(Graphics g) {

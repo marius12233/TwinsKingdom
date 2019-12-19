@@ -48,23 +48,23 @@ public class BatAssets extends EntityAssets{
 
 
         for(int i=0;i<3;i++){
-            bat_down_attack[i] =  sheet.crop(startingXAttack + i*width , startingYAttack , width, height-5);
+            bat_down_attack[i] =  sheet.crop(startingXAttack + i*width , startingYAttack , width, height-10);
             bat_right_attack[i] =  sheet.crop(startingXAttack + i*width , startingYAttack + height, width, height);
-            bat_up_attack[i] =  sheet.crop(startingXAttack + i*width , startingYAttack + 2*height, width, height-5);
+            bat_up_attack[i] =  sheet.crop(startingXAttack + i*width , startingYAttack + 2*height, width, height-10);
             bat_left_attack[i] =  sheet.crop(startingXAttack + i*width , startingYAttack+ 3*height - 13, width, height);
             
             
             
             //sheet = new SpriteSheet(ImageLoader.loadImage("/images/assets/EBros_Boss_samurai/Boss_Samurai_Walk.png"));
-            bat_down_stable[i] =  sheet.crop(startingXAttack + i*width , startingYAttack , width, height-5);
+            bat_down_stable[i] =  sheet.crop(startingXAttack + i*width , startingYAttack , width, height-10);
             bat_right_stable[i] =  sheet.crop(startingXAttack + i*width , startingYAttack + height , width, height);
-            bat_up_stable[i] =  sheet.crop(startingXAttack + i*width , startingYAttack + 2*height, width, height-5);
+            bat_up_stable[i] =  sheet.crop(startingXAttack + i*width , startingYAttack + 2*height, width, height-10);
             bat_left_stable[i] =  sheet.crop(startingXAttack + i*width , startingYAttack+ 3*height - 13, width, height);
 
             
-            bat_down[i] =  sheet.crop(startingXAttack + i*width , startingYAttack , width, height-5);
+            bat_down[i] =  sheet.crop(startingXAttack + i*width , startingYAttack , width, height-10);
             bat_right[i] =  sheet.crop(startingXAttack + i*width , startingYAttack + height-2, width, height-3);
-            bat_up[i] =  sheet.crop(startingXAttack + i*width , startingYAttack + 2*height, width, height-5);
+            bat_up[i] =  sheet.crop(startingXAttack + i*width , startingYAttack + 2*height, width, height-10);
             bat_left[i] =  sheet.crop(startingXAttack + i*width , startingYAttack+ 3*height - 13, width, height);
 
         }

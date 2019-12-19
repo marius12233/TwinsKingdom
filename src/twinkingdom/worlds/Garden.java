@@ -83,9 +83,9 @@ public final class Garden extends World {
         GrabbableStar star2 = new GrabbableStar(1889, 1278, 32, 32);
         GrabbableStar star3 = new GrabbableStar(1922, 893, 32, 32); 
         //Per demo
-        star1 = new GrabbableStar(150, 190, 32, 32); //2688,2750
-        star2 = new GrabbableStar(150, 200, 32, 32);  //450,958
-        star3 = new GrabbableStar(180, 170, 32, 32); //1920,1570
+        star1 = new GrabbableStar(216,173, 32, 32); //2688,2750
+        star2 = new GrabbableStar(333,173, 32, 32);  //450,958
+        star3 = new GrabbableStar(459,173, 32, 32); //1920,1570
 
         star1.addObserver(starCollection);
         star2.addObserver(starCollection);
@@ -182,7 +182,7 @@ public final class Garden extends World {
             launchGameEvent(new GameEvent(this, GameEventType.LEVEL_FAILED));
         }
         //Stampa di prova per posizionare gli oggetti sulla mappa
-        System.out.println("Cordinate X:" + entityManager.getPlayer().getX() + " Y:" + entityManager.getPlayer().getY());
+       // System.out.println("Cordinate X:" + entityManager.getPlayer().getX() + " Y:" + entityManager.getPlayer().getY());
     }
 
     @Override

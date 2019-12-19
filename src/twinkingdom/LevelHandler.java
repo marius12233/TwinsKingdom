@@ -26,6 +26,8 @@ public class LevelHandler {
         this.worlds.add(new Dungeon1());
         this.worlds.add(new Garden());
         this.worlds.add(new Dungeon2());
+        this.worlds.add(new Castle());
+        this.worlds.add(new Dungeon3());
     }
 
     public void setCurrentWorld(int id) {
