@@ -81,7 +81,7 @@ public class Player extends Creature {
         getInput();
         move();
 
-       
+        System.out.println(x+" "+y);
         handler.getGameCamera().centerOnEntity(this);
     }
 

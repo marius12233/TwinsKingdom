@@ -43,6 +43,9 @@ public class Assets {
         SpriteSheet garden_tileset = new SpriteSheet(ImageLoader.loadImage("/images/assets/textures/GardenTileset.png"));
         SpriteSheet castle_tileset=new SpriteSheet(ImageLoader.loadImage("/images/assets/textures/castle_tileset.jpg"));
         
+        SpriteSheet sheet5 = new SpriteSheet(ImageLoader.loadImage("/images/star.png"));
+        
+        
         player_idle = new BufferedImage[3];
         player_right = new BufferedImage[10];
         
@@ -97,7 +100,7 @@ public class Assets {
         trees[15] = final_tileset.crop(96, 384, 32, 32);
         
         water = castle_tileset.crop(64,256, 32, 32);
-        
+        /*
         SpriteSheet sheet5 = new SpriteSheet(ImageLoader.loadImage("/images/assets/STELLE.png"));
         star[0] = sheet5.crop(0,0, 64, 64);
         star[1] = sheet5.crop(64,0, 64, 64);
@@ -105,6 +108,13 @@ public class Assets {
         star[3] = sheet5.crop(64,64, 64, 64);
         star[4] = sheet5.crop(0,128, 64, 64);
         star[5] = sheet5.crop(64,128, 64, 64);
+                */
+        star[0] = sheet5.crop(0,0, 64, 64);
+        star[1] = sheet5.crop(64,0, 64, 64);
+        star[2] = sheet5.crop(128,0, 64, 64);
+        star[3] = sheet5.crop(192,0, 64, 64);
+        star[4] = sheet5.crop(256,0, 64, 64);
+        star[5] = sheet5.crop(320,0, 64, 64);
         //SpriteSheet sheet6 = new SpriteSheet(ImageLoader.loadImage("/images/assets/healthPotion.png"));
         healthPotion[0] = ImageLoader.loadImage("/images/assets/health.png");
         

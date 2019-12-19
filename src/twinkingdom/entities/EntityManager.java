@@ -17,6 +17,7 @@ import twinkingdom.GameHandler;
  *
  * @author mario
  */
+
 public final class EntityManager {
 
     private GameHandler handler;

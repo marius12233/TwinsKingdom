@@ -6,12 +6,15 @@
 package twinkingdom.entities.mobs.enemies.level3;
 
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import java.util.LinkedList;
+import java.util.Map;
 import twinkingdom.entities.mobs.Creature;
 import twinkingdom.entities.mobs.enemies.Boss;
 import twinkingdom.entities.mobs.enemies.level1.Arrow;
 import twinkingdom.entities.mobs.states.RightMovementState;
 import twinkingdom.entities.statics.Portal;
+import twinkingdom.gfx.Animation;
 import twinkingdom.gfx.ArcherAssets;
 import twinkingdom.gfx.ArrowAssets;
 import twinkingdom.gfx.Boss3Assets;
@@ -35,6 +38,8 @@ public class Boss3 extends Boss {
     private VerticalPolicy verticalPolicy;
     private HorizontalPolicy horizontalPolicy;
 
+    private Animation animationAttackR, animationAttackL, animationAttackU, animationAttackD,actualAnimation;
+    
     public Boss3(float x, float y, Boss3Assets boss3Assets) {
         super(x, y, 80, Creature.DEFAULT_HEIGHT, boss3Assets);
        // weapons = new LinkedList();
@@ -57,6 +62,15 @@ public class Boss3 extends Boss {
         //arrowAsset.init();
         setState(state);
         
+        Map<String, BufferedImage[]> asr = boss3Assets.getAnimations().get("right");
+        animationAttackR = new Animation(50, asr.get("attack"));
+        Map<String, BufferedImage[]> asu = boss3Assets.getAnimations().get("up");
+        animationAttackU = new Animation(50, asu.get("attack"));
+        Map<String, BufferedImage[]> asd = boss3Assets.getAnimations().get("down");
+        animationAttackD = new Animation(50, asd.get("attack"));
+        Map<String, BufferedImage[]> asl = boss3Assets.getAnimations().get("left");
+        animationAttackL = new Animation(50, asl.get("attack"));
+        
         policyTimer = new UtilityTimer(10000);
     }
 
@@ -67,8 +81,18 @@ public class Boss3 extends Boss {
 
         //Animations
         //Per update the index
-        state.tick();
+        //state.tick();
         
+        if(this.getState()==leftState)
+            actualAnimation=animationAttackL;
+        if(this.getState()==rightState)
+           actualAnimation=animationAttackR;
+        if(this.getState()==downState)
+            actualAnimation=animationAttackD;
+        if(this.getState()==upState)
+            actualAnimation=animationAttackU;
+        
+        actualAnimation.tick();
         //checkAttacks();
         //Movement
         getMovement();
@@ -77,10 +101,12 @@ public class Boss3 extends Boss {
         if (policyTimer.isTimeOver()) {
             if (vertical) {
                 setMovementPolicy(new HorizontalPolicy(this, (int) (getX() - 300), (int) (getX() + 300)));
+               // animationAttack.tick();
                 vertical = false;
             } else {
 
                 setMovementPolicy(new VerticalPolicy(this, (int) (getY() - 300), (int) (getY() + 300)));
+               // animationAttack2.tick();
                 vertical = true;
             }
         }
@@ -88,8 +114,10 @@ public class Boss3 extends Boss {
     
     @Override
     public void render(Graphics g) {
-        //g.drawImage(getCurrentAnimationFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
-        state.render(g);
+       
+        if(actualAnimation!=null)
+        g.drawImage(actualAnimation.getCurrentFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width-2, height-2, null);
+        //state.render(g);
     }
 
     @Override

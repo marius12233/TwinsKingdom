@@ -61,12 +61,12 @@ public final class Castle extends World {
         entityManager.getPlayer().setY(500);
 
         //stars                                                     //right positions
-        GrabbableStar star1 = new GrabbableStar(2688, 2750, 32, 32); //2004,1576
-        GrabbableStar star2 = new GrabbableStar(450, 958, 32, 32);  //1971,1161
-        GrabbableStar star3 = new GrabbableStar(1920, 1570, 32, 32); //900,63
-        star1 = new GrabbableStar(150, 190, 32, 32); //2688,2750
-        star2 = new GrabbableStar(150, 200, 32, 32);  //450,958
-        star3 = new GrabbableStar(180, 170, 32, 32); //1920,1570
+        GrabbableStar star1 = new GrabbableStar(2004,1576, 32, 32); //2004,1576
+        GrabbableStar star2 = new GrabbableStar(1971,1161, 32, 32);  //1971,1161
+        GrabbableStar star3 = new GrabbableStar(900,63, 32, 32); //900,63
+        star1 = new GrabbableStar(262,128, 32, 32); //2688,2750
+        star2 = new GrabbableStar(379,128, 32, 32);  //450,958
+        star3 = new GrabbableStar(472,128, 32, 32); //1920,1570
 
         star1.addObserver(starCollection);
         star2.addObserver(starCollection);
@@ -83,12 +83,13 @@ public final class Castle extends World {
         entities.add(new SpikeDown(1826,52,new SpikeAssets()));
         entities.add(new SpikeDown(723,1560,new SpikeAssets()));
         entities.add(new SpikeDown(1092,55,new SpikeAssets()));
+        entities.add(new SpikeDown(472,56,new SpikeAssets()));
         
         //right spikes
         entities.add(new SpikeRight(1500,308,new SpikeAssets()));
         entities.add(new SpikeRight(1500,520,new SpikeAssets()));
         entities.add(new SpikeRight(860,1698,new SpikeAssets()));
-        entities.add(new SpikeRight(12,726,new SpikeAssets()));
+        entities.add(new SpikeRight(23,726,new SpikeAssets()));
         
         //up spikes
         entities.add(new SpikeUp(286,2210,new SpikeAssets()));
@@ -112,10 +113,12 @@ public final class Castle extends World {
         entities.add(new EnchantedArmor(857,189,64,64, new ArmorAssets()));
         entities.add(new EnchantedArmor(1698,1111,64,64, new ArmorAssets()));
         entities.add(new EnchantedArmor(516,1111,64,64, new ArmorAssets()));
+        entities.add(new EnchantedArmor(280,209,64,64, new ArmorAssets()));
+        entities.add(new EnchantedArmor(357,728,64,64, new ArmorAssets()));
         
          //health potions
         entities.add(new GrabbableHealthPotion(1923,202, 32, 32));
-        entities.add(new GrabbableHealthPotion(17,726, 32, 32));
+        entities.add(new GrabbableHealthPotion(30,726, 32, 32));
         entities.add(new GrabbableHealthPotion(600,1611, 32, 32));
         
         //ghosts
@@ -137,8 +140,8 @@ public final class Castle extends World {
         entities.add(g3);
         
         //portal position settings
-        portalX = 600;
-        portalY = 200;
+        portalX = 645;
+        portalY = 203;
         portal = new Portal(portalX, portalY, 64, 64);
         entities.add(portal);
 

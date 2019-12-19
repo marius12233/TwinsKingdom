@@ -38,7 +38,10 @@ public final class Dungeon3 extends World {
 
     @Override
     protected void setCreatures() {
-        boss = new Boss3(500, 550, new  Boss3Assets());
+        
+       
+        
+        boss = new Boss3(589, 609, new  Boss3Assets());
         entities.add(boss);
         
         boss.getLifeObservable().addObserver((Observer) this);
@@ -48,7 +51,7 @@ public final class Dungeon3 extends World {
 
         System.out.println("Dungeon set creatures...");
         entityManager.getPlayer().setX(736);
-        entityManager.getPlayer().setY(768);
+        entityManager.getPlayer().setY(900);
        
         portal.addGameEventListener(this);
       
