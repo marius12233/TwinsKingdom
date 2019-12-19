@@ -11,7 +11,7 @@ import java.util.Observable;
 import java.util.Observer;
 import twinkingdom.entities.mobs.enemies.Boss;
 import twinkingdom.entities.mobs.enemies.level1.ArcherBoss;
-import twinkingdom.entities.mobs.enemies.level1.MageBoss;
+import twinkingdom.entities.mobs.enemies.level2.MageBoss;
 import twinkingdom.entities.mobs.enemies.level2.Crow;
 import twinkingdom.entities.mobs.enemies.level3.EnchantedArmor;
 import twinkingdom.entities.mobs.enemies.level3.Ghost;

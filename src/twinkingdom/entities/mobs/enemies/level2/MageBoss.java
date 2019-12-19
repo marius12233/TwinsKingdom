@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package twinkingdom.entities.mobs.enemies.level1;
+package twinkingdom.entities.mobs.enemies.level2;
 
 import java.awt.Graphics;
 import java.util.LinkedList;
@@ -82,7 +82,7 @@ public class MageBoss extends Boss{
 
     @Override
     public FireBall createWeapon() {
-        FireBall fireBall = createWeapon((int) getX() + 300, (int) getY() - 300, 10, 10);
+        FireBall fireBall = createWeapon((int) getX() + 300, (int) getY() - 300, 48, 48);
         return fireBall;
     }
 
