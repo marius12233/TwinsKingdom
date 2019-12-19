@@ -17,6 +17,10 @@ public class UtilityTimer {
     private boolean isOver ;
     private long thisCall;
     private long delta;
+    private boolean descendent = false;
+    private long min;
+    private long sec;
+    private long totalSec;
 
     public UtilityTimer( ) {
         
@@ -34,6 +38,16 @@ public class UtilityTimer {
         
         
         
+    }
+    
+     public UtilityTimer(long intervalMillisec, boolean descendent) {
+        
+        this.interval = intervalMillisec;
+        this.lastCall = 0;
+        this.isOver=false;
+        this.delta=intervalMillisec;
+        this.descendent = descendent;
+        this.min = interval/1000/60;
     }
 
     private void timerOn() {
@@ -61,6 +75,30 @@ public class UtilityTimer {
         timerOn();
         return isOver;
     }
+    
+    private void timerOnDescendent() {
+        thisCall=System.currentTimeMillis();
+        if (lastCall!=0){
+           delta-= thisCall-lastCall; 
+        }
+        
+        lastCall=System.currentTimeMillis();
+        
+        if (delta < 0) {
+            System.out.println(delta);
+            delta=interval;
+            isOver=true;
+        } else {
+            isOver=false;
+        }
+
+    }
+
+    public boolean isTimeOverDescendent() {
+        
+        timerOnDescendent();
+        return isOver;
+    }
 
     public long getInterval() {
         return this.interval;
@@ -72,5 +110,16 @@ public class UtilityTimer {
     
     public void setAttacking(boolean value){
         this.isOver=value;
+    }
+    
+    public String getTimeDescendent(){
+        totalSec = delta/1000;
+        min = totalSec/60;
+        sec = totalSec - (min * 60);
+        
+        if(sec<10)
+            return "0" + min + ":0" + sec;
+        else
+            return "0" + min + ":" + sec;
     }
 }

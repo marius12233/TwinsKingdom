@@ -13,7 +13,7 @@ import java.util.Map;
  *
  * @author Alex1
  */
-public class SnakeGreyAssets extends EntityAssets {
+public class GreySnakeAssets extends EntityAssets {
     
     private static Map<String, Map<String, BufferedImage[]>> snakeAnimations;
 

@@ -31,10 +31,11 @@ import twinkingdom.utils.GrabbableStarCollection;
  * @author Antonia
  */
 public final class Dungeon1 extends World {
-
-    private Boss boss;
+    
+    private ArcherBoss boss;
+    
     public Dungeon1() {
-        super("res/worlds/world2/");
+        super("res/worlds/dungeon1/");
         this.starCollection = new GrabbableStarCollection(0);
     }
 
@@ -46,18 +47,10 @@ public final class Dungeon1 extends World {
 
     @Override
     protected void setCreatures() {
-        boss = new MageBoss(500f, 550f, new  Boss2Assets());
+        boss = new ArcherBoss(500, 550, new  ArcherAssets());
         entities.add(boss);
         
         boss.getLifeObservable().addObserver((Observer) this);
-        
-        float[] arrayx = new float[]{650,300,540};
-                float[] arrayy = new float[]{650,300,540};
-
-        entities.add(new Ghost(600,600, 32,32, new GhostAssets(), arrayx, arrayy));
-
-        entities.add(new EnchantedArmor(500,500,64,64, new ArmorAssets()));
-        entities.add(new Crow(700,700,32,32, new CrowAssets()));
 
         portal = new Portal(1200, 332, 64, 64);
         entities.add(portal);

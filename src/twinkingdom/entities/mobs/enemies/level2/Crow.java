@@ -21,13 +21,12 @@ public class Crow extends Enemy {
         bounds.y = 1;
         bounds.width = 25;
         bounds.height = 25;
-        //health = 2;
         setState(leftState);
-        health.setHealthPoints(1);
+        health.setHealthPoints(4);
         health.setLives(1);
         speed=5;
+        this.setDamageAttack(2);
     }
-
     
     @Override
     public void tick() {

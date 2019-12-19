@@ -22,6 +22,9 @@ public class Assets {
     
     public static BufferedImage grass;
     public static BufferedImage ground;
+    public static BufferedImage shrub;
+    public static BufferedImage rock;
+    public static BufferedImage flowers;
     public static BufferedImage[] trees = new BufferedImage[16];
     public static BufferedImage water;
     public static BufferedImage[] portal;
@@ -35,6 +38,7 @@ public class Assets {
         SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/images/assets/textures/sheet.png"));
         SpriteSheet tileset = new SpriteSheet(ImageLoader.loadImage("/images/assets/textures/tileset.png"));
         SpriteSheet final_tileset = new SpriteSheet(ImageLoader.loadImage("/images/assets/textures/Forest Tileset-min.png"));
+        SpriteSheet garden_tileset = new SpriteSheet(ImageLoader.loadImage("/images/assets/textures/GardenTileset.png"));
         
         player_idle = new BufferedImage[3];
         player_right = new BufferedImage[10];
@@ -66,6 +70,11 @@ public class Assets {
         grass = final_tileset.crop(32, 32, 32, 32);
         
         ground = final_tileset.crop(128, 32, 32, 32);
+        
+        //Mondo 2
+        shrub = final_tileset.crop(448, 192,  32, 32);
+        rock = final_tileset.crop(576, 128,  32, 32);
+        flowers = garden_tileset.crop(32, 260, 32, 32);
         
         trees[0] = final_tileset.crop(0, 288, 32, 32);
         trees[1] = final_tileset.crop(32, 288, 32, 32);
