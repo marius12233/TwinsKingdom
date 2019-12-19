@@ -22,8 +22,10 @@ public class LevelHandler {
         
         this.currentWorld = 0;
         this.worlds = new LinkedList<>();
-        this.worlds.add(new InterWorld1());
+        this.worlds.add(new Forest());
         this.worlds.add(new Dungeon1());
+        this.worlds.add(new Garden());
+        this.worlds.add(new Dungeon2());
     }
 
     public void setCurrentWorld(int id) {

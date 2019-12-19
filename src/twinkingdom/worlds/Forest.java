@@ -33,16 +33,16 @@ import twinkingdom.utils.GrabbableStarCollection;
  *
  * @author Antonia
  */
-public final class InterWorld1 extends World {
+public final class Forest extends World {
 
     public static Class thisClass;
     private final int STARS = 3;
 
     static {
-        thisClass = InterWorld1.class;
+        thisClass = Forest.class;
     }
 
-    public InterWorld1() {
+    public Forest() {
         super("res/worlds/world1/");
         this.starCollection = new GrabbableStarCollection(STARS);
     }

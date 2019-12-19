@@ -12,7 +12,7 @@ import java.util.Map;
  *
  * @author Alex1
  */
-public class SnakeRedAssets extends EntityAssets {
+public class RedSnakeAssets extends EntityAssets {
     
     private static Map<String, Map<String, BufferedImage[]>> snakeAnimations;
 

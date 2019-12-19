@@ -12,6 +12,7 @@ import twinkingdom.entities.mobs.states.player.RightMageState;
 import twinkingdom.entities.mobs.states.player.UpMageState;
 import twinkingdom.gfx.PlayerAssets;
 import twinkingdom.gfx.PlayerSpellAssets;
+import twinkingdom.gui.Mana;
 
 
 /**
@@ -19,6 +20,8 @@ import twinkingdom.gfx.PlayerSpellAssets;
  * @author mario
  */
 public class PlayerMage extends Player {
+    
+    protected Mana mana;
 
     public PlayerMage( float x, float y, PlayerSpellAssets pAssets, int numLives) {
         super( x, y, pAssets, numLives);
@@ -27,11 +30,24 @@ public class PlayerMage extends Player {
         downState=new DownMageState(this, pAssets);
         upState=new UpMageState(this, pAssets);
         setState(downState);
+        mana = new Mana();
+        mana.setMaxMana(120);
+        mana.setEnabled(true);
     }
     
     public PlayerMage(Player player){
         this(player.getX(), player.getY(), new PlayerSpellAssets(), player.getNumLives());
         this.setHealth(player.getHealth());
     }
+
+    public Mana getMana() {
+        return mana;
+    }
+
+    public void setMana(Mana mana) {
+        this.mana = mana;
+    }
+    
+    
     
 }

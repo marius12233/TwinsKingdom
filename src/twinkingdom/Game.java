@@ -324,7 +324,7 @@ public class Game implements Runnable, Observer, GameEventListener {
 
         currentWorld.getEntityManager().setPlayer(player);
         currentWorld.init();
-        currentWorld.addGameEventListener(this);
+        //currentWorld.addGameEventListener(this);
 
         changingLevel = false;
     }
@@ -336,11 +336,11 @@ public class Game implements Runnable, Observer, GameEventListener {
                 changeLevel();
                 break;
             case LEVEL_FAILED:
-                if(player.getHealth().getLives() <= 1) {
+                if (player.getHealth().getLives() > 1){
+                    resetLevel();
+                } else {
                     this.launchGameEvent(new GameEvent(this, GameEventType.GAME_OVER));
-                    break;
                 }
-                resetLevel();
                 break;
             case GAME_OVER:
                 Checkpoint.removeCheckpoint(checkpoint);
@@ -369,6 +369,8 @@ public class Game implements Runnable, Observer, GameEventListener {
                 player = new PlayerMage(player);
                 entityManager.setPlayer(player);
                 entityManager.getPlayer().getHealth().addObserver((Observer) this);
+                PlayerMage playerMage = (PlayerMage) player;
+                playerMage.getMana().addObserver((Observer) gui.getManaBar());
                 gui.getWeaponPanel().setWeapon(Weapons.SPELL);
                 break;
             default:

@@ -13,8 +13,9 @@ import java.util.Map;
  *
  * @author Alex1
  */
-public class SnakeBlueAssets extends EntityAssets {
-        
+public class YellowSnakeAssets extends EntityAssets {
+    
+     
     private static Map<String, Map<String, BufferedImage[]>> snakeAnimations;
 
   
@@ -39,7 +40,7 @@ public class SnakeBlueAssets extends EntityAssets {
         int height= 48;
         int width = 48;
       
-        int startingXAttack= 3*width;
+        int startingXAttack=0;
         int startingYAttack= 4*height;
         SpriteSheet sheet1, sheet2, sheet = null;            
         sheet = new SpriteSheet(ImageLoader.loadImage("/images/assets/snake2.png"));
@@ -104,6 +105,5 @@ public class SnakeBlueAssets extends EntityAssets {
     public Map<String, Map<String, BufferedImage[]>> getAnimations() {
         return snakeAnimations;
     }
-    
     
 }

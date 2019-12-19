@@ -13,7 +13,7 @@ import java.util.Map;
  *
  * @author Alex1
  */
-public class PapaveroAssets extends EntityAssets {
+public class PoppyAssets extends EntityAssets {
     
     private static Map<String, Map<String, BufferedImage[]>> papaveroAnimations;
 
@@ -42,7 +42,7 @@ public class PapaveroAssets extends EntityAssets {
         int startingXAttack= 0;
         int startingYAttack= 0;
         SpriteSheet sheet1, sheet2, sheet = null;            
-        sheet = new SpriteSheet(ImageLoader.loadImage("/images/assets/papavero2.png"));
+        sheet = new SpriteSheet(ImageLoader.loadImage("/images/assets/poppy.png"));
 
 
         for(int i=0;i<3;i++){

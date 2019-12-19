@@ -46,6 +46,11 @@ public class Tile {
     
     public static Tile waterTile = new WaterTile(81);
     
+    //Mondo 2
+    public static Tile shrubTile = new ShrubTile(129);
+    public static Tile rockTile = new RockTile(95);
+    public static Tile flowersTile = new FlowersTile(109);
+    
     //CLASS
     public static final int TILEWIDTH = 32, TILEHEIGHT = 32;
     
