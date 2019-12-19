@@ -58,7 +58,7 @@ public final class Dungeon2 extends World {
         boss.getLifeObservable().addObserver((Observer) this);
         
         //Portal
-        portal = new Portal(1200, 332, 64, 64);
+        portal = new Portal(1000, 332, 64, 64);
         entities.add(portal);
        
         portal.addGameEventListener(this);

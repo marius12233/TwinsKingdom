@@ -46,6 +46,17 @@ public class Tile {
     
     public static Tile waterTile = new WaterTile(81);
     
+    //Mondo 3
+    public static Tile castleWallTile=new CastleWallTile(0,35); //sx wall
+    public static Tile castleWallTile1=new CastleWallTile(1,36); //bot wall
+    public static Tile castleWallTile2=new CastleWallTile(2,37); //dx wall
+    public static Tile castleWallTile3=new CastleWallTile(3,38); //separator wall
+    public static Tile castleWallTile4=new CastleWallTile(4,1); //top1 wall
+    public static Tile castleWallTile5=new CastleWallTile(5,2); //top2 wall
+    
+    public static Tile castleCandleTile=new CastleCandleTile(39);
+    public static Tile castleFloorTile=new CastleFloorTile(57);
+    
     //Mondo 2
     public static Tile shrubTile = new ShrubTile(129);
     public static Tile rockTile = new RockTile(95);

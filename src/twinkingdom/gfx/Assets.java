@@ -33,12 +33,15 @@ public class Assets {
     public static BufferedImage[] enchantedTrees;
     public static BufferedImage[] enchantedLeaf;
     
+    public static BufferedImage castleFloor,candle;
+    public static BufferedImage[] castleWall;
     
     public static void init() {
         SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/images/assets/textures/sheet.png"));
         SpriteSheet tileset = new SpriteSheet(ImageLoader.loadImage("/images/assets/textures/tileset.png"));
         SpriteSheet final_tileset = new SpriteSheet(ImageLoader.loadImage("/images/assets/textures/Forest Tileset-min.png"));
         SpriteSheet garden_tileset = new SpriteSheet(ImageLoader.loadImage("/images/assets/textures/GardenTileset.png"));
+        SpriteSheet castle_tileset=new SpriteSheet(ImageLoader.loadImage("/images/assets/textures/castle_tileset.jpg"));
         
         player_idle = new BufferedImage[3];
         player_right = new BufferedImage[10];
@@ -46,7 +49,7 @@ public class Assets {
         star = new BufferedImage[6];
         healthPotion = new BufferedImage[1];
         portal = new BufferedImage[5];
-        
+        castleWall=new BufferedImage[6];
         
         //CHARACTER IDLE ANIMATION
         player_idle[0] = sheet.crop(4, 5, width, height);
@@ -93,7 +96,7 @@ public class Assets {
         trees[14] = final_tileset.crop(64, 384, 32, 32);
         trees[15] = final_tileset.crop(96, 384, 32, 32);
         
-        water = final_tileset.crop(128, 128, 32, 32);
+        water = castle_tileset.crop(64,256, 32, 32);
         
         SpriteSheet sheet5 = new SpriteSheet(ImageLoader.loadImage("/images/assets/STELLE.png"));
         star[0] = sheet5.crop(0,0, 64, 64);
@@ -117,5 +120,22 @@ public class Assets {
 
         enchantedLeaf[0]=ImageLoader.loadImage("/images/assets/enchantedLeaf.png");
         
+        castleFloor=castle_tileset.crop(160,96,32,32);
+        //castleWater=castle_tileset.crop(64,256,32,32);
+        castleWall[0]=castle_tileset.crop(0,32,32,32);//leftWall
+        
+        castleWall[1]=castle_tileset.crop(32,352,32,32); //botWall
+        castleWall[2]=castle_tileset.crop(512,320,32,32); //rightWall
+        castleWall[3]=castle_tileset.crop(96,64,32,32); //separatorWall
+        castleWall[4]=castle_tileset.crop(288,0,32,32); //top1Wall
+        castleWall[5]=castle_tileset.crop(288,32,32,32); //top2Wall
+//        leftWall=castle_tileset.crop(0,32,32,32);
+//        rightWall=castle_tileset.crop(512,320,32,32);
+//        botWall=castle_tileset.crop(32,352,32,32);
+//        separatorWall=castle_tileset.crop(96,64,32,32);
+//        top1Wall=castle_tileset.crop(288,0,32,32);
+//        top2Wall=castle_tileset.crop(288,32,32,32);
+        
+        candle=ImageLoader.loadImage("/images/assets/textures/candle2.png");
     }   
 }
