@@ -39,14 +39,17 @@ public final class EntityManager {
     }
 
     public void tick() {
+
         for(int i = entities.size() - 1; i >= 0 ; i--)  {
             if(entities.isEmpty())
                 break;
             try{
             Entity e = entities.get(i);
+           
             e.tick();
             if(!e.isActive())
                 entities.remove(i);
+
         }catch(Exception ex) {
             continue;
         }

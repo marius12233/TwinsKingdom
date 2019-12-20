@@ -9,7 +9,6 @@ import twinkingdom.GameHandler;
 import twinkingdom.entities.mobs.Creature;
 import twinkingdom.entities.mobs.player.PlayerMage;
 import twinkingdom.entities.mobs.states.DownMovementState;
-import twinkingdom.entities.mobs.states.DownMovementState;
 import twinkingdom.entities.statics.FireBall;
 import twinkingdom.gfx.EntityAssets;
 import twinkingdom.utils.UtilityTimer;
