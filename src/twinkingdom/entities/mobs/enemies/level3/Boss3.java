@@ -52,12 +52,12 @@ public class Boss3 extends Boss {
         //horizontalPolicy = new HorizontalArcherPolicy(handler, this,(int) (getX()-300), (int)(getX()+300));
         setMovementPolicy(new HorizontalPolicy(this, (int) (getX() - 300), (int) (getX() + 300)));
         //setMovementPolicy(verticalPolicy);
-        bounds.x = 25;
-        bounds.y = 30;
-        bounds.width = 15;
-        bounds.height = 22;
+        bounds.x = 15;
+        bounds.y = 10;
+        bounds.width = 30;
+        bounds.height = 50;
         //setState(leftState); 
-        health.setHealthPoints(100);
+        health.setHealthPoints(15);
         health.setLives(1);
         //arrowAsset.init();
         setState(state);

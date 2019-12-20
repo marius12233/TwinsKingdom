@@ -49,7 +49,7 @@ public final class Castle extends World {
     public void init() {
         super.init();
         starCollection.addObserver((Observer) this);
-        layerFeature=new Layer3Feature(handler,entityManager.getPlayer());
+        layerFeature=new Layer3Feature(entityManager.getPlayer());
         
     }
 

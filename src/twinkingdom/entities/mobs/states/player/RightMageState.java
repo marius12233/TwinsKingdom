@@ -34,6 +34,7 @@ public class RightMageState extends RightMovementState{
             FireBall fire = new FireBall(creature.getX() + 42, creature.getY()+10, 64, 64);
             fire.setState(fire.getRightState());
             GameHandler.instance.getWorld().getEntityManager().addEntity(fire);
+            mage.getMana().setMana(mage.getMana().getMana() -10);
         }
     }
     

@@ -44,9 +44,6 @@ public class PlayerMage extends Player {
         return mana;
     }
 
-    public void setMana(Mana mana) {
-        this.mana = mana;
-    }
     
     
     

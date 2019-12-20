@@ -27,10 +27,10 @@ public class Layer3Feature {
     private int width, height;
     private int xOffset, yOffset;
 
-    public Layer3Feature(GameHandler handler, Player player) {
-
+    public Layer3Feature(Player player) {
+        
         this.player = player;
-        this.handler = handler;
+        this.handler = GameHandler.instance;
         this.x = 0;
         this.y = 0;
         this.xOffset = 0;
@@ -45,9 +45,9 @@ public class Layer3Feature {
     }
 
     public void tick() {
-        centerOnEntity(player);
-        x = (int) (player.getX() - xOffset);
-        y = (int) (player.getY() - yOffset);
+        centerOnEntity(handler.getPlayer());
+        x = (int) (handler.getPlayer().getX() - xOffset);
+        y = (int) (handler.getPlayer().getY() - yOffset);
     
 
     }

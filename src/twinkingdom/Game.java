@@ -90,6 +90,7 @@ public class Game implements Runnable, Observer, GameEventListener {
 
         player = new Player(288, 320, new PlayerAssets());
         player.getHealth().setLives(checkpoint.getLives());
+        handler.setPlayer(player);
 
        // gameState = new GameState(handler);
         //State.setState(gameState);
@@ -179,7 +180,7 @@ public class Game implements Runnable, Observer, GameEventListener {
         double timePerTick = 1000000000 / fps;
         double delta = 0;
         long now;
-        long lastTime = System.nanoTime();
+       
         long timer = 0;
         int ticks = 0;
         
@@ -202,7 +203,9 @@ public class Game implements Runnable, Observer, GameEventListener {
         
         changingLevel = false;
         
+        long lastTime = System.nanoTime();
         while (running) {
+            
             while (changingLevel) {
             }
             now = System.nanoTime();
@@ -357,20 +360,27 @@ public class Game implements Runnable, Observer, GameEventListener {
             case WEAPON_SELECTED_SWORD:
                 player = new Player(player);
                 entityManager.setPlayer(player);
+                handler.setPlayer(player);
                 gui.getWeaponPanel().setWeapon(Weapons.SWORD);
                 break;
             case WEAPON_SELECTED_BOW:
+                if(levelHandler.getCurrentWorldId() < 2)
+                    return;
                 player = new PlayerArcher(player);
                 entityManager.setPlayer(player);
+                handler.setPlayer(player);
                 player.getHealth().addObserver((Observer) this);
                 gui.getWeaponPanel().setWeapon(Weapons.BOW);
                 break;
             case WEAPON_SELECTED_SPELL:
+                if(levelHandler.getCurrentWorldId() < 4)
+                    return;
                 player = new PlayerMage(player);
                 entityManager.setPlayer(player);
                 entityManager.getPlayer().getHealth().addObserver((Observer) this);
-                PlayerMage playerMage = (PlayerMage) player;
-                playerMage.getMana().addObserver((Observer) gui.getManaBar());
+                handler.setPlayer(player);
+                //PlayerMage playerMage = (PlayerMage) player;
+                ((PlayerMage) player).getMana().addObserver((Observer) gui.getManaBar());
                 gui.getWeaponPanel().setWeapon(Weapons.SPELL);
                 break;
             default:

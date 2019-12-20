@@ -5,6 +5,7 @@
  */
 package twinkingdom;
 
+import twinkingdom.entities.mobs.player.Player;
 import twinkingdom.gfx.GameCamera;
 import twinkingdom.input.KeyManager;
 import twinkingdom.worlds.World;
@@ -18,6 +19,7 @@ public class GameHandler {
     
     private Game game;
     private World world;
+    private Player player;
     public static GameHandler instance = null;
     
     static {
@@ -78,6 +80,16 @@ public class GameHandler {
                 this.notifyAll();
 
     }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+    
+    
 
   
 }

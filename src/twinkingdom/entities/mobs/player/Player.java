@@ -13,6 +13,7 @@ import twinkingdom.gfx.Assets;
 import twinkingdom.gfx.EntityAssets;
 import twinkingdom.gfx.PlayerAssets;
 import twinkingdom.gui.Health;
+import twinkingdom.gui.Mana;
 
 /**
  *
@@ -22,7 +23,7 @@ public class Player extends Creature {
 
     //private int numLives;
     
-    
+    private Mana mana;
 
     public Player(float x, float y, EntityAssets pAssets, int lives) {
         super( x, y, Creature.DEFAULT_WIDTH, Creature.DEFAULT_HEIGHT, pAssets);
@@ -81,7 +82,7 @@ public class Player extends Creature {
         getInput();
         move();
 
-        System.out.println(x+" "+y);
+        //System.out.println(x+" "+y);
         handler.getGameCamera().centerOnEntity(this);
     }
 

@@ -24,6 +24,7 @@ public class FireBall extends Creature {
         bounds.width= 24;
         bounds.height= 15;
         setState(rightState);
+        speed=speed*2;
         //animation = new Animation(500, Assets.enchantedLeaf);
     }
 
