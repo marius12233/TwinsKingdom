@@ -6,7 +6,7 @@
 package twinkingdom.entities.mobs.enemies.level1;
 
 import java.awt.Graphics;
-import twinkingdom.GameHandler;
+import twinkingdom.game.GameHandler;
 import twinkingdom.entities.mobs.enemies.Enemy;
 import twinkingdom.gfx.BatAssets;
 import twinkingdom.utils.UtilityTimer;

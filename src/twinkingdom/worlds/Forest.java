@@ -10,7 +10,7 @@ import java.awt.Graphics;
 import java.util.EventObject;
 import java.util.Observable;
 import java.util.Observer;
-import twinkingdom.RenderableLayers;
+import twinkingdom.game.RenderableLayers;
 import twinkingdom.entities.Entity;
 import twinkingdom.entities.EntityManager;
 import twinkingdom.entities.statics.EnchantedTree;

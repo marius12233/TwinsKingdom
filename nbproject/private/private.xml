@@ -3,7 +3,40 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/mario/Documents/NetBeansProjects/StableVersion2/src/twinkingdom/worlds/Dungeon1.java</file>
+            <file>file:/C:/Users/mario/Documents/NetBeansProjects/StableVersion2/src/twinkingdom/entities/mobs/enemies/Boss.java</file>
+            <file>file:/C:/Users/mario/Documents/NetBeansProjects/StableVersion2/src/twinkingdom/utils/GrabbableStarCollection.java</file>
+            <file>file:/C:/Users/mario/Documents/NetBeansProjects/StableVersion2/src/twinkingdom/entities/Entity.java</file>
+            <file>file:/C:/Users/mario/Documents/NetBeansProjects/StableVersion2/src/twinkingdom/entities/mobs/enemies/level2/FireBall.java</file>
+            <file>file:/C:/Users/mario/Documents/NetBeansProjects/StableVersion2/src/twinkingdom/entities/mobs/player/Player.java</file>
+            <file>file:/C:/Users/mario/Documents/NetBeansProjects/StableVersion2/src/twinkingdom/entities/mobs/enemies/level1/Monster.java</file>
+            <file>file:/C:/Users/mario/Documents/NetBeansProjects/StableVersion2/src/twinkingdom/entities/mobs/enemies/level1/Bat.java</file>
+            <file>file:/C:/Users/mario/Documents/NetBeansProjects/StableVersion2/src/twinkingdom/entities/mobs/enemies/level1/ArcherBoss.java</file>
+            <file>file:/C:/Users/mario/Documents/NetBeansProjects/StableVersion2/src/twinkingdom/gfx/GameCamera.java</file>
+            <file>file:/C:/Users/mario/Documents/NetBeansProjects/StableVersion2/src/twinkingdom/entities/statics/grabbable/GrabbableStaticEntity.java</file>
+            <file>file:/C:/Users/mario/Documents/NetBeansProjects/StableVersion2/src/twinkingdom/entities/statics/StaticEntity.java</file>
+            <file>file:/C:/Users/mario/Documents/NetBeansProjects/StableVersion2/src/twinkingdom/entities/mobs/Creature.java</file>
+            <file>file:/C:/Users/mario/Documents/NetBeansProjects/StableVersion2/src/twinkingdom/entities/mobs/states/player/RightArcherState.java</file>
+            <file>file:/C:/Users/mario/Documents/NetBeansProjects/StableVersion2/src/twinkingdom/entities/statics/FireBall.java</file>
+            <file>file:/C:/Users/mario/Documents/NetBeansProjects/StableVersion2/src/twinkingdom/game/Game.java</file>
+            <file>file:/C:/Users/mario/Documents/NetBeansProjects/StableVersion2/src/twinkingdom/entities/mobs/enemies/level3/Spike.java</file>
+            <file>file:/C:/Users/mario/Documents/NetBeansProjects/StableVersion2/src/twinkingdom/entities/mobs/enemies/Enemy.java</file>
+            <file>file:/C:/Users/mario/Documents/NetBeansProjects/StableVersion2/src/twinkingdom/entities/mobs/states/UpMovementState.java</file>
+            <file>file:/C:/Users/mario/Documents/NetBeansProjects/StableVersion2/src/twinkingdom/entities/mobs/enemies/level2/MageBoss.java</file>
+            <file>file:/C:/Users/mario/Documents/NetBeansProjects/StableVersion2/src/twinkingdom/entities/statics/Portal.java</file>
+            <file>file:/C:/Users/mario/Documents/NetBeansProjects/StableVersion2/src/twinkingdom/entities/statics/EnchantedTree.java</file>
+            <file>file:/C:/Users/mario/Documents/NetBeansProjects/StableVersion2/src/twinkingdom/entities/mobs/enemies/level1/Wolf.java</file>
+            <file>file:/C:/Users/mario/Documents/NetBeansProjects/StableVersion2/src/twinkingdom/entities/mobs/Movable.java</file>
+            <file>file:/C:/Users/mario/Documents/NetBeansProjects/StableVersion2/src/twinkingdom/policies/VerticalArcherPolicy.java</file>
+            <file>file:/C:/Users/mario/Documents/NetBeansProjects/StableVersion2/src/twinkingdom/entities/statics/grabbable/GrabbableStar.java</file>
+            <file>file:/C:/Users/mario/Documents/NetBeansProjects/StableVersion2/src/twinkingdom/policies/HorizontalArcherPolicy.java</file>
+            <file>file:/C:/Users/mario/Documents/NetBeansProjects/StableVersion2/src/twinkingdom/entities/mobs/enemies/finalLevel/QueenAnsia.java</file>
+            <file>file:/C:/Users/mario/Documents/NetBeansProjects/StableVersion2/src/twinkingdom/entities/statics/EnchantedLeaf.java</file>
+            <file>file:/C:/Users/mario/Documents/NetBeansProjects/StableVersion2/src/twinkingdom/entities/mobs/enemies/level1/Arrow.java</file>
+            <file>file:/C:/Users/mario/Documents/NetBeansProjects/StableVersion2/src/twinkingdom/entities/mobs/Launchable.java</file>
+            <file>file:/C:/Users/mario/Documents/NetBeansProjects/StableVersion2/src/twinkingdom/entities/statics/grabbable/GrabbableHealthPotion.java</file>
+            <file>file:/C:/Users/mario/Documents/NetBeansProjects/StableVersion2/src/twinkingdom/policies/HorizontalPolicy.java</file>
+            <file>file:/C:/Users/mario/Documents/NetBeansProjects/StableVersion2/src/twinkingdom/entities/mobs/enemies/level2/Gargoyle.java</file>
+            <file>file:/C:/Users/mario/Documents/NetBeansProjects/StableVersion2/src/twinkingdom/entities/mobs/player/PlayerArcher.java</file>
         </group>
     </open-files>
 </project-private>

@@ -6,7 +6,7 @@
 package twinkingdom.entities.mobs;
 
 import java.awt.Graphics;
-import twinkingdom.RenderableLayers;
+import twinkingdom.game.RenderableLayers;
 import twinkingdom.entities.Entity;
 import static twinkingdom.entities.mobs.Creature.DEFAULT_SPEED;
 import twinkingdom.entities.mobs.states.DownMovementState;

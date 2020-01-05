@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package twinkingdom.gfx;
-import twinkingdom.GameHandler;
+import twinkingdom.game.GameHandler;
 import twinkingdom.entities.Entity;
 import twinkingdom.tiles.Tile;
 

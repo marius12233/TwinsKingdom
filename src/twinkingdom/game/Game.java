@@ -17,7 +17,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.SwingUtilities;
 import javax.swing.event.EventListenerList;
-import twinkingdom.State;
 import twinkingdom.entities.EntityManager;
 import twinkingdom.entities.mobs.player.Player;
 import twinkingdom.entities.mobs.player.PlayerArcher;
@@ -48,7 +47,6 @@ public class Game implements Runnable, Observer, GameEventListener {
     private final String title;
     private BufferStrategy bs;
     private Graphics g;
-    private State gameState;
     private final KeyManager keyManager = new KeyManager();
     private GameCamera gameCamera;
     private GameHandler handler;

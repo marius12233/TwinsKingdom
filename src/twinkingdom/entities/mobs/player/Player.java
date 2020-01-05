@@ -6,7 +6,7 @@
 package twinkingdom.entities.mobs.player;
 
 import java.awt.Graphics;
-import twinkingdom.GameHandler;
+import twinkingdom.game.GameHandler;
 import twinkingdom.entities.Entity;
 import twinkingdom.entities.mobs.Creature;
 import twinkingdom.gfx.Assets;

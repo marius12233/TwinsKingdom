@@ -7,7 +7,7 @@ package twinkingdom.entities.mobs.enemies.level3;
 
 
 import java.awt.Graphics;
-import twinkingdom.GameHandler;
+import twinkingdom.game.GameHandler;
 import twinkingdom.entities.mobs.enemies.Enemy;
 import twinkingdom.entities.mobs.states.MovementState;
 import twinkingdom.gfx.GhostAssets;

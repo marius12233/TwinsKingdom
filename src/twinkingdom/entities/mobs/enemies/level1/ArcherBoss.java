@@ -10,7 +10,7 @@ package twinkingdom.entities.mobs.enemies.level1;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.LinkedList;
-import twinkingdom.GameHandler;
+import twinkingdom.game.GameHandler;
 import twinkingdom.entities.mobs.Creature;
 import twinkingdom.entities.Entity;
 import twinkingdom.entities.mobs.enemies.Boss;

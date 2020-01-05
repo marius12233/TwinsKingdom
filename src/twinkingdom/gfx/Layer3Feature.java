@@ -8,7 +8,7 @@ package twinkingdom.gfx;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import twinkingdom.GameHandler;
+import twinkingdom.game.GameHandler;
 import twinkingdom.entities.Entity;
 import twinkingdom.entities.mobs.player.Player;
 
