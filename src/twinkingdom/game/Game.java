@@ -255,7 +255,9 @@ public class Game implements Runnable, Observer, GameEventListener {
         }
         
         try {
-            Thread.sleep(10000);
+            Thread.sleep(1000);
+            if (gameOver)
+                Thread.sleep(10000);
         } catch (InterruptedException ex) {
             Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -411,6 +413,11 @@ public class Game implements Runnable, Observer, GameEventListener {
                 this.gui.getFrame().setEnabled(true);
                 this.gui.getFrame().setVisible(true);
 
+                break;
+            case GAME_EXITED:
+                this.stopGame();
+                pause.setVisible(false);
+                this.gui.getFrame().setVisible(true);
                 break;
             case GAME_START:
                 break; // TO DO
