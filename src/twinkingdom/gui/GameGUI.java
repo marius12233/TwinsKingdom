@@ -18,10 +18,19 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
+import javafx.embed.swing.JFXPanel;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
+import static twinkingdom.game.Launcher.root;
+import twinkingdom.game.PauseController;
 import twinkingdom.gfx.ImageLoader;
 
 /**
@@ -57,12 +66,13 @@ public class GameGUI {
         this.createStarsPanel();
         this.createHealthBar();
         this.createManaBar();
-
+        
         FrameDragListener frameDragListener = new FrameDragListener(frame);
         frame.addMouseListener(frameDragListener);
         frame.addMouseMotionListener(frameDragListener);
+
         frame.setVisible(true);
-        frame.pack();
+                frame.pack();
 
        
 
@@ -109,6 +119,8 @@ public class GameGUI {
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
         frame.setUndecorated(true);
+        frame.setFocusable(true);
+        
         frame.setTitle(title);
     }
 
@@ -121,7 +133,7 @@ public class GameGUI {
         frame.setBackground(Color.BLACK);
     }
 
-    private void createGameScenePanel() {
+    private void createGameScenePanel() throws IOException {
         this.gameScene = new GameScenePanel();
         gameScene.setBackground(new Color(28, 27, 27));
         gameScene.setLayout(null);
@@ -129,7 +141,9 @@ public class GameGUI {
         Border gameSceneBorder = BorderFactory.createLineBorder(new Color(232, 142, 0));
         gameScene.setPreferredSize(new Dimension(GameGUI.GAME_SCENE_WIDTH, GameGUI.GAME_SCENE_HEIGHT));
         gameScene.setBorder(gameSceneBorder);
+
         frame.getContentPane().add(gameScene);
+
         gameScene.setBounds(10, 10, GameGUI.GAME_SCENE_WIDTH, GameGUI.GAME_SCENE_HEIGHT);
 
         this.canvas = new Canvas();
@@ -141,7 +155,8 @@ public class GameGUI {
 
         gameScene.add(canvas);
         canvas.setBounds(1, 1, GameGUI.GAME_SCENE_WIDTH - 2, GameGUI.GAME_SCENE_HEIGHT - 2);
-
+        
+        
     }
 
     private void createSidebar() throws IOException {
@@ -215,6 +230,7 @@ public class GameGUI {
         starsPanel.setLayout(null);
         starsPanel.setOpaque(false);
     }
+
 
     public Canvas getCanvas() {
         return this.canvas;

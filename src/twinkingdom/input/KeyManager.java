@@ -8,19 +8,24 @@ package twinkingdom.input;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.LinkedList;
+import java.util.Observable;
+import java.util.Observer;
 import javax.swing.event.EventListenerList;
 import twinkingdom.events.GameEvent;
 import twinkingdom.events.GameEventListener;
 import twinkingdom.events.GameEventType;
+import twinkingdom.game.GameSettings;
 
 /**
  *
  * @author mario
  */
-public class KeyManager implements KeyListener{
+public class KeyManager implements KeyListener, Observer {
     
     private boolean[] keys;
-    public boolean up, down, left, right, attack, swordSelected, bowSelected, spellSelected;
+    public boolean up, down, left, right, attack, swordSelected, bowSelected, spellSelected, pauseSelected;
+    private char upKey = 'W', downKey = 'S', leftKey = 'A', rightKey = 'D', swordSelectedKey = '1', bowSelectedKey = '2', spellSelectedKey = '3';
+    private final char pauseKey = 'P';
     private int move=0;
     private LinkedList<Integer> stack;
     
@@ -35,20 +40,17 @@ public class KeyManager implements KeyListener{
     
     //Mette a true la direzione che è stata premuta a ogni tick
     public void tick(){
-        //queue.clear();
-        //up = keys[KeyEvent.VK_UP];
-        //left = keys[KeyEvent.VK_LEFT];
-        //right = keys[KeyEvent.VK_RIGHT];
-        //down = keys[KeyEvent.VK_DOWN];
-        //attack = keys[KeyEvent.VK_SPACE];
-        up = (getNext() == KeyEvent.VK_UP);
-        left = (getNext() == KeyEvent.VK_LEFT);
-        right = (getNext() == KeyEvent.VK_RIGHT);
-        down = (getNext() == KeyEvent.VK_DOWN);
+        
+        up = (getNext() == KeyEvent.getExtendedKeyCodeForChar(upKey));
+        left = (getNext() == KeyEvent.getExtendedKeyCodeForChar(leftKey));
+        right = (getNext() == KeyEvent.getExtendedKeyCodeForChar(rightKey));
+        down = (getNext() == KeyEvent.getExtendedKeyCodeForChar(downKey));
         attack = (getNext() == KeyEvent.VK_SPACE);
-        swordSelected = (getNext() == KeyEvent.VK_1);
-        bowSelected = (getNext() == KeyEvent.VK_2);
-        spellSelected = (getNext() == KeyEvent.VK_3);
+        swordSelected = (getNext() == KeyEvent.getExtendedKeyCodeForChar(swordSelectedKey));
+        bowSelected = (getNext() == KeyEvent.getExtendedKeyCodeForChar(bowSelectedKey));
+        spellSelected = (getNext() == KeyEvent.getExtendedKeyCodeForChar(spellSelectedKey));
+        
+        pauseSelected = (getNext() == KeyEvent.getExtendedKeyCodeForChar(pauseKey));
         
         if(swordSelected) {
             launchGameEvent(new GameEvent(this, GameEventType.WEAPON_SELECTED_SWORD));
@@ -57,6 +59,14 @@ public class KeyManager implements KeyListener{
         } else if(spellSelected) {
             launchGameEvent(new GameEvent(this, GameEventType.WEAPON_SELECTED_SPELL));
         }
+        
+        if (pauseSelected) {
+            keys[(int) pauseKey] = false;
+            stack.removeFirstOccurrence((int) pauseKey);
+            launchGameEvent(new GameEvent(this, GameEventType.GAME_PAUSE));
+        }
+        
+        pauseSelected = false;
 
     }
     
@@ -97,13 +107,24 @@ public class KeyManager implements KeyListener{
     }
     
     public int getNext(){
-        if (isPressing()){return stack.getFirst();}
-        else return 0;
+        if (isPressing())
+            return stack.getFirst();
+        
+        return 0;
         
     }
     
     public boolean isPressing(){
         return stack.size()>0;
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        GameSettings settings = (GameSettings) o;
+        upKey = Character.toUpperCase(settings.getUpKey());
+        downKey = Character.toUpperCase(settings.getDownKey());
+        leftKey = Character.toUpperCase(settings.getLeftKey());
+        rightKey = Character.toUpperCase(settings.getRightKey());
     }
     
 }
