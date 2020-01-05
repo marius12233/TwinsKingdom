@@ -17,6 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.SwingUtilities;
 import javax.swing.event.EventListenerList;
+import twinkingdom.State;
 import twinkingdom.entities.EntityManager;
 import twinkingdom.entities.mobs.player.Player;
 import twinkingdom.entities.mobs.player.PlayerArcher;
@@ -122,7 +123,7 @@ public class Game implements Runnable, Observer, GameEventListener {
         gui.getFrame().addKeyListener(keyManager);
         keyManager.addGameEventListener(this);
 
-        gameCamera = new GameCamera(handler, 0, 0);
+        gameCamera = new GameCamera(handler, 0f, 0f);
 
         Assets.init();
        // image = new ImageIcon(new URL("/images/levelloading2.gif")).getImage();
