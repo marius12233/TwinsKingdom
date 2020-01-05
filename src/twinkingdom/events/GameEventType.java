@@ -16,6 +16,7 @@ public enum GameEventType {
     GAME_OVER,
     GAME_START,
     GAME_PAUSE,
+    GAME_RESUMED,
     GAME_COMPLETED,
     WEAPON_SELECTED_SWORD,
     WEAPON_SELECTED_BOW,

@@ -8,17 +8,21 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.Date;
+import java.util.Objects;
 
 public class Checkpoint
-        implements Serializable {
+        implements Serializable, Comparable<Checkpoint> {
 
     private int lives, levelId;
-    private static String path = "saves/Checkpoint.bin";
+    private Date lastSaved;
+    private static String path = "saves/";
 
     public Checkpoint(int lives, int levelId) {
+        this.lastSaved = new Date();
         this.lives = lives;
         this.levelId = levelId;
-        saveCheckpoint(this);
+        MemoryCard.add(this);
     }
 
     public static Checkpoint loadCheckpoint() {
@@ -29,6 +33,7 @@ public class Checkpoint
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         } 
+        
         return checkpoint;
     }
 
@@ -44,6 +49,7 @@ public class Checkpoint
     }
     
     public static boolean removeCheckpoint(Checkpoint checkpoint) {
+        MemoryCard.remove(checkpoint);
         File toRemove = new File(path);
         return toRemove.delete();
     }
@@ -58,12 +64,57 @@ public class Checkpoint
 
     public void setLives(int lives) {
         this.lives = lives;
-        saveCheckpoint(this);
+        this.lastSaved = new Date();
+        MemoryCard.save();
+        //saveCheckpoint(this);
     }
 
     public void setLevelId(int levelId) {
         this.levelId = levelId;
-        saveCheckpoint(this);
+        this.lastSaved = new Date();
+        MemoryCard.save();
+        //saveCheckpoint(this);
+    }
+    
+    public Date getLastSaved() {
+        return this.lastSaved;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Checkpoint other = (Checkpoint) obj;
+        if (!Objects.equals(this.lastSaved, other.lastSaved)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int compareTo(Checkpoint o) {
+        if(o == null)
+            throw(new NullPointerException());
+        
+        if(this.lastSaved.before(o.lastSaved))
+            return 1;
+        else if(this.lastSaved.after(o.lastSaved))
+            return -1;
+        
+        return 0;
     }
 
 }

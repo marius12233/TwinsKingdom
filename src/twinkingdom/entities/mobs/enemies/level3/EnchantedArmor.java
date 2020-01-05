@@ -5,8 +5,10 @@
  */
 package twinkingdom.entities.mobs.enemies.level3;
 
+import java.awt.Color;
 import java.awt.Graphics;
-import twinkingdom.GameHandler;
+import java.util.Optional;
+import twinkingdom.game.GameHandler;
 import twinkingdom.entities.mobs.enemies.Enemy;
 import twinkingdom.gfx.ArmorAssets;
 
@@ -23,7 +25,8 @@ public class EnchantedArmor extends Enemy{
         bounds.height = 25;
         //health = 2;
         setState(leftState);
-        health.setHealthPoints(1);
+        health.setMaxHealthPoints(10);
+        health.setHealthPoints(10);
         health.setLives(1);
         speed=2;
         
@@ -64,5 +67,9 @@ public class EnchantedArmor extends Enemy{
     @Override
     public void render(Graphics g) {
         state.render(g);
+        g.setColor(Color.red);
+        g.fillRect((int) (x - getHandler().getGameCamera().getxOffset()),
+                (int) (y - getHandler().getGameCamera().getyOffset() - 5),
+                (int)Math.floor((double)getWidth()/(double)health.getMaxHealthPoints() * (double)health.getHealthPoints()), 7);
     }
 }
