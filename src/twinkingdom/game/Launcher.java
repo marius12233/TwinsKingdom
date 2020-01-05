@@ -50,7 +50,7 @@ public class Launcher implements Initializable {
     private static final int SIDEBAR_WIDTH = 192, SIDEBAR_HEIGHT = 518;
     private JFrame frame;
 
-    public static Parent root;
+    private Parent root;
     
      @FXML private ImageView logoImg;
     @FXML private Button newGameButton, loadGameButton, settingsButton, exitButton, confirmButton, cancelButton;
@@ -106,13 +106,13 @@ public class Launcher implements Initializable {
         
     }
     
-    private static void initFX(JFXPanel fxPanel) {
+    private void initFX(JFXPanel fxPanel) {
         // This method is invoked on the JavaFX thread
         Scene scene = createScene();
         fxPanel.setScene(scene);
     }
 
-    private static Scene createScene() {
+    private Scene createScene() {
         Scene  scene  =  new  Scene(root, javafx.scene.paint.Color.ALICEBLUE);
         return (scene);
     }
