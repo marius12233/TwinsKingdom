@@ -129,6 +129,9 @@ public class PauseController implements Initializable {
         
         cancelButton1.setOnMouseClicked((Event event) -> {
             quitPopup.setVisible(false);
+            resumeButton.setDisable(false);
+            settingsButton.setDisable(false);
+            exitButton.setDisable(false);
           
         });
         
