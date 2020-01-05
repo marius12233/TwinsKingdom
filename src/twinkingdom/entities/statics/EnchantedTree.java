@@ -54,17 +54,9 @@ public class EnchantedTree extends StaticEntity{
         return leaf;
     }
 
-    @Override
-    public void render(Graphics g) {
-        g.drawImage(getCurrentAnimationFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
-    }
-    
-    public BufferedImage getCurrentAnimationFrame(){
-        return animation.getCurrentFrame();
-    }
     
     @Override
-    public void actionOnCollision(Entity e){
+    public void touchEntity(Entity e){
         setChanged();
         notifyObservers();
     }

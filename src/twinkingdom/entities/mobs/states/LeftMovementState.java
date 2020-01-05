@@ -9,6 +9,7 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.Map;
 import twinkingdom.entities.mobs.Creature;
+import twinkingdom.entities.mobs.Movable;
 import twinkingdom.gfx.Animation;
 import twinkingdom.gfx.EntityAssets;
 
@@ -19,7 +20,7 @@ import twinkingdom.gfx.EntityAssets;
  */
 public class LeftMovementState extends TemplateMovementState{
     
-    public LeftMovementState(Creature creature, EntityAssets asset){
+    public LeftMovementState(Movable creature, EntityAssets asset){
         this.asset=asset;
         this.creature=creature;
         Map<String, BufferedImage[]> as = asset.getAnimations().get("left");

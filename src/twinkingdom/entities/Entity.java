@@ -27,8 +27,7 @@ public abstract class Entity  extends Observable {
     protected GameHandler handler;
     protected Rectangle bounds;
     public boolean isActive=true;
-    protected boolean isGrabbable=false;
-    protected boolean isStatic=false;
+    protected boolean isPlayer = false;
     protected Health health;
     
     protected Collection<Observer> observers;
@@ -46,7 +45,6 @@ public abstract class Entity  extends Observable {
     }
     
     public void hurt(int amt){
-        //System.out.println(health);
         setHealthPoints(getHealthPoints() - amt);
         if(getHealthPoints() <=0){
             isActive=false;
@@ -56,6 +54,10 @@ public abstract class Entity  extends Observable {
     
     protected boolean isActive(){
         return isActive;
+    }
+    
+    public boolean isPlayer(){
+        return isPlayer;
     }
     
     public void die(){
@@ -69,33 +71,25 @@ public abstract class Entity  extends Observable {
             if(e.equals(this))
                 continue;
             if(e.getCollisionBounds(0f, 0f).intersects(getCollisionBounds(xOffset, yOffset))){
-                if(e.isGrabbable){
+                /*if(e.isGrabbable){
                     touchGrabbable(e);
-                }
-                else{
+                }*/
+                //else{
                     touchEntity(e);
-                }
+                //}
                 
                 return true;
             }
         }
         return false;
     }
-    
-    public void touchGrabbable(Entity e){
-        //System.out.println("Grabbable!");
-        return;
-    }
+
     
     public void touchEntity(Entity e){
         //System.out.println("static!");
         return;
     }
-    
-    public void actionOnCollision(Entity e){
-        //System.out.println("Action on Collision!");
-        return;
-    }
+
     
     public Rectangle getCollisionBounds(float xOffset, float yOffset){
         return new Rectangle((int) (x+bounds.x+xOffset), (int)(y+bounds.y+yOffset), bounds.width, bounds.height);

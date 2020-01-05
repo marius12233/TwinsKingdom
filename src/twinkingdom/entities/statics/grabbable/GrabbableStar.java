@@ -45,13 +45,14 @@ public class GrabbableStar extends GrabbableStaticEntity{
     }
     
     @Override
-    public void actionOnCollision(Entity e){
+    public void touchEntity(Entity e){
       //  setChanged();
       //  notifyObservers();
         
         for (Observer o: observers) {
             o.update(this, this);
         }
+        super.touchEntity(e);
     }
     
     @Override

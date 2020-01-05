@@ -3,31 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package twinkingdom.entities.statics;
+package twinkingdom.entities.mobs;
 
 import java.awt.Graphics;
 import twinkingdom.entities.Entity;
-import twinkingdom.entities.mobs.Creature;
-import twinkingdom.gfx.FireBallAssets;
+import twinkingdom.gfx.EntityAssets;
 
 /**
  *
- * @author Alex1
+ * @author mario
  */
-public class FireBall extends Creature {
-    
-    
-    public FireBall(float x, float y, int width, int height){
-        super(x, y, width, height, new FireBallAssets());
-        bounds.x = 0;
-        bounds.y = 1;
-        bounds.width= 24;
-        bounds.height= 15;
-        setState(rightState);
-        //animation = new Animation(500, Assets.enchantedLeaf);
-    }
+public abstract class Launchable extends Movable{
 
+    public Launchable(float x, float y, int width, int height, EntityAssets entityAssets) {
+        super(x, y, width, height, entityAssets);
+    }
     
+        
     @Override
     
     public void tick() {
@@ -49,7 +41,6 @@ public class FireBall extends Creature {
         state.render(g);
         //g.drawImage(getCurrentAnimationFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
     }
-
     
     @Override
     public void touchEntity(Entity e){
@@ -57,9 +48,5 @@ public class FireBall extends Creature {
         isActive=false;
     }
 
-    @Override
-    public void die() {
-        return;
-    }
-
+    
 }

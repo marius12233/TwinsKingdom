@@ -178,7 +178,6 @@ public final class Garden extends World {
     public void tick() {
         super.entityManager.tick();
         if (timer.isTimeOverDescendent()) {
-            System.out.println("Tempo scaduto!");
             launchGameEvent(new GameEvent(this, GameEventType.LEVEL_FAILED));
         }
         //Stampa di prova per posizionare gli oggetti sulla mappa

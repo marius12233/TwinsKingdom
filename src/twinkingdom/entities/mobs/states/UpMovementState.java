@@ -10,6 +10,7 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.Map;
 import twinkingdom.entities.mobs.Creature;
+import twinkingdom.entities.mobs.Movable;
 import twinkingdom.gfx.Animation;
 import twinkingdom.gfx.EntityAssets;
 
@@ -19,7 +20,7 @@ import twinkingdom.gfx.EntityAssets;
  */
 public class UpMovementState extends TemplateMovementState{
     
-    public UpMovementState(Creature creature, EntityAssets asset){
+    public UpMovementState(Movable creature, EntityAssets asset){
         this.asset=asset;
         this.creature=creature;
         Map<String, BufferedImage[]> as = asset.getAnimations().get("up");

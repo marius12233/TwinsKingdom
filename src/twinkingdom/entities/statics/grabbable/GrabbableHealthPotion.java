@@ -49,10 +49,13 @@ public class GrabbableHealthPotion extends GrabbableStaticEntity{
     }
     
     @Override
-    public void actionOnCollision(Entity e){
-        e.setHealthPoints(e.getHealthPoints() + bonus);
-        if(e.getHealthPoints() > e.getMaxHealthPoints())
-            e.setHealthPoints(e.getMaxHealthPoints());
+    public void touchEntity(Entity e){
+        if (e.isPlayer()){
+            e.setHealthPoints(e.getHealthPoints() + bonus);
+            if(e.getHealthPoints() > e.getMaxHealthPoints())
+                e.setHealthPoints(e.getMaxHealthPoints());
+        }
+        super.touchEntity(e);
         
     }
     

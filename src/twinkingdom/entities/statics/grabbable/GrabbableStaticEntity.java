@@ -5,6 +5,7 @@
  */
 package twinkingdom.entities.statics.grabbable;
 
+import twinkingdom.entities.Entity;
 import twinkingdom.entities.statics.StaticEntity;
 
 /**
@@ -15,7 +16,12 @@ public abstract class GrabbableStaticEntity extends StaticEntity{
 
     public GrabbableStaticEntity(float x, float y, int width, int height) {
         super(x, y, width, height);
-        isGrabbable=true;
+    }
+    
+    @Override
+    public void touchEntity(Entity e){
+        if(e.isPlayer())
+            isActive=false;
     }
     
     

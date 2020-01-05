@@ -10,6 +10,7 @@ import java.util.LinkedList;
 import twinkingdom.GameHandler;
 import twinkingdom.entities.mobs.Creature;
 import twinkingdom.entities.Entity;
+import twinkingdom.entities.mobs.Movable;
 import twinkingdom.entities.mobs.enemies.Boss;
 import twinkingdom.entities.mobs.enemies.level1.ArcherBoss;
 import twinkingdom.entities.mobs.enemies.level1.Arrow;
@@ -59,11 +60,10 @@ public class VerticalArcherPolicy<T> extends VerticalPolicy{
         int posY[] = new int[]{-80, 0, 80};
         int size = arrows.size();
         for(int i=0; i< Math.min(size, 3); i++){
-            Creature arrow = (Creature) arrows.pop();
+            Movable arrow = (Movable) arrows.pop();
             //arrows.add(boss.createArrow());
             int mul=+1;
             if(playerX >= (int) boss.getX()){
-                System.out.println("Il player sta a destra");
                 mul=1;
                 arrow.setState(arrow.getRightState());
             }else if(playerX < (int) boss.getX()){

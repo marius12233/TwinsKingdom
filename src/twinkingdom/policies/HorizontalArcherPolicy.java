@@ -10,6 +10,7 @@ import java.util.LinkedList;
 import twinkingdom.GameHandler;
 import twinkingdom.entities.mobs.Creature;
 import twinkingdom.entities.Entity;
+import twinkingdom.entities.mobs.Movable;
 import twinkingdom.entities.mobs.enemies.Boss;
 import twinkingdom.entities.mobs.enemies.level1.ArcherBoss;
 import twinkingdom.entities.mobs.enemies.level1.Arrow;
@@ -64,7 +65,7 @@ public class HorizontalArcherPolicy<T> extends HorizontalPolicy {
         int size = arrows.size();
         for(int i=0; i< Math.min(size, 3); i++){
             int mul=1;
-            Creature arrow = (Creature) arrows.pop();
+            Movable arrow = (Movable) arrows.pop();
             if(playerY >= (int) boss.getY()){
                 //c.setState(c.getDownState());
                 mul=+1;

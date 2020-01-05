@@ -47,7 +47,7 @@ public class Wolf extends Enemy{
 
     @Override
     public void die() {
-        System.out.println("Wolf è morto!!");
+        return;
     }
 
 

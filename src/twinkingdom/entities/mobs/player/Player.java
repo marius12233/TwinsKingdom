@@ -40,6 +40,7 @@ public class Player extends Creature {
         //numLives = 3;
 
         setState(downState);
+        isPlayer=true;
 
         /* 
         
@@ -152,16 +153,15 @@ public class Player extends Creature {
             
     }
 
-    @Override
-    public void touchGrabbable(Entity e) {
-        e.isActive = false;
-        e.actionOnCollision(this);
-    }
+    
     
     @Override
     public void touchEntity(Entity e){
-        e.actionOnCollision(e);
+        /*if(e.isGrabbable())
+            e.isActive=false*/
+        e.touchEntity(this);
     }
+    
     
     
     /*@Override
