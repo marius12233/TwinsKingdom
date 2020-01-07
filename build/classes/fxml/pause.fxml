@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox prefHeight="400.0" prefWidth="640.0" style="-fx-background-image: url('./start-menu_bg.png');" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+  <children>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="428.0" prefWidth="733.0" style="-fx-min-width: 797; -fx-max-width: 797; -fx-min-height: 457; fx-max-height: 457; -fx-background-size: 100% 100%;" styleClass="container" stylesheets="@file.css" VBox.vgrow="ALWAYS">
+      <children>
+            <Pane layoutX="281.0" layoutY="15.0">
+               <children>
+                  <Button id="newGameButton" fx:id="resumeButton" layoutY="176.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="343.0" style="-fx-background-color: rgba(255,255,255,0.37); -fx-min-width: 295px; -fx-max-width: 295px; -fx-min-height: 57px; -fx-max-height: 57px;" styleClass="menuButton" stylesheets="@file.css" text="RESUME THE GAME" textFill="#f0cc93">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <font>
+                        <Font name="Maiandra GD" size="24.0" />
+                     </font>
+                  </Button>
+                  <ImageView fx:id="logoImg" fitHeight="180.0" fitWidth="324.0" layoutX="2.0" pickOnBounds="true" preserveRatio="true">
+            
+            </ImageView>
+                  <Button id="loadGameButton" fx:id="settingsButton" layoutY="254.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="343.0" styleClass="menuButton" stylesheets="@file.css" text="SETTINGS" textFill="#f0cc93">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <font>
+                        <Font name="Maiandra GD" size="24.0" />
+                     </font>
+                  </Button>
+                  <Button id="settingsButton" fx:id="exitButton" layoutY="333.0" mnemonicParsing="false" styleClass="menuButton" stylesheets="@file.css" text="EXIT">
+                       <cursor>
+                              <Cursor fx:constant="HAND" />
+                       </cursor>
+                  </Button>
+                  <Pane fx:id="quitPopup" layoutX="-57.0" layoutY="98.0" prefHeight="233.0" prefWidth="410.0" style="-fx-background-color: white;" visible="false">
+                     <children>
+                        <Text fx:id="text1" layoutX="84.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="All unsaved progresses will be lost.">
+                           <font>
+                              <Font name="Maiandra GD" size="16.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="text2" layoutX="150.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Are you sure?">
+                           <font>
+                              <Font name="Maiandra GD" size="16.0" />
+                           </font>
+                        </Text>
+                        <Button fx:id="confirmButton1" layoutX="84.0" layoutY="151.0" mnemonicParsing="false" text="Confirm" />
+                        <Button fx:id="cancelButton1" layoutX="273.0" layoutY="151.0" mnemonicParsing="false" text="Cancel" />
+                     </children>
+                  </Pane>
+                  <Pane fx:id="settingsPopup" layoutX="-11.0" layoutY="15.0" prefHeight="400.0" prefWidth="350.0" style="-fx-background-color: rgba(40,40,40,0.8);" visible="false">
+                     <children>
+                        <Text fx:id="moveUpLabel" fill="WHITE" layoutX="30.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Move up key :">
+                           <font>
+                              <Font name="Maiandra GD" size="16.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="moveUpTextField" layoutX="187.0" layoutY="32.0" prefHeight="25.0" prefWidth="123.0" />
+                        <Text fx:id="moveRightLabel" fill="WHITE" layoutX="30.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Move right key :">
+                           <font>
+                              <Font name="Maiandra GD" size="16.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="moveRightTextField" layoutX="187.0" layoutY="81.0" prefHeight="25.0" prefWidth="123.0" />
+                        <Text fx:id="moveDownLabel" fill="WHITE" layoutX="30.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Move down key :">
+                           <font>
+                              <Font name="Maiandra GD" size="16.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="moveDownTextField" layoutX="187.0" layoutY="126.0" prefHeight="25.0" prefWidth="123.0" />
+                        <Text fx:id="moveLeftLabel" fill="WHITE" layoutX="30.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Move left key :">
+                           <font>
+                              <Font name="Maiandra GD" size="16.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="moveLeftTextField" layoutX="187.0" layoutY="171.0" prefHeight="25.0" prefWidth="123.0" />
+                        <Text fx:id="attackLabel" fill="WHITE" layoutX="30.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Attack key :">
+                           <font>
+                              <Font name="Maiandra GD" size="16.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="attackTextField" disable="true" editable="false" layoutX="187.0" layoutY="219.0" prefHeight="25.0" prefWidth="123.0" text="SPACE_BAR" />
+                        <Button fx:id="confirmSettingsChangesButton" layoutX="100.0" layoutY="318.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="Confirm changes" />
+                        <Button fx:id="cancelSettingsChangesButton" layoutX="140.0" layoutY="365.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Cancel" />
+                        <Text fx:id="errorLabel" fill="#ff3939" layoutX="36.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="303.0">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="soundLabel1" fill="WHITE" layoutX="45.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sounds &amp; Effects :">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Text>
+                        <CheckBox fx:id="soundCheckBox" layoutX="208.0" layoutY="288.0" mnemonicParsing="false" selected="true" text="On/Off" textFill="WHITE" />
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+      </children>
+    </AnchorPane>
+  </children>
+</VBox>
