@@ -409,6 +409,7 @@ public class Game implements Runnable, Observer, GameEventListener {
                 System.out.println(changingLevel);
                 pause.setLocationRelativeTo(gui.getGameScenePanel());
                 this.gui.getFrame().setEnabled(false);
+                player.getMana().setEnabled(false);
                 break;
             case GAME_RESUMED:
                 paused = false;
@@ -416,7 +417,7 @@ public class Game implements Runnable, Observer, GameEventListener {
                 pause.setVisible(false);
                 this.gui.getFrame().setEnabled(true);
                 this.gui.getFrame().setVisible(true);
-
+                player.getMana().setEnabled(true);
                 break;
             case GAME_EXITED:
                 this.stopGame();
