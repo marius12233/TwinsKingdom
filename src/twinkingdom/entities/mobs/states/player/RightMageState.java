@@ -6,6 +6,8 @@
 package twinkingdom.entities.mobs.states.player;
 
 
+import twinkingdom.entities.mobs.Creature;
+import twinkingdom.entities.mobs.player.Player;
 import twinkingdom.game.GameHandler;
 import twinkingdom.entities.mobs.player.PlayerMage;
 import twinkingdom.entities.mobs.states.RightMovementState;
@@ -19,7 +21,7 @@ import twinkingdom.utils.UtilityTimer;
  */
 public class RightMageState extends RightMovementState{
     UtilityTimer timer;
-    public RightMageState(PlayerMage playerMage, EntityAssets asset) {
+    public RightMageState(Creature playerMage, EntityAssets asset) {
         super(playerMage, asset);
         timer = new UtilityTimer(500);
     }
@@ -28,7 +30,7 @@ public class RightMageState extends RightMovementState{
     public void attack(){
         super.attack();
         //attacca con le frecce a destra
-        PlayerMage mage = (PlayerMage) creature;
+        Player mage = (Player) creature;
         if(timer.isTimeOver() && (mage.getMana().getMana() > 0)){
             FireBall fire = new FireBall(creature.getX() + 42, creature.getY()+10, 64, 64);
             fire.setState(fire.getRightState());

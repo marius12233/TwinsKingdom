@@ -6,7 +6,11 @@
 package twinkingdom.entities.mobs.enemies.level1;
 
 import java.awt.Graphics;
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.Observer;
 import twinkingdom.entities.mobs.enemies.Enemy;
+import twinkingdom.game.LevelHandler;
 import twinkingdom.gfx.BatAssets;
 
 /**
@@ -15,6 +19,8 @@ import twinkingdom.gfx.BatAssets;
  */
 
 public class Bat extends Enemy{
+    
+    protected Collection<Observer> observers;
 
     public Bat(float x, float y, int width, int height, BatAssets entityAssets) {
         super(x, y, width, height, entityAssets);
@@ -27,7 +33,7 @@ public class Bat extends Enemy{
         health.setHealthPoints(1);
         health.setLives(1);
         speed=4;
-        
+        observers= new LinkedList<>();
         //maxHealth=life.getHealthPoints();
         //setAttackCooldown(3000);
         //timer = new UtilityTimer(2000);
@@ -48,6 +54,16 @@ public class Bat extends Enemy{
 
     @Override
     public void die() {
+        if (LevelHandler.getWorldId()==6){
+            for( Observer o : observers){
+                o.update(this, this);
+            }
+        }
+    }
+    
+    @Override
+    public void addObserver(Observer o){
+        observers.add(o);
     }
 
     /*Override

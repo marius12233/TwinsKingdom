@@ -5,6 +5,8 @@
  */
 package twinkingdom.entities.mobs.states.player;
 
+import twinkingdom.entities.mobs.Creature;
+import twinkingdom.entities.mobs.player.Player;
 import twinkingdom.game.GameHandler;
 import twinkingdom.entities.mobs.player.PlayerMage;
 import twinkingdom.entities.mobs.states.DownMovementState;
@@ -18,14 +20,14 @@ import twinkingdom.utils.UtilityTimer;
  */
 public class DownMageState extends DownMovementState{
     private UtilityTimer timer;
-    public DownMageState(PlayerMage playerMage, EntityAssets asset) {
+    public DownMageState(Creature playerMage, EntityAssets asset) {
         super(playerMage, asset);
         timer = new UtilityTimer(500);
     }
     
     @Override
     public void attack(){
-        PlayerMage mage = (PlayerMage) creature;
+        Player mage = (Player) creature;
         if(timer.isTimeOver() && (mage.getMana().getMana() > 0)){
 
             super.attack();

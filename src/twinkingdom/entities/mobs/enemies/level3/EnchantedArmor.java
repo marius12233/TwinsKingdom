@@ -7,7 +7,11 @@ package twinkingdom.entities.mobs.enemies.level3;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.Observer;
 import twinkingdom.entities.mobs.enemies.Enemy;
+import twinkingdom.game.LevelHandler;
 import twinkingdom.gfx.ArmorAssets;
 
 /**
@@ -15,6 +19,9 @@ import twinkingdom.gfx.ArmorAssets;
  * @author Angelica
  */
 public class EnchantedArmor extends Enemy{
+    
+    protected Collection<Observer> observers;
+    
     public EnchantedArmor(float x, float y, int width, int height, ArmorAssets entityAssets) {
         super(x, y, width, height, entityAssets);
         bounds.x = 1;
@@ -27,7 +34,7 @@ public class EnchantedArmor extends Enemy{
         health.setHealthPoints(10);
         health.setLives(1);
         speed=2;
-        
+        observers= new LinkedList<>();
         //maxHealth=health.getHealthPoints();
         //setAttackCooldown(3000);
         //timer = new UtilityTimer(2000);
@@ -48,6 +55,16 @@ public class EnchantedArmor extends Enemy{
 
     @Override
     public void die() {
+        if (LevelHandler.getWorldId()==6){
+            for( Observer o : observers){
+                o.update(this, this);
+            }
+        }
+    }
+    
+    @Override
+    public void addObserver(Observer o){
+        observers.add(o);
     }
 
     /*Override

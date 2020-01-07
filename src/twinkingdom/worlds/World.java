@@ -229,6 +229,46 @@ public abstract class World implements Observer, GameEventListener {
                 return Tile.castleFloorTile;
             case 39:
                 return Tile.castleCandleTile;
+            case 40:
+                return Tile.trfloor1Tile;
+            case 42:
+                return Tile.trwallTile;
+            case 43:
+                return Tile.column1Tile;
+            case 44:
+                return Tile.column2Tile;
+            case 45:
+                return Tile.window1Tile;
+            case 46:
+                return Tile.window2Tile;
+            case 55:
+                return Tile.blackTile;
+            case 41:
+                return Tile.trfloor2Tile;
+            case 47:
+                return Tile.ladderstTile;
+            case 48:
+                return Tile.ladderct1Tile;
+            case 49:
+                return Tile.carpet11Tile;
+            case 50:
+                return Tile.carpet12Tile;
+            case 51:
+                return Tile.carpet13Tile;
+            case 52:
+                return Tile.carpet21Tile;
+            case 53:
+                return Tile.carpet22Tile;
+            case 54:
+                return Tile.carpet23Tile;
+            case 60:
+                return Tile.throne1Tile;
+            case 56:
+                return Tile.throne2Tile;
+            case 61:
+                return Tile.ladderct2Tile;
+            case 62:
+                return Tile.ladderct3Tile;
             default:
                 return Tile.invisibleTile;
         }

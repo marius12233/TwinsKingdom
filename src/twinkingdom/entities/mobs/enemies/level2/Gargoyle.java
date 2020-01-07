@@ -6,13 +6,19 @@
 package twinkingdom.entities.mobs.enemies.level2;
 
 import java.awt.Graphics;
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.Observer;
 import twinkingdom.entities.mobs.enemies.Enemy;
+import twinkingdom.game.LevelHandler;
 import twinkingdom.gfx.GargoyleAssets;
 /**
  *
  * @author Amedeo
  */
 public class Gargoyle extends Enemy {
+    
+    protected Collection<Observer> observers;
         
     public Gargoyle( float x, float y, int width, int height, GargoyleAssets entityAssets){
         super( x, y, width, height, entityAssets);
@@ -25,6 +31,7 @@ public class Gargoyle extends Enemy {
         health.setLives(1);
         speed=3;
         this.setDamageAttack(3);
+        observers= new LinkedList<>();
     }
     
     @Override
@@ -37,6 +44,16 @@ public class Gargoyle extends Enemy {
 
     @Override
     public void die() {
+        if (LevelHandler.getWorldId()==6){
+            for( Observer o : observers){
+                o.update(this, this);
+            }
+        }
+    }
+    
+    @Override
+    public void addObserver(Observer o){
+        observers.add(o);
     }
 
     @Override

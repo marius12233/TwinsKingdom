@@ -62,6 +62,30 @@ public class Tile {
     public static Tile rockTile = new RockTile(95);
     public static Tile flowersTile = new FlowersTile(109);
     
+    //final level
+    public static Tile trfloor1Tile=new ThroneRoomFloor1Tile(40);
+    public static Tile trwallTile=new ThroneRoomWallTile(42);
+    public static Tile column1Tile=new Column1Tile(43);
+    public static Tile column2Tile=new Column2Tile(44);
+    public static Tile window1Tile=new Window1Tile(45);
+    public static Tile window2Tile=new Window2Tile(46);
+    public static Tile blackTile=new BlackTile(55);
+    
+    public static Tile trfloor2Tile=new ThroneRoomFloor2Tile(41);
+    public static Tile ladderstTile=new LadderSTTile(47);
+    public static Tile ladderct1Tile=new LadderCT1Tile(48);
+    public static Tile ladderct2Tile=new LadderCT2Tile(61);
+    public static Tile ladderct3Tile=new LadderCT3Tile(62);
+    public static Tile carpet11Tile=new Carpet11Tile(49);
+    public static Tile carpet12Tile=new Carpet12Tile(50);
+    public static Tile carpet13Tile=new Carpet13Tile(51);
+    public static Tile carpet21Tile=new Carpet21Tile(52);
+    public static Tile carpet22Tile=new Carpet22Tile(53);
+    public static Tile carpet23Tile=new Carpet23Tile(54);
+    
+    public static Tile throne1Tile=new Throne1Tile(60);
+    public static Tile throne2Tile=new Throne2Tile(56);
+    
     //CLASS
     public static final int TILEWIDTH = 32, TILEHEIGHT = 32;
     

@@ -6,7 +6,11 @@
 package twinkingdom.entities.mobs.enemies.level1;
 
 import java.awt.Graphics;
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.Observer;
 import twinkingdom.entities.mobs.enemies.Enemy;
+import twinkingdom.game.LevelHandler;
 import twinkingdom.gfx.SpiderAssets;
 
 
@@ -15,6 +19,8 @@ import twinkingdom.gfx.SpiderAssets;
  * @author Alex1
  */
 public class Spider extends Enemy {
+    
+    protected Collection<Observer> observers;
     
     public Spider( float x, float y, int width, int height, SpiderAssets entityAssets) {
         super(x, y, width, height, entityAssets);
@@ -29,6 +35,7 @@ public class Spider extends Enemy {
         //maxHealth=life.getHealthPoints();
         //setAttackCooldown(3000);
         //timer = new UtilityTimer(2000);
+        observers= new LinkedList<>();
     }
 
     
@@ -46,9 +53,17 @@ public class Spider extends Enemy {
 
     @Override
     public void die() {
-        System.out.println("Spider è morto!!");
+        if (LevelHandler.getWorldId()==6){
+            for( Observer o : observers){
+                o.update(this, this);
+            }
+        }
     }
-
+    
+    @Override
+    public void addObserver(Observer o){
+        observers.add(o);
+    }
 
     @Override
     public void render(Graphics g) {

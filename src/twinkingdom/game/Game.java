@@ -10,8 +10,10 @@ import java.util.Observer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.event.EventListenerList;
-import twinkingdom.State;
 import twinkingdom.entities.EntityManager;
+import twinkingdom.entities.mobs.player.ArmoredBowPlayer;
+import twinkingdom.entities.mobs.player.ArmoredPlayer;
+import twinkingdom.entities.mobs.player.ArmoredSpellPlayer;
 import twinkingdom.entities.mobs.player.Player;
 import twinkingdom.entities.mobs.player.PlayerArcher;
 import twinkingdom.entities.mobs.player.PlayerMage;
@@ -25,6 +27,7 @@ import twinkingdom.events.GameEvent;
 import twinkingdom.events.GameEventListener;
 import twinkingdom.events.GameEventType;
 import twinkingdom.gfx.ImageLoader;
+import twinkingdom.gfx.PlayerArmSwordAssets;
 import twinkingdom.gui.Weapons;
 import twinkingdom.saves.Checkpoint;
 import twinkingdom.worlds.World;
@@ -41,7 +44,6 @@ public class Game implements Runnable, Observer, GameEventListener {
     private final String title;
     private BufferStrategy bs;
     private Graphics g;
-    private State gameState;
     private final KeyManager keyManager = new KeyManager();
     private GameCamera gameCamera;
     private GameHandler handler;
@@ -93,7 +95,10 @@ public class Game implements Runnable, Observer, GameEventListener {
         if (checkpoint == null) {
             checkpoint = new Checkpoint(3, 0);
         }
-
+        
+        if(checkpoint.getLevelId()==6)
+          player = new ArmoredPlayer(288, 320, new PlayerArmSwordAssets());
+        else
         player = new Player(288, 320, new PlayerAssets());
         player.getHealth().setLives(checkpoint.getLives());
         handler.setPlayer(player);
@@ -347,6 +352,9 @@ public class Game implements Runnable, Observer, GameEventListener {
 
         this.entityManager.removeAllEntities();
         this.player.getHealth().setHealthPoints(300);
+        if(levelHandler.getCurrentWorldId()==6){
+            this.player = new ArmoredPlayer(player);
+        }
         this.entityManager.setPlayer(this.player);
         currentWorld.setEntityManager(this.entityManager);
 
@@ -371,7 +379,9 @@ public class Game implements Runnable, Observer, GameEventListener {
         player.getHealth().setHealthPoints(1000);
         player.getHealth().setLives(player.getHealth().getLives() - 1);
         checkpoint.setLives(player.getHealth().getLives());
-
+        if(levelHandler.getCurrentWorldId()==6){
+            this.player = new ArmoredPlayer(player);
+        }
         currentWorld.getEntityManager().setPlayer(player);
         currentWorld.init();
         //currentWorld.addGameEventListener(this);
@@ -396,6 +406,7 @@ public class Game implements Runnable, Observer, GameEventListener {
             case GAME_OVER:
                 Checkpoint.removeCheckpoint(checkpoint);
                 gameOver = true;
+                System.out.println("GAME OVER");
                 this.stopGame();
                 render();render();render();
                 break;
@@ -428,7 +439,12 @@ public class Game implements Runnable, Observer, GameEventListener {
                 break; // TO DO
             case WEAPON_SELECTED_SWORD:
                 player.getMana().removeObserver((Observer) gui.getManaBar());
-                player = new Player(player);
+                if(levelHandler.getCurrentWorldId()<6){
+                    player = new Player(player);
+                }
+                else{
+                    player = new ArmoredPlayer(player);
+                }
                 entityManager.setPlayer(player);
                 player.getHealth().addObserver((Observer) this);
                 player.getMana().addObserver((Observer) gui.getManaBar());
@@ -440,7 +456,16 @@ public class Game implements Runnable, Observer, GameEventListener {
                     return;
                 }
                 player.getMana().removeObserver((Observer) gui.getManaBar());
-                player = new PlayerArcher(player);
+                
+                if(levelHandler.getCurrentWorldId()<6){
+                    System.out.println("PLAYER CLASSICO");
+                    System.out.println("L'ID è:"+levelHandler.getCurrentWorldId());
+                    player = new PlayerArcher(player);
+                }
+                else{
+                    System.out.println("PLAYER CON ARMATURA");
+                    player = new ArmoredBowPlayer(player);
+                }
                 entityManager.setPlayer(player);
                 handler.setPlayer(player);
                 player.getHealth().addObserver((Observer) this);
@@ -453,7 +478,13 @@ public class Game implements Runnable, Observer, GameEventListener {
                 }
                 
                 player.getMana().removeObserver((Observer) gui.getManaBar());
-                player = new PlayerMage(player);
+                
+                if(levelHandler.getCurrentWorldId()<6){
+                    player = new PlayerMage(player);
+                }
+                else{
+                    player = new ArmoredSpellPlayer(player);
+                }
                 entityManager.setPlayer(player);
                 entityManager.getPlayer().getHealth().addObserver((Observer) this);
                 handler.setPlayer(player);

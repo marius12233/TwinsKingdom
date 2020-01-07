@@ -24,10 +24,10 @@ public class Player extends Creature {
 
     public Player(float x, float y, EntityAssets pAssets, int lives) {
         super( x, y, Creature.DEFAULT_WIDTH, Creature.DEFAULT_HEIGHT, pAssets);
-        bounds.x = 20;
-        bounds.y = 20;
-        bounds.width = 15;
-        bounds.height = 25;
+        bounds.x = 5;
+        bounds.y = 5;
+        bounds.width = 30;
+        bounds.height = 30;
         //life = new Life(10,3);
         //health = 100;
         health.setHealthPoints(10);

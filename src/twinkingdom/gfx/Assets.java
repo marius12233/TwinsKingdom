@@ -35,6 +35,9 @@ public class Assets {
     
     public static BufferedImage castleFloor,candle;
     public static BufferedImage[] castleWall;
+    public static BufferedImage[] throneRoom;
+    public static BufferedImage[] carpet;
+    public static BufferedImage[] throne;
     
     public static void init() {
         SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/images/assets/textures/sheet.png"));
@@ -42,7 +45,9 @@ public class Assets {
         SpriteSheet final_tileset = new SpriteSheet(ImageLoader.loadImage("/images/assets/textures/Forest Tileset-min.png"));
         SpriteSheet garden_tileset = new SpriteSheet(ImageLoader.loadImage("/images/assets/textures/GardenTileset.png"));
         SpriteSheet castle_tileset=new SpriteSheet(ImageLoader.loadImage("/images/assets/textures/castle_tileset.jpg"));
-        
+        SpriteSheet final_level_tileset1=new SpriteSheet(ImageLoader.loadImage("/images/assets/textures/throne_room.png"));
+        SpriteSheet final_level_tileset2=new SpriteSheet(ImageLoader.loadImage("/images/assets/textures/carpet.jpeg"));
+        SpriteSheet final_level_tileset3=new SpriteSheet(ImageLoader.loadImage("/images/assets/textures/throne.png"));
         SpriteSheet sheet5 = new SpriteSheet(ImageLoader.loadImage("/images/star.png"));
         
         
@@ -53,6 +58,10 @@ public class Assets {
         healthPotion = new BufferedImage[1];
         portal = new BufferedImage[5];
         castleWall=new BufferedImage[6];
+        
+        throneRoom= new BufferedImage[7];
+        carpet= new BufferedImage[11];
+        throne= new BufferedImage[2];
         
         //CHARACTER IDLE ANIMATION
         player_idle[0] = sheet.crop(4, 5, width, height);
@@ -145,6 +154,31 @@ public class Assets {
 //        separatorWall=castle_tileset.crop(96,64,32,32);
 //        top1Wall=castle_tileset.crop(288,0,32,32);
 //        top2Wall=castle_tileset.crop(288,32,32,32);
+        
+        //Throne Room, Carpet and Throne
+
+        throneRoom[0]=final_level_tileset1.crop(32,512,32,32); //pavimento1
+        throneRoom[1]=final_level_tileset1.crop(32,384,32,32); //parete
+        throneRoom[2]=final_level_tileset1.crop(192,544,32,32); //colonna1
+        throneRoom[3]=final_level_tileset1.crop(192,576,32,32); //colonna2
+        throneRoom[4]=final_level_tileset1.crop(128,384,32,32); //finestra1
+        throneRoom[5]=final_level_tileset1.crop(128,416,32,32); //finestra2
+        throneRoom[6]=final_level_tileset1.crop(0,0,32,32); //black
+        
+        carpet[0]=final_level_tileset2.crop(0,0,32,32); //pavimento2
+        carpet[1]=final_level_tileset2.crop(0,128,32,32); //scalaST
+        carpet[2]=final_level_tileset2.crop(64,128,32,32); //scalaCT1
+        carpet[3]=final_level_tileset2.crop(64,64,32,32); //tappeto11
+        carpet[4]=final_level_tileset2.crop(96,64,32,32); //tappeto12
+        carpet[5]=final_level_tileset2.crop(128,64,32,32); //tappeto13
+        carpet[6]=final_level_tileset2.crop(64,96,32,32); //tappeto21
+        carpet[7]=final_level_tileset2.crop(96,96,32,32); //tappeto22
+        carpet[8]=final_level_tileset2.crop(128,96,32,32); //tappeto23
+        carpet[9]=final_level_tileset2.crop(96,128,32,32); //scalaCT2
+        carpet[10]=final_level_tileset2.crop(128,128,32,32); //scalaCT3
+        
+        throne[0]=final_level_tileset3.crop(0,0,32,32); //throne1
+        throne[1]=final_level_tileset3.crop(0,32,32,32); //throne2
         
         candle=ImageLoader.loadImage("/images/assets/textures/candle2.png");
     }   
