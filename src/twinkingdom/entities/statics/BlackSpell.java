@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package twinkingdom.entities.mobs.enemies.finalLevel;
+package twinkingdom.entities.statics;
 
 import java.awt.Graphics;
 import twinkingdom.entities.Entity;
@@ -50,29 +50,15 @@ public class BlackSpell extends Creature {
         //g.drawImage(getCurrentAnimationFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
     }
 
-    
-    @Override
-    public void touchGrabbable (Entity e) {
-        actionOnCollision(e);
-    }
-    
+       
     @Override
     public void touchEntity(Entity e){
         e.hurt(1);
         isActive=false;
     }
-    
-    @Override
-    public void actionOnCollision(Entity e){
-        e.hurt(1);
-        isActive=false;
-        /*setChanged();
-        notifyObservers();*/
-        
-    }
 
     @Override
     public void die() {
-        return;
     }
+
 }

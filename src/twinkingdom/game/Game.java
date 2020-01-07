@@ -30,6 +30,7 @@ import twinkingdom.gfx.ImageLoader;
 import twinkingdom.gfx.PlayerArmSwordAssets;
 import twinkingdom.gui.Weapons;
 import twinkingdom.saves.Checkpoint;
+import twinkingdom.sounds.SoundTrackManager;
 import twinkingdom.worlds.World;
 
 /**
@@ -52,6 +53,9 @@ public class Game implements Runnable, Observer, GameEventListener {
     private LevelHandler levelHandler;
     private Image loadingImage;
     private Image gameOverImage;
+    private Image image;
+    
+    private SoundTrackManager soundTrackManager;
 
     private GameGUI gui;
     private Player player;
@@ -83,6 +87,7 @@ public class Game implements Runnable, Observer, GameEventListener {
     public void init() throws IOException {
         settings = new GameSettings();
         settings.addObserver((Observer) keyManager);
+        settings.addObserver(SoundTrackManager.getInstance());
         pause.setGameSettings(settings);
 
         changingLevel = true;
@@ -111,6 +116,8 @@ public class Game implements Runnable, Observer, GameEventListener {
         //State.setState(gameState);
         this.levelHandler = new LevelHandler();
         levelHandler.setCurrentWorld(checkpoint.getLevelId());
+        soundTrackManager = SoundTrackManager.getInstance();
+        soundTrackManager.setCurrentSoundTrack(levelHandler.getCurrentWorldId());
 
         this.entityManager = new EntityManager(handler, player);
 
@@ -126,7 +133,7 @@ public class Game implements Runnable, Observer, GameEventListener {
         gui.getFrame().addKeyListener(keyManager);
         keyManager.addGameEventListener(this);
 
-        gameCamera = new GameCamera(handler, 0, 0);
+        gameCamera = new GameCamera(handler, 0f, 0f);
 
         Assets.init();
         // loadingImage = new ImageIcon(new URL("/images/levelloading2.gif")).getImage();
@@ -341,6 +348,7 @@ public class Game implements Runnable, Observer, GameEventListener {
             return;
         }
         checkpoint.setLevelId(levelHandler.getCurrentWorldId());
+        soundTrackManager.setCurrentSoundTrack(levelHandler.getCurrentWorldId());
         
         if(levelHandler.getCurrentWorldId() > 3) {
             player.getMana().setEnabled(true);
@@ -428,7 +436,9 @@ public class Game implements Runnable, Observer, GameEventListener {
                 pause.setVisible(false);
                 this.gui.getFrame().setEnabled(true);
                 this.gui.getFrame().setVisible(true);
-                player.getMana().setEnabled(true);
+                if (levelHandler.getCurrentWorldId() > 3) {
+                    player.getMana().setEnabled(true);
+                }
                 break;
             case GAME_EXITED:
                 this.stopGame();

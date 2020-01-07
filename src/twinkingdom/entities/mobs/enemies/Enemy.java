@@ -5,6 +5,7 @@
  */
 package twinkingdom.entities.mobs.enemies;
 
+import twinkingdom.entities.Entity;
 import twinkingdom.entities.mobs.Creature;
 import twinkingdom.gfx.EntityAssets;
 import twinkingdom.policies.HorizontalPolicy;
@@ -21,6 +22,12 @@ public abstract class Enemy extends Creature{
     public Enemy(float x, float y, int width, int height, EntityAssets entityAssets) {
         super(x, y, width, height, entityAssets);
         setMovementPolicy(new HorizontalPolicy(this,(int) (x-300), (int)(x+300)));
+    }
+    
+    @Override
+    public void attack(Entity e){
+        if(e.isPlayer())
+            super.attack(e);
     }
     /***
     * Policy to obtain the movement of the enemy

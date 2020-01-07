@@ -6,6 +6,7 @@
 package twinkingdom.entities.mobs.player;
 
 import java.awt.Graphics;
+import twinkingdom.game.GameHandler;
 import twinkingdom.entities.Entity;
 import twinkingdom.entities.mobs.Creature;
 import twinkingdom.gfx.EntityAssets;
@@ -40,6 +41,7 @@ public class Player extends Creature {
         }
         
         setState(downState);
+        isPlayer=true;
 
         /* 
         
@@ -161,16 +163,15 @@ public class Player extends Creature {
             
     }
 
-    @Override
-    public void touchGrabbable(Entity e) {
-        e.isActive = false;
-        e.actionOnCollision(this);
-    }
+    
     
     @Override
     public void touchEntity(Entity e){
-        e.actionOnCollision(e);
+        /*if(e.isGrabbable())
+            e.isActive=false*/
+        e.touchEntity(this);
     }
+    
     
     
     /*@Override

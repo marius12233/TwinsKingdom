@@ -38,7 +38,7 @@ public abstract class Boss<T> extends Enemy{
     }
 
     @Override
-    public void actionOnCollision(Entity e) {
+    public void touchEntity(Entity e) {
         setChanged();
         notifyObservers();
     }

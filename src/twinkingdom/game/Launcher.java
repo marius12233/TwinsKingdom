@@ -23,6 +23,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import twinkingdom.gui.GameGUI.FrameDragListener;
 import twinkingdom.gui.MotionPanel;
+import twinkingdom.sounds.SoundTrackManager;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -100,6 +101,8 @@ public class Launcher implements Initializable {
             settingsButton.setDisable(false);
             exitButton.setDisable(false);
         });
+        
+        SoundTrackManager.getInstance().getCurrentSoundTrack().loop();
         
         
     }

@@ -56,28 +56,14 @@ public class Spike extends Creature{
         //g.drawImage(getCurrentAnimationFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
         //state.render(g);
     }
-    
-   
-    @Override
-    public void touchGrabbable (Entity e) {
-        actionOnCollision(e);
-    }
+
     
     @Override
     public void touchEntity(Entity e){
-        System.out.println("TOUCH ENTITY");
         e.hurt(1);
        // isActive=false;
     }
-    
-    @Override
-    public void actionOnCollision(Entity e){
-        //e.hurt(1);
-       // isActive=false;
-        /*setChanged();
-        notifyObservers();*/
-        
-    }
+
 
 
     public void switchVerse() {

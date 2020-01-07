@@ -9,6 +9,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import twinkingdom.entities.mobs.Creature;
+import twinkingdom.entities.mobs.Movable;
 import twinkingdom.gfx.Animation;
 import twinkingdom.gfx.EntityAssets;
 
@@ -36,7 +37,7 @@ public abstract class MovementState {
     /**
      * The creature that uses the pattern State as client
      */
-    protected Creature creature;
+    protected Movable creature;
     
 
     public void tick(){

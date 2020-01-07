@@ -42,7 +42,7 @@ public class GrabbableStarCollection extends Observable implements Observer{
         collection.add(star);
             for (Observer o: observers) {
                 o.update(this, this);
-            } 
+            }
         
     }
     
