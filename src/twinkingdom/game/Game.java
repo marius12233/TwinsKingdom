@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package twinkingdom.game;
 
 import java.awt.Color;
@@ -10,12 +5,10 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.BufferStrategy;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.SwingUtilities;
 import javax.swing.event.EventListenerList;
 import twinkingdom.entities.EntityManager;
 import twinkingdom.entities.mobs.player.Player;
@@ -54,6 +47,8 @@ public class Game implements Runnable, Observer, GameEventListener {
     private EntityManager entityManager;
     private World currentWorld;
     private LevelHandler levelHandler;
+    private Image loadingImage;
+    private Image gameOverImage;
     private Image image;
     
     private SoundTrackManager soundTrackManager;
@@ -63,20 +58,22 @@ public class Game implements Runnable, Observer, GameEventListener {
 
     private Checkpoint checkpoint;
 
-    private boolean changingLevel = false;
-    
-    protected EventListenerList listenerList = new EventListenerList();
-    
-    private PauseController pause;
-    
-    private GameSettings settings;
 
+    protected EventListenerList listenerList = new EventListenerList();
+
+    private PauseController pause;
+
+    private GameSettings settings;
+    
+    private boolean paused = false;
+    private boolean changingLevel = false;
+    private boolean gameOver = false;
 
     public Game(String title) {
         this.title = title;
-       
+
     }
-    
+
     public Game(String title, Checkpoint startingCheckpoint, PauseController pause) {
         this.title = title;
         this.checkpoint = startingCheckpoint;
@@ -88,12 +85,10 @@ public class Game implements Runnable, Observer, GameEventListener {
         settings.addObserver((Observer) keyManager);
         settings.addObserver(SoundTrackManager.getInstance());
         pause.setGameSettings(settings);
-        
-        changingLevel = true;      
-        image = ImageLoader.loadImage("/images/levelloading2.gif");
-        
-    
-       
+
+        changingLevel = true;
+        loadingImage = ImageLoader.loadImage("/images/levelloading2.gif");
+        gameOverImage = ImageLoader.loadImage("/images/gameover.gif");
 
         handler = GameHandler.getInstance();
         handler.setGame(this);
@@ -105,10 +100,13 @@ public class Game implements Runnable, Observer, GameEventListener {
         player = new Player(288, 320, new PlayerAssets());
         player.getHealth().setLives(checkpoint.getLives());
         handler.setPlayer(player);
+        
+        if (checkpoint.getLevelId() > 3) {
+            player.getMana().setEnabled(true);
+        }
 
-       // gameState = new GameState(handler);
+        // gameState = new GameState(handler);
         //State.setState(gameState);
-
         this.levelHandler = new LevelHandler();
         levelHandler.setCurrentWorld(checkpoint.getLevelId());
         soundTrackManager = SoundTrackManager.getInstance();
@@ -120,9 +118,10 @@ public class Game implements Runnable, Observer, GameEventListener {
         this.width = gui.getCanvas().getSize().width;
         this.height = gui.getCanvas().getSize().height;
         
+        player.getMana().addObserver((Observer) this.gui.getManaBar());
+
         //pause.setVisible(false);
         pause.addGameEventListener(this);
-        
 
         gui.getFrame().addKeyListener(keyManager);
         keyManager.addGameEventListener(this);
@@ -130,23 +129,22 @@ public class Game implements Runnable, Observer, GameEventListener {
         gameCamera = new GameCamera(handler, 0f, 0f);
 
         Assets.init();
-       // image = new ImageIcon(new URL("/images/levelloading2.gif")).getImage();
-        
+        // loadingImage = new ImageIcon(new URL("/images/levelloading2.gif")).getImage();
+
         render();
         render();
         render();
 
         changingLevel = false;
-        
+
         this.addGameEventListener(this);
     }
 
     public void tick() {
-
-        if (changingLevel) {
-            return;
-        }
         
+        if(paused || changingLevel || gameOver)
+            return;
+
         keyManager.tick();
         if (currentWorld != null) {
             currentWorld.tick();
@@ -156,6 +154,9 @@ public class Game implements Runnable, Observer, GameEventListener {
 
     public void render() {
 
+        if(paused)
+            return;
+        
         //Buffer strategy è un buffer che permette di scrivere sul buffer prima di scriver sullo screen
         bs = gui.getCanvas().getBufferStrategy();
         if (bs == null) {
@@ -163,18 +164,33 @@ public class Game implements Runnable, Observer, GameEventListener {
             return;
         }
         g = bs.getDrawGraphics();
-        
 
         g.clearRect(0, 0, width, height);
+        
+        if(gameOver) {
+            System.out.println("Rendering game over");
+            g.setColor(new Color(31,30,36));
+            g.fillRect(0, 0, width, height);
+            g.setColor(Color.WHITE);
 
+            if (loadingImage != null) {
+                g.drawImage(gameOverImage, (width - gameOverImage.getWidth(null))/2, (height - gameOverImage.getHeight(null))/2, null);
+                g.drawString("Going back to starting menu...", (width - gameOverImage.getWidth(null))/2 + 220, (height - gameOverImage.getHeight(null))/2 + 300);
+            }
+
+            bs.show();
+            return;
+        }
+        
         if (changingLevel) {
             g.setColor(Color.black);
             g.fillRect(0, 0, width, height);
             g.setColor(Color.WHITE);
-           
-            if(image != null)
-            g.drawImage(image, 140, 20, null);
-           
+
+            if (loadingImage != null) {
+                g.drawImage(loadingImage, 140, 20, null);
+            }
+
             bs.show();
             return;
         }
@@ -195,22 +211,23 @@ public class Game implements Runnable, Observer, GameEventListener {
         } catch (IOException ex) {
             System.exit(1);
         }
-  
+
         int fps = 60;
 
         double timePerTick = 1000000000 / fps;
         double delta = 0;
         long now;
-       
+
         long timer = 0;
         int ticks = 0;
-        
+
         changingLevel = true;
 
-        render(); render(); render();
-        image = ImageLoader.loadImage("/images/levelloading2.gif");
+        render();
+        render();
+        render();
+        loadingImage = ImageLoader.loadImage("/images/levelloading2.gif");
 
-        
         currentWorld = levelHandler.getCurrentWorld();
 
         currentWorld.setEntityManager(this.entityManager);
@@ -221,15 +238,11 @@ public class Game implements Runnable, Observer, GameEventListener {
         player.getHealth().addObserver((Observer) gui.getHealthBar());
         player.getHealth().addObserver((Observer) this);
         currentWorld.getStarCollection().addObserver((Observer) this.gui.getStarsPanel());
-        
+
         changingLevel = false;
-        
+
         long lastTime = System.nanoTime();
         while (running) {
-            
-            while (changingLevel) {
-
-            }
             now = System.nanoTime();
             delta += (now - lastTime) / timePerTick;
             timer += now - lastTime;
@@ -245,6 +258,24 @@ public class Game implements Runnable, Observer, GameEventListener {
                 timer = 0;
             }
         }
+        
+        try {
+            Thread.sleep(1000);
+            if (gameOver)
+                Thread.sleep(10000);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
+            new Launcher();
+        } catch (IOException ex) {
+            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+            System.exit(0);
+        }
+                    this.gui.getFrame().dispose();
+
+   
     }
 
     //@Override
@@ -262,12 +293,9 @@ public class Game implements Runnable, Observer, GameEventListener {
             return;
         }
         running = false;
-        try {
-            thread.join();
-        } catch (Exception ex) {
-        }
+       
     }
-    
+
     public KeyManager getKeyManager() {
         return keyManager;
     }
@@ -297,16 +325,15 @@ public class Game implements Runnable, Observer, GameEventListener {
             if (h.getLives() > 1) {
                 resetLevel();
             } else {
-               this.launchGameEvent(new GameEvent(this, GameEventType.GAME_OVER));
+                this.launchGameEvent(new GameEvent(this, GameEventType.GAME_OVER));
             }
         }
     }
 
     private void changeLevel() {
 
-        
         changingLevel = true;
-        image = ImageLoader.loadImage("/images/levelloading2.gif");
+        loadingImage = ImageLoader.loadImage("/images/levelloading2.gif");
         currentWorld = levelHandler.getNextWorld();
         if (currentWorld == null) {
             this.launchGameEvent(new GameEvent(this, GameEventType.GAME_COMPLETED));
@@ -315,6 +342,10 @@ public class Game implements Runnable, Observer, GameEventListener {
         }
         checkpoint.setLevelId(levelHandler.getCurrentWorldId());
         soundTrackManager.setCurrentSoundTrack(levelHandler.getCurrentWorldId());
+        
+        if(levelHandler.getCurrentWorldId() > 3) {
+            player.getMana().setEnabled(true);
+        }
 
         render();
         render();
@@ -328,7 +359,7 @@ public class Game implements Runnable, Observer, GameEventListener {
         this.handler.setWorld(currentWorld);
         currentWorld.getStarCollection().addObserver((Observer) this.gui.getStarsPanel());
         currentWorld.init();
-        
+
         currentWorld.addGameEventListener(this);
 
         changingLevel = false;
@@ -340,7 +371,7 @@ public class Game implements Runnable, Observer, GameEventListener {
         render();
         render();
         render();
-        
+
         currentWorld = this.levelHandler.getCurrentWorld();
         currentWorld.getEntityManager().removeAllEntities();
         player.getHealth().setHealthPoints(1000);
@@ -362,7 +393,7 @@ public class Game implements Runnable, Observer, GameEventListener {
                 changeLevel();
                 break;
             case LEVEL_FAILED:
-                if (player.getHealth().getLives() > 1){
+                if (player.getHealth().getLives() > 1) {
                     resetLevel();
                 } else {
                     this.launchGameEvent(new GameEvent(this, GameEventType.GAME_OVER));
@@ -370,7 +401,9 @@ public class Game implements Runnable, Observer, GameEventListener {
                 break;
             case GAME_OVER:
                 Checkpoint.removeCheckpoint(checkpoint);
-                System.exit(0);
+                gameOver = true;
+                this.stopGame();
+                render();render();render();
                 break;
             case GAME_COMPLETED:
                 Checkpoint.removeCheckpoint(checkpoint);
@@ -378,56 +411,60 @@ public class Game implements Runnable, Observer, GameEventListener {
                 System.exit(0);
             case GAME_PAUSE:
                 pause.setVisible(true);
-                changingLevel = true;
+                paused = true;
                 System.out.println(changingLevel);
                 pause.setLocationRelativeTo(gui.getGameScenePanel());
                 this.gui.getFrame().setEnabled(false);
+                player.getMana().setEnabled(false);
                 break;
             case GAME_RESUMED:
-                                changingLevel = false;
-                                
+                paused = false;
 
-        {
-            try {
-                SwingUtilities.invokeAndWait(() -> {
-                    pause.setVisible(false);
-                    this.gui.getFrame().setEnabled(true);
-                    this.gui.getFrame().setVisible(true);
-                });
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (InvocationTargetException ex) {
-                Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-                
+                pause.setVisible(false);
+                this.gui.getFrame().setEnabled(true);
+                this.gui.getFrame().setVisible(true);
+                player.getMana().setEnabled(true);
+                break;
+            case GAME_EXITED:
+                this.stopGame();
+                pause.setVisible(false);
+                this.gui.getFrame().setVisible(true);
                 break;
             case GAME_START:
                 break; // TO DO
             case WEAPON_SELECTED_SWORD:
+                player.getMana().removeObserver((Observer) gui.getManaBar());
                 player = new Player(player);
                 entityManager.setPlayer(player);
+                player.getHealth().addObserver((Observer) this);
+                player.getMana().addObserver((Observer) gui.getManaBar());
                 handler.setPlayer(player);
                 gui.getWeaponPanel().setWeapon(Weapons.SWORD);
                 break;
             case WEAPON_SELECTED_BOW:
-                if(levelHandler.getCurrentWorldId() < 2)
+                if (levelHandler.getCurrentWorldId() < 2) {
                     return;
+                }
+                player.getMana().removeObserver((Observer) gui.getManaBar());
                 player = new PlayerArcher(player);
                 entityManager.setPlayer(player);
                 handler.setPlayer(player);
                 player.getHealth().addObserver((Observer) this);
+                player.getMana().addObserver((Observer) gui.getManaBar());
                 gui.getWeaponPanel().setWeapon(Weapons.BOW);
                 break;
             case WEAPON_SELECTED_SPELL:
-                if(levelHandler.getCurrentWorldId() < 4)
+                if (levelHandler.getCurrentWorldId() < 4) {
                     return;
+                }
+                
+                player.getMana().removeObserver((Observer) gui.getManaBar());
                 player = new PlayerMage(player);
                 entityManager.setPlayer(player);
                 entityManager.getPlayer().getHealth().addObserver((Observer) this);
                 handler.setPlayer(player);
                 //PlayerMage playerMage = (PlayerMage) player;
-                ((PlayerMage) player).getMana().addObserver((Observer) gui.getManaBar());
+                player.getMana().addObserver((Observer) gui.getManaBar());
                 gui.getWeaponPanel().setWeapon(Weapons.SPELL);
                 break;
 
@@ -435,7 +472,6 @@ public class Game implements Runnable, Observer, GameEventListener {
                 break;
         }
     }
-    
 
     public void addGameEventListener(GameEventListener listener) {
         listenerList.add(GameEventListener.class, listener);
@@ -453,5 +489,4 @@ public class Game implements Runnable, Observer, GameEventListener {
             }
         }
     }
-
 }

@@ -9,10 +9,8 @@ import java.awt.Graphics;
 import twinkingdom.game.GameHandler;
 import twinkingdom.entities.Entity;
 import twinkingdom.entities.mobs.Creature;
-import twinkingdom.gfx.Assets;
 import twinkingdom.gfx.EntityAssets;
 import twinkingdom.gfx.PlayerAssets;
-import twinkingdom.gui.Health;
 import twinkingdom.gui.Mana;
 
 /**
@@ -23,7 +21,7 @@ public class Player extends Creature {
 
     //private int numLives;
     
-    private Mana mana;
+    protected Mana mana;
 
     public Player(float x, float y, EntityAssets pAssets, int lives) {
         super( x, y, Creature.DEFAULT_WIDTH, Creature.DEFAULT_HEIGHT, pAssets);
@@ -38,7 +36,10 @@ public class Player extends Creature {
         health.setLives(lives);
         health.setMaxHealthPoints(10);
         //numLives = 3;
-
+        if (mana == null) {
+            this.mana = new Mana();
+        }
+        
         setState(downState);
         isPlayer=true;
 
@@ -60,6 +61,7 @@ public class Player extends Creature {
     public Player(Player player) {
         this(player.getX(), player.getY(), new PlayerAssets(), player.getNumLives());
         this.setHealth(player.getHealth());
+        this.setMana(player.getMana());
     }
 
     public int getNumLives() {
@@ -85,6 +87,14 @@ public class Player extends Creature {
 
         //System.out.println(x+" "+y);
         handler.getGameCamera().centerOnEntity(this);
+    }
+
+    public Mana getMana() {
+        return mana;
+    }
+
+    public void setMana(Mana mana) {
+        this.mana = mana;
     }
 
     private void getInput() {

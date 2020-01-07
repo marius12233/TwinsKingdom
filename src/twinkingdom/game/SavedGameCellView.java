@@ -5,19 +5,16 @@
  */
 package twinkingdom.game;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.NodeOrientation;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import javafx.util.Callback;
 import twinkingdom.saves.Checkpoint;
 
 /**
@@ -58,6 +55,9 @@ public class SavedGameCellView extends ListCell<Checkpoint> {
             
             lives.setText("X " +  checkpoint.getLives());
             lastSaved.setText("Last saved on " + new SimpleDateFormat("dd MMM yyyy 'at' HH.mm a").format(checkpoint.getLastSaved()));
+            File file = new File("res/maps/" + checkpoint.getLevelId() + ".png");
+            Image image = new Image(file.toURI().toString());
+            levelPicture.setImage(image);
             setGraphic(pane);
             setText(null);
         }

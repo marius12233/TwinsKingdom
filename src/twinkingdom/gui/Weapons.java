@@ -7,7 +7,6 @@ package twinkingdom.gui;
 
 /**
  *
- * @author bened
  */
 public enum Weapons {
     SWORD,

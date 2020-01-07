@@ -49,9 +49,9 @@ public class Launcher implements Initializable {
     private static final int SIDEBAR_WIDTH = 192, SIDEBAR_HEIGHT = 518;
     private JFrame frame;
 
-    public static Parent root;
+    public Parent root;
     
-     @FXML private ImageView logoImg;
+    @FXML private ImageView logoImg;
     @FXML private Button newGameButton, loadGameButton, settingsButton, exitButton, confirmButton, cancelButton;
     @FXML Pane exitPopup;
     @Override
@@ -107,13 +107,13 @@ public class Launcher implements Initializable {
         
     }
     
-    private static void initFX(JFXPanel fxPanel) {
+    private void initFX(JFXPanel fxPanel) {
         // This method is invoked on the JavaFX thread
         Scene scene = createScene();
         fxPanel.setScene(scene);
     }
 
-    private static Scene createScene() {
+    private Scene createScene() {
         Scene  scene  =  new  Scene(root, javafx.scene.paint.Color.ALICEBLUE);
         return (scene);
     }
@@ -136,30 +136,6 @@ public class Launcher implements Initializable {
         jfxp.addMouseListener(frameDragListener);
         jfxp.addMouseMotionListener(frameDragListener);
         jfxp.setVisible(true);
-       
-
-        jfxp.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-                if (e.getKeyChar() == 'q') {
-                    System.exit(0);//To change body of generated methods, choose Tools | Templates.
-                }
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyChar() == 'q') {
-                    System.exit(0); //To change body of generated methods, choose Tools | Templates.
-                }
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-                if (e.getKeyChar() == 'q') {
-                    System.exit(0); //To change body of generated methods, choose Tools | Templates.
-                }
-            }
-        });
         
         JPanel panel = new MotionPanel(frame);
         jfxp.setBounds(10, 10, 300, 300);

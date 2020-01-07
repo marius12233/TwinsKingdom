@@ -11,8 +11,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
- *
- * @author bened
+ * This class contains the descrition of the health points and lives of the player, constantly monitoring and updating them during the game.
  */
 public class Health extends Observable {
 

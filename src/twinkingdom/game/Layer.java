@@ -15,20 +15,31 @@ import java.util.logging.Logger;
 import twinkingdom.gfx.Assets;
 
 /**
- *
- * @author Clover
+ * This class represents a graphic level of the map. It contains all its graphic units that must be displayed. 
  */
 public class Layer {
     
     private int width, height;
+    /**
+    Tiles matrix, where a graphic tile is associtaed for each integer. 
+    */
     private int[][] matrix;
     
+    /**
+    @param width Width of the layer
+    @param height Height of the layer
+    @param path Path to the .txt file of the layer.
+    */
     public Layer(int width, int height, String path) {
         this.width = width;
         this.height = height;
         this.matrix = loadLayer(path, width, height);
     }
     
+    /**
+    This method is used to load a layer from its .txt file.
+    @return Integers matrix of the layer.
+    */
     public int[][] loadLayer(String path, int width, int height) {
         
         Scanner scanner = null;
@@ -55,6 +66,9 @@ public class Layer {
         return matrix;
     }
     
+    /**
+    This method identifies and displays each tile of the layer.
+    */
     public void render(Graphics g, GameHandler handler) {
         for(int j = 0; j < this.width; j++) {
             for(int i = 0; i < this.height; i++) {

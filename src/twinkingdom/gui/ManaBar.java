@@ -13,28 +13,22 @@ import java.util.Observable;
 import javax.imageio.ImageIO;
 
 /**
- *
- * @author bened
+ * This class is used to display and update player's mana bar during the game.
  */
 public class ManaBar extends ObservingPanel {
     
     private BufferedImage manaTrapeze;
-    /**
-     * These fields.
-     */
     public int value, max;
     private boolean isManaEnabled;
     private final int barWidth, barHeight;
     private final Color barColor, barBorderColor;
     
     public ManaBar() throws IOException {
-        /**
-         * This field.
-         */
+        
         this.barWidth = 315;
         this.barHeight = 23;
         this.max = 120;
-        this.value = 60;
+        this.value = 0;
         this.barColor = new Color(22,117,153);
         this.barBorderColor = new Color(232,142,0);
         this.isManaEnabled = false;
@@ -42,6 +36,11 @@ public class ManaBar extends ObservingPanel {
         manaTrapeze = ImageIO.read(this.getClass().getResource("/gui/healthbg.png"));
        
     }
+    
+    /**
+     * Displays mana bar and its graphic settings.
+     * @param g 
+     */
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -60,9 +59,6 @@ public class ManaBar extends ObservingPanel {
         g.setColor(Color.white);
         String remainingLife = String.format("%1$"+10+ "s", this.value + "/" + this.max + " MP");
         g.drawString(remainingLife, 21, 53);
-        
-
-        
     }
 
     @Override
@@ -71,9 +67,7 @@ public class ManaBar extends ObservingPanel {
         this.value = m.getMana();
         this.max = m.getMaxMana();
         this.isManaEnabled = m.isEnabled();
+        System.out.println("OBSERVABLE " + o);
         this.repaint();
     }
-
-   
-    
 }

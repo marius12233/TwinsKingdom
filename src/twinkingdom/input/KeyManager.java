@@ -57,6 +57,8 @@ public class KeyManager implements KeyListener, Observer {
         } else if(bowSelected) {
             launchGameEvent(new GameEvent(this, GameEventType.WEAPON_SELECTED_BOW));
         } else if(spellSelected) {
+            keys[(int) spellSelectedKey] = false;
+            stack.removeFirstOccurrence((int) spellSelectedKey);
             launchGameEvent(new GameEvent(this, GameEventType.WEAPON_SELECTED_SPELL));
         }
         

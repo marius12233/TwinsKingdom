@@ -5,24 +5,13 @@
  */
 package twinkingdom.worlds;
 
-import twinkingdom.events.GameEventListener;
-import java.util.EventObject;
 import java.util.Observable;
 import java.util.Observer;
-import twinkingdom.entities.mobs.enemies.Boss;
 import twinkingdom.entities.mobs.enemies.level1.ArcherBoss;
-import twinkingdom.entities.mobs.enemies.level2.MageBoss;
-import twinkingdom.entities.mobs.enemies.level2.Crow;
-import twinkingdom.entities.mobs.enemies.level3.EnchantedArmor;
-import twinkingdom.entities.mobs.enemies.level3.Ghost;
 import twinkingdom.gfx.ArcherAssets;
 import twinkingdom.entities.statics.Portal;
 import twinkingdom.events.GameEvent;
 import twinkingdom.events.GameEventType;
-import twinkingdom.gfx.ArmorAssets;
-import twinkingdom.gfx.Boss2Assets;
-import twinkingdom.gfx.CrowAssets;
-import twinkingdom.gfx.GhostAssets;
 import twinkingdom.gui.Health;
 import twinkingdom.utils.GrabbableStarCollection;
 

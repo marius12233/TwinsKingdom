@@ -11,6 +11,10 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
+
+/**
+ * This class sets or loads a checkpoint during the game, keeping some info about the player's status. 
+ */
 public class Checkpoint
         implements Serializable, Comparable<Checkpoint> {
 
@@ -18,6 +22,11 @@ public class Checkpoint
     private Date lastSaved;
     private static String path = "saves/";
 
+    /**
+     * Creates a checkpoint
+     * @param lives Number of player's lives.
+     * @param levelId Identifier of the level.
+     */
     public Checkpoint(int lives, int levelId) {
         this.lastSaved = new Date();
         this.lives = lives;
@@ -25,6 +34,10 @@ public class Checkpoint
         MemoryCard.add(this);
     }
 
+    /**
+     * Loads a checkpoint.
+     * @return The requested checkpoint.
+     */
     public static Checkpoint loadCheckpoint() {
         Checkpoint checkpoint = null;
 
@@ -37,6 +50,10 @@ public class Checkpoint
         return checkpoint;
     }
 
+    /**
+     * Saves a checkpoint.
+     * @param checkpoint The checkpoint to save.
+     */
     public static void saveCheckpoint(Checkpoint checkpoint) {
 
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File(path)))) {
@@ -48,6 +65,11 @@ public class Checkpoint
 
     }
     
+    /**
+     * Deletes a specific checkpoint.
+     * @param checkpoint The checkpoint to delete.
+     * @return true if the file is successfully deleted. Otherwise, this method returns false.
+     */
     public static boolean removeCheckpoint(Checkpoint checkpoint) {
         MemoryCard.remove(checkpoint);
         File toRemove = new File(path);

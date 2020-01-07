@@ -7,25 +7,14 @@
 package twinkingdom.entities.mobs.enemies.level1;
 
 
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
 import java.util.LinkedList;
-import twinkingdom.game.GameHandler;
 import twinkingdom.entities.mobs.Creature;
-import twinkingdom.entities.Entity;
 import twinkingdom.entities.mobs.enemies.Boss;
-import twinkingdom.gfx.Animation;
 import twinkingdom.gfx.ArcherAssets;
-import twinkingdom.gfx.Assets;
-import twinkingdom.gfx.MonsterAssets;
 import twinkingdom.gfx.ArrowAssets;
-import twinkingdom.gui.Health;
 import twinkingdom.policies.HorizontalArcherPolicy;
-import twinkingdom.policies.HorizontalPolicy;
 import twinkingdom.policies.VerticalArcherPolicy;
-import twinkingdom.policies.VerticalPolicy;
 import twinkingdom.utils.UtilityTimer;
-import twinkingdom.entities.mobs.enemies.Enemy;
 import twinkingdom.entities.mobs.states.RightMovementState;
 
 /**

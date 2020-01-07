@@ -6,9 +6,7 @@
 package twinkingdom.worlds;
 
 import twinkingdom.events.GameEventListener;
-import twinkingdom.events.CompletedLevelEvent;
 import java.awt.Graphics;
-import java.util.EventObject;
 import java.util.LinkedList;
 import java.util.Observer;
 import javax.swing.event.EventListenerList;
@@ -17,10 +15,8 @@ import twinkingdom.game.Layer;
 import twinkingdom.game.RenderableLayers;
 import twinkingdom.entities.Entity;
 import twinkingdom.entities.EntityManager;
-import twinkingdom.gui.StarsPanel;
 import twinkingdom.entities.statics.Portal;
 import twinkingdom.events.GameEvent;
-import twinkingdom.events.GameEventType;
 import twinkingdom.utils.GrabbableStarCollection;
 import twinkingdom.tiles.Tile;
 import twinkingdom.utils.Utils;

@@ -7,7 +7,6 @@ package twinkingdom.policies;
 
 import twinkingdom.game.GameHandler;
 import twinkingdom.entities.mobs.Creature;
-import twinkingdom.entities.mobs.states.MovementState;
 
 /**
  *

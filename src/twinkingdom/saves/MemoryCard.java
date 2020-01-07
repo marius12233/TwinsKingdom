@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package twinkingdom.saves;
 
 import java.io.File;
@@ -12,23 +13,19 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author bened
+ * This class contains all the checkpoints of the game. It is used to collect and sort them.
  */
 public final class MemoryCard {
     
     private static SortedSet<Checkpoint> games = new TreeSet<>();
     private static final String path = "saves/games.save";
-
     
     private MemoryCard() {}
     
@@ -40,6 +37,10 @@ public final class MemoryCard {
         }
     }
     
+    /**
+     * Loads all the checkpoints written in the 'games.save' file.
+     * @throws IOException 
+     */
     public static void load() throws IOException {
         File f = new File(path);
         f.createNewFile();
@@ -50,6 +51,9 @@ public final class MemoryCard {
         } 
     }
     
+    /**
+     * Saves all the checkpoints to the 'games.save' file.
+     */
     public static void save() {
          try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File(path)))) {
             oos.writeObject(games);
@@ -72,7 +76,5 @@ public final class MemoryCard {
        
         games.remove(checkpoint);
         save();
-    }
-    
-    
+    }   
 }

@@ -5,11 +5,8 @@
  */
 package twinkingdom.entities.mobs.enemies.level1;
 import java.awt.Graphics;
-import twinkingdom.game.GameHandler;
-import twinkingdom.entities.Entity;
 import twinkingdom.entities.mobs.enemies.Enemy;
 import twinkingdom.gfx.WolfAssets;
-import twinkingdom.utils.UtilityTimer;
 
 /**
  *
@@ -47,7 +44,7 @@ public class Wolf extends Enemy{
 
     @Override
     public void die() {
-        return;
+        System.out.println("Wolf è morto!!");
     }
 
 

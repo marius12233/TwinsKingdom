@@ -18,25 +18,16 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.application.Platform;
-import javafx.embed.swing.JFXPanel;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
-import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
-import static twinkingdom.game.Launcher.root;
-import twinkingdom.game.PauseController;
 import twinkingdom.gfx.ImageLoader;
 
 /**
  *
- * @author bened
  */
+
 public class GameGUI {
 
     /**
@@ -52,7 +43,6 @@ public class GameGUI {
     private ManaBar manaBar;
     private HealthBar healthBar;
     private SidebarPanel sidebar;
-    private LevelNamePanel lnp;
     private StarsPanel starsPanel;
     private Canvas canvas;
 
@@ -61,7 +51,6 @@ public class GameGUI {
         createFrame(title);
         this.setFrameBackground("/gui/bg.png");
         this.createGameScenePanel();
-        this.createLevelNamePanel();
         this.createSidebar();
         this.createStarsPanel();
         this.createHealthBar();
@@ -74,44 +63,14 @@ public class GameGUI {
         frame.setVisible(true);
                 frame.pack();
 
-       
-
-        manaBar.value = 90;
-        manaBar.repaint();
-
-
-
-        lnp.repaint();
-        LevelUtilities.currentLevel = 2;
-        lnp.repaint();
-        frame.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-                if (e.getKeyChar() == 'q') {
-                    System.exit(0);//To change body of generated methods, choose Tools | Templates.
-                }
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyChar() == 'q') {
-                    System.exit(0); //To change body of generated methods, choose Tools | Templates.
-                }
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-                if (e.getKeyChar() == 'q') {
-                    System.exit(0); //To change body of generated methods, choose Tools | Templates.
-                }
-            }
-        });
         JPanel panel = new MotionPanel(frame);
         panel.setVisible(true);
-
     }
     
-
+    /**
+     * Creates a basic frame, where all the components are set.
+     * @param title Title of the window.
+     */
     private void createFrame(String title) {
         this.frame = new JFrame(title);
         frame.setSize(GameGUI.FRAME_WIDTH, GameGUI.FRAME_HEIGHT);
@@ -124,6 +83,11 @@ public class GameGUI {
         frame.setTitle(title);
     }
 
+    /**
+     * Creates and sets a BackgroundPane in the frame.
+     * @param imgPath Path to the image.
+     * @throws IOException If the file is not found.
+     */
     private void setFrameBackground(String imgPath) throws IOException {
         BufferedImage bi = ImageLoader.loadImage(imgPath);//read(this.getClass().getResource(imgPath));
         this.backgroundPane = new BackgroundPane();
@@ -133,6 +97,11 @@ public class GameGUI {
         frame.setBackground(Color.BLACK);
     }
 
+    
+    /**
+     * Creates and sets a GameScenePanel, where the game will be displayed.
+     * @throws IOException
+     */
     private void createGameScenePanel() throws IOException {
         this.gameScene = new GameScenePanel();
         gameScene.setBackground(new Color(28, 27, 27));
@@ -159,6 +128,10 @@ public class GameGUI {
         
     }
 
+    /**
+     * Creates and sets a SidebarPanel, where the equipped weapon and other info are displayed.
+     * @throws IOException
+     */
     private void createSidebar() throws IOException {
 
         BackgroundPane sidebarContainer = new BackgroundPane();
@@ -176,16 +149,9 @@ public class GameGUI {
 
     }
 
-    private void createLevelNamePanel() {
-        lnp = new LevelNamePanel();
-        lnp.setLayout(null);
-        lnp.setOpaque(false);
-        frame.getContentPane().add(lnp);
-        lnp.setBounds(800, 520, 100, 20);
-        lnp.setSize(140, 30);
-
-    }
-
+    /**
+     * Creates and sets an HealthBar, where the health points of the player are displayed.
+     */
     private void createHealthBar() {
 
         try {
@@ -204,6 +170,9 @@ public class GameGUI {
 
     }
 
+    /**
+     * Creates and sets a ManaBar, where the mana points of the player are displayed.
+     */
     private void createManaBar() {
         try {
             this.manaBar = new ManaBar();
@@ -220,6 +189,10 @@ public class GameGUI {
         manaBar.setBounds(480, 477, 330, 82);
     }
 
+    /**
+     * Creates and sets a StarPanel, where the number of stars collected by the player is displayed.
+     * @throws IOException If the source image is not found.
+     */
     private void createStarsPanel() throws IOException {
         this.starsPanel = new StarsPanel();
         this.starsPanel.setSize(60, 70);
@@ -230,7 +203,6 @@ public class GameGUI {
         starsPanel.setLayout(null);
         starsPanel.setOpaque(false);
     }
-
 
     public Canvas getCanvas() {
         return this.canvas;
@@ -246,10 +218,6 @@ public class GameGUI {
 
     public HealthBar getHealthBar() {
         return this.healthBar;
-    }
-
-    public LevelNamePanel getLevelNamePanel() {
-        return this.lnp;
     }
 
     public GameScenePanel getGameScenePanel() {
@@ -273,7 +241,9 @@ public class GameGUI {
         return starsPanel;
     }
     
-
+    /**
+     * This method checks if the user drags the window in different positions, in order to move the GameGUI and its components.
+     */
     public static class FrameDragListener extends MouseAdapter {
 
         private final JFrame frame;

@@ -6,11 +6,7 @@
 package twinkingdom.policies;
 
 import twinkingdom.entities.mobs.Creature;
-import twinkingdom.entities.Entity;
-import twinkingdom.entities.mobs.enemies.Enemy;
-import twinkingdom.entities.mobs.states.LeftMovementState;
 import twinkingdom.entities.mobs.states.MovementState;
-import twinkingdom.entities.mobs.states.RightMovementState;
 
 /**
  *

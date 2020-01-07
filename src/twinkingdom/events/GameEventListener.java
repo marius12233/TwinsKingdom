@@ -6,7 +6,6 @@
 package twinkingdom.events;
 
 import java.util.EventListener;
-import java.util.EventObject;
 
 /**
  *
