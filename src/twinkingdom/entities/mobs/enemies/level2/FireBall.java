@@ -5,11 +5,7 @@
  */
 package twinkingdom.entities.mobs.enemies.level2;
 
-import java.awt.Graphics;
-import twinkingdom.entities.Entity;
-import twinkingdom.entities.mobs.Creature;
 import twinkingdom.entities.mobs.Launchable;
-import twinkingdom.entities.mobs.Movable;
 import twinkingdom.gfx.FireBallAssets;
 
 /**

@@ -6,17 +6,9 @@
 package twinkingdom.entities.mobs;
 
 import java.awt.Rectangle;
-import twinkingdom.game.RenderableLayers;
 import twinkingdom.entities.Entity;
-import twinkingdom.entities.mobs.states.DownMovementState;
-import twinkingdom.entities.mobs.states.LeftMovementState;
-import twinkingdom.entities.mobs.states.MovementState;
-import twinkingdom.entities.mobs.states.RightMovementState;
-import twinkingdom.entities.mobs.states.UpMovementState;
 import twinkingdom.gfx.EntityAssets;
-import twinkingdom.tiles.Tile;
 import twinkingdom.utils.UtilityTimer;
-import twinkingdom.worlds.World;
 
 /**
  *

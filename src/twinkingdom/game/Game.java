@@ -33,6 +33,7 @@ import twinkingdom.events.GameEventType;
 import twinkingdom.gfx.ImageLoader;
 import twinkingdom.gui.Weapons;
 import twinkingdom.saves.Checkpoint;
+import twinkingdom.sounds.SoundTrackManager;
 import twinkingdom.worlds.World;
 
 /**
@@ -54,6 +55,8 @@ public class Game implements Runnable, Observer, GameEventListener {
     private World currentWorld;
     private LevelHandler levelHandler;
     private Image image;
+    
+    private SoundTrackManager soundTrackManager;
 
     private GameGUI gui;
     private Player player;
@@ -83,6 +86,7 @@ public class Game implements Runnable, Observer, GameEventListener {
     public void init() throws IOException {
         settings = new GameSettings();
         settings.addObserver((Observer) keyManager);
+        settings.addObserver(SoundTrackManager.getInstance());
         pause.setGameSettings(settings);
         
         changingLevel = true;      
@@ -107,6 +111,8 @@ public class Game implements Runnable, Observer, GameEventListener {
 
         this.levelHandler = new LevelHandler();
         levelHandler.setCurrentWorld(checkpoint.getLevelId());
+        soundTrackManager = SoundTrackManager.getInstance();
+        soundTrackManager.setCurrentSoundTrack(levelHandler.getCurrentWorldId());
 
         this.entityManager = new EntityManager(handler, player);
 
@@ -308,6 +314,7 @@ public class Game implements Runnable, Observer, GameEventListener {
             return;
         }
         checkpoint.setLevelId(levelHandler.getCurrentWorldId());
+        soundTrackManager.setCurrentSoundTrack(levelHandler.getCurrentWorldId());
 
         render();
         render();
