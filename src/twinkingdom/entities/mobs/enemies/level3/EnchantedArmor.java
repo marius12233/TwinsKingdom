@@ -55,7 +55,7 @@ public class EnchantedArmor extends Enemy{
 
     @Override
     public void die() {
-        if (LevelHandler.getWorldId()==6){
+        if (LevelHandler.getWorldId()==7){
             for( Observer o : observers){
                 o.update(this, this);
             }

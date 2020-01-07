@@ -20,9 +20,10 @@ public class LevelHandler {
 
     public LevelHandler() {
         
-        this.currentWorld = 0;
-        this.worldId=0;
+        this.currentWorld = -1;
+        this.worldId=-1;
         this.worlds = new LinkedList<>();
+        this.worlds.add(new Intro());
         this.worlds.add(new Forest());
         this.worlds.add(new Dungeon1());
         this.worlds.add(new Garden());

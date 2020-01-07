@@ -5,8 +5,12 @@
  */
 package twinkingdom.worlds;
 
+import java.awt.Font;
+import java.awt.FontFormatException;
 import twinkingdom.events.GameEventListener;
 import java.awt.Graphics;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.Observer;
 import javax.swing.event.EventListenerList;
@@ -47,6 +51,10 @@ public abstract class World implements Observer, GameEventListener {
 
     protected EventListenerList listenerList = new EventListenerList();
 
+    protected InputStream in;
+    protected Font font;
+    private float dimensionFont = 14;
+    
     public void addGameEventListener(GameEventListener listener) {
         listenerList.add(GameEventListener.class, listener);
     }
@@ -75,7 +83,13 @@ public abstract class World implements Observer, GameEventListener {
         //creatures=new LinkedList<Creature>();
         this.entities = new LinkedList<>();
         //this.init();
-
+        try {
+            in = World.class.getResourceAsStream("/fonts/EightBitDragon.ttf");
+            font = Font.createFont(Font.TRUETYPE_FONT, in);
+            font = font.deriveFont(dimensionFont);
+        } catch (FontFormatException | IOException ex) {
+            font = new Font("Monospaced", Font.BOLD, (int)dimensionFont);
+        }
     }
 
     public World() {

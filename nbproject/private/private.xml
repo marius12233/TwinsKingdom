@@ -2,6 +2,31 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/Angelica/Documents/GitHub/final2sprint/src/twinkingdom/gfx/LadyParanoiaAssets.java</file>
+            <file>file:/C:/Users/Angelica/Documents/GitHub/final2sprint/src/twinkingdom/game/Game.java</file>
+            <file>file:/C:/Users/Angelica/Documents/GitHub/final2sprint/src/twinkingdom/entities/mobs/player/Player.java</file>
+            <file>file:/C:/Users/Angelica/Documents/GitHub/final2sprint/src/twinkingdom/entities/mobs/enemies/finalLevel/QueenAnsia.java</file>
+            <file>file:/C:/Users/Angelica/Documents/GitHub/final2sprint/src/twinkingdom/entities/mobs/states/player/LeftMageState.java</file>
+            <file>file:/C:/Users/Angelica/Documents/GitHub/final2sprint/src/twinkingdom/entities/mobs/states/player/DownArcherState.java</file>
+            <file>file:/C:/Users/Angelica/Documents/GitHub/final2sprint/res/worlds/final_level/layer2.txt</file>
+            <file>file:/C:/Users/Angelica/Documents/GitHub/final2sprint/src/twinkingdom/events/GameEventType.java</file>
+            <file>file:/C:/Users/Angelica/Documents/GitHub/final2sprint/src/twinkingdom/entities/mobs/enemies/finalLevel/FinalEnemiesManager.java</file>
+            <file>file:/C:/Users/Angelica/Documents/GitHub/final2sprint/src/twinkingdom/entities/mobs/states/player/UpMageState.java</file>
+            <file>file:/C:/Users/Angelica/Documents/GitHub/final2sprint/src/twinkingdom/worlds/World.java</file>
+            <file>file:/C:/Users/Angelica/Documents/GitHub/final2sprint/src/twinkingdom/entities/mobs/states/player/RightMageState.java</file>
+            <file>file:/C:/Users/Angelica/Documents/GitHub/final2sprint/src/twinkingdom/entities/mobs/player/PlayerMage.java</file>
+            <file>file:/C:/Users/Angelica/Documents/GitHub/final2sprint/src/twinkingdom/entities/mobs/states/player/DownMageState.java</file>
+            <file>file:/C:/Users/Angelica/Documents/GitHub/final2sprint/src/twinkingdom/entities/statics/BlackSpell.java</file>
+            <file>file:/C:/Users/Angelica/Documents/GitHub/final2sprint/src/twinkingdom/entities/mobs/player/ArmoredSpellPlayer.java</file>
+            <file>file:/C:/Users/Angelica/Documents/GitHub/final2sprint/src/twinkingdom/entities/mobs/player/ArmoredBowPlayer.java</file>
+            <file>file:/C:/Users/Angelica/Documents/GitHub/final2sprint/src/twinkingdom/worlds/ThroneRoom.java</file>
+            <file>file:/C:/Users/Angelica/Documents/GitHub/final2sprint/src/twinkingdom/entities/mobs/player/PlayerArcher.java</file>
+            <file>file:/C:/Users/Angelica/Documents/GitHub/final2sprint/src/twinkingdom/entities/mobs/player/ArmoredPlayer.java</file>
+            <file>file:/C:/Users/Angelica/Documents/GitHub/final2sprint/src/twinkingdom/gfx/PlayerArmSpellAssets.java</file>
+            <file>file:/C:/Users/Angelica/Documents/GitHub/final2sprint/src/twinkingdom/entities/mobs/states/player/RightArcherState.java</file>
+            <file>file:/C:/Users/Angelica/Documents/GitHub/final2sprint/src/twinkingdom/entities/mobs/enemies/finalLevel/LadyParanoia.java</file>
+            <file>file:/C:/Users/Angelica/Documents/GitHub/final2sprint/src/twinkingdom/entities/mobs/enemies/Boss.java</file>
+        </group>
     </open-files>
 </project-private>

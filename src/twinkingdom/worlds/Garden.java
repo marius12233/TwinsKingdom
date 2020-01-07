@@ -8,8 +8,10 @@ package twinkingdom.worlds;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import java.util.Observable;
 import java.util.Observer;
+import twinkingdom.game.GameHandler;
 import twinkingdom.entities.EntityManager;
 import twinkingdom.entities.mobs.enemies.level2.BlueSnake;
 import twinkingdom.entities.mobs.enemies.level2.Crow;
@@ -26,6 +28,7 @@ import twinkingdom.events.GameEventType;
 import twinkingdom.gfx.BlueSnakeAssets;
 import twinkingdom.gfx.CrowAssets;
 import twinkingdom.gfx.GargoyleAssets;
+import twinkingdom.gfx.ImageLoader;
 import twinkingdom.gfx.PoppyAssets;
 import twinkingdom.gfx.RedSnakeAssets;
 import twinkingdom.gfx.YellowSnakeAssets;
@@ -38,9 +41,19 @@ import twinkingdom.utils.UtilityTimer;
  * @author Amedeo
  */
 public final class Garden extends World {
+
     private UtilityTimer timer;
     public static Class thisClass;
     private final int STARS = 3;
+
+    // Variables used to manage the vignette at the beginning of the level
+    private BufferedImage vignette;
+    private UtilityTimer timer_vignette;
+    private boolean vignette_mode = true;
+
+    // Variables used to manage the vignette that appears when the portal is unlocked
+    private UtilityTimer timer_vignette_portal;
+    private boolean vignette_portal = false;
 
     static {
         thisClass = Garden.class;
@@ -55,24 +68,34 @@ public final class Garden extends World {
     public void init() {
         super.init();
         starCollection.addObserver((Observer) this);
-        timer = new UtilityTimer(180000, true);
+
+        // Initialization of the variables used for the vignette at the beginning
+        vignette = ImageLoader.loadImage("/images/vignette.png");
+        timer_vignette = new UtilityTimer(8000, true);
+
+        // Instance of the timer used for the vignette that appears when the portal is unlocked
+        timer_vignette_portal = new UtilityTimer();
     }
 
     @Override
     protected void setCreatures() {
         
-        //Player
+        // The player will face down when the level starts
+        entityManager.getPlayer().setState(entityManager.getPlayer().getDownState());
+
+        // Player
         entityManager.getPlayer().setX(786);
         entityManager.getPlayer().setY(293);
-        
-        //Stars
-        GrabbableStar star1 = new GrabbableStar(213, 1986, 32, 32); 
+
+        // Stars
+        GrabbableStar star1 = new GrabbableStar(213, 1986, 32, 32);
         GrabbableStar star2 = new GrabbableStar(1889, 1278, 32, 32);
-        GrabbableStar star3 = new GrabbableStar(1922, 893, 32, 32); 
-        //Per demo
-        star1 = new GrabbableStar(216,173, 32, 32); //2688,2750
-        star2 = new GrabbableStar(333,173, 32, 32);  //450,958
-        star3 = new GrabbableStar(459,173, 32, 32); //1920,1570
+        GrabbableStar star3 = new GrabbableStar(1922, 893, 32, 32);
+
+        // Positions temporarely used for the demo
+        star1 = new GrabbableStar(216, 173, 32, 32);  // 2688, 2750
+        star2 = new GrabbableStar(333, 173, 32, 32);  // 450, 958
+        star3 = new GrabbableStar(459, 173, 32, 32);  // 1920, 1570
 
         star1.addObserver(starCollection);
         star2.addObserver(starCollection);
@@ -81,70 +104,70 @@ public final class Garden extends World {
         entities.add(star1);
         entities.add(star2);
         entities.add(star3);
-        
+
         starCollection.addObserver((Observer) this);
-        
-        //Portal
+
+        // Portal
         portalX = 1875;
         portalY = 296;
         portal = new Portal(portalX, portalY, 64, 64);
         entities.add(portal);
 
         portal.addGameEventListener(this);
-        
-        //Potions
+
+        // Potions
         entities.add(new GrabbableHealthPotion(305, 360, 32, 32));
         entities.add(new GrabbableHealthPotion(1989, 1946, 32, 32));
         entities.add(new GrabbableHealthPotion(1350, 1524, 32, 32));
-        
-        //Yellow Snakes
+
+        // Yellow Snakes
         entities.add(new YellowSnake(288, 280, 32, 32, new YellowSnakeAssets()));
-        
+
         YellowSnake yellowSnake1 = new YellowSnake(1806, 1278, 32, 32, new YellowSnakeAssets());
         yellowSnake1.setMovementPolicy(new HorizontalPolicy(yellowSnake1, (int) yellowSnake1.getX() - 150, (int) yellowSnake1.getX() + 50));
         entities.add(yellowSnake1);
-        
-        //Red Snakes
+
+        // Red Snakes
         RedSnake redSnake1 = new RedSnake(1889, 1350, 32, 32, new RedSnakeAssets());
         redSnake1.setMovementPolicy(new VerticalPolicy(redSnake1, (int) redSnake1.getY() - 50, (int) redSnake1.getY() + 600));
         entities.add(redSnake1);
-        
+
         RedSnake redSnake2 = new RedSnake(1408, 416, 32, 32, new RedSnakeAssets());
         redSnake2.setMovementPolicy(new VerticalPolicy(redSnake2, (int) redSnake2.getY() - 300, (int) redSnake2.getY() + 300));
         entities.add(redSnake2);
-        
+
         RedSnake redSnake3 = new RedSnake(190, 320, 32, 32, new RedSnakeAssets());
         redSnake3.setMovementPolicy(new VerticalPolicy(redSnake3, (int) redSnake3.getY() - 50, (int) redSnake3.getY() + 600));
         entities.add(redSnake3);
-        
+
         RedSnake redSnake4 = new RedSnake(415, 320, 32, 32, new RedSnakeAssets());
         redSnake4.setMovementPolicy(new VerticalPolicy(redSnake4, (int) redSnake4.getY() - 50, (int) redSnake4.getY() + 600));
         entities.add(redSnake4);
-        
-        //Blue Snakes
+
+        // Blue Snakes
         BlueSnake blueSnake1 = new BlueSnake(288, 450, 32, 32, new BlueSnakeAssets());
         blueSnake1.setMovementPolicy(new HorizontalPolicy(blueSnake1, (int) blueSnake1.getX() - 50, (int) blueSnake1.getX() + 150));
         entities.add(blueSnake1);
-        
-        //Crow 
+
+        // Crows
         entities.add(new Crow(436, 1184, 32, 32, new CrowAssets()));
         entities.add(new Crow(644, 509, 32, 32, new CrowAssets()));
         entities.add(new Crow(470, 701, 32, 32, new CrowAssets()));
-        
-        //Gargoyles
+
+        // Gargoyles
         Gargoyle gargoyle1 = new Gargoyle(240, 1680, 64, 64, new GargoyleAssets());
         gargoyle1.setMovementPolicy(new VerticalPolicy(gargoyle1, (int) gargoyle1.getY() - 100, (int) gargoyle1.getY() + 300));
         entities.add(gargoyle1);
-        
+
         Gargoyle gargoyle2 = new Gargoyle(1730, 210, 64, 64, new GargoyleAssets());
         gargoyle2.setMovementPolicy(new VerticalPolicy(gargoyle2, (int) gargoyle2.getY() - 300, (int) gargoyle2.getY() + 300));
         entities.add(gargoyle2);
-        
+
         Gargoyle gargoyle3 = new Gargoyle(1570, 884, 64, 64, new GargoyleAssets());
         gargoyle3.setMovementPolicy(new VerticalPolicy(gargoyle3, (int) gargoyle3.getY() - 100, (int) gargoyle3.getY() + 50));
         entities.add(gargoyle3);
-        
-        //Poppy
+
+        // Poppies
         entities.add(new Poppy(285, 609, 32, 32, new PoppyAssets()));
         entities.add(new Poppy(285, 1026, 32, 32, new PoppyAssets()));
         entities.add(new Poppy(285, 1359, 32, 32, new PoppyAssets()));
@@ -153,7 +176,6 @@ public final class Garden extends World {
         entities.add(new Poppy(717, 1890, 32, 32, new PoppyAssets()));
         entities.add(new Poppy(1050, 1992, 32, 32, new PoppyAssets()));
         entities.add(new Poppy(1356, 1890, 32, 32, new PoppyAssets()));
-
     }
 
     @Override
@@ -163,29 +185,55 @@ public final class Garden extends World {
 
     @Override
     public void tick() {
-        super.entityManager.tick();
-        if (timer.isTimeOverDescendent()) {
-            System.out.println("Tempo scaduto!");
-            launchGameEvent(new GameEvent(this, GameEventType.LEVEL_FAILED));
+        GameHandler.getInstance().getGameCamera().centerOnEntity(super.entityManager.getPlayer());
+        if (timer_vignette.isTimeOverDescendent()) {
+            vignette_mode = false;
+            timer = new UtilityTimer(180000, true);
+        } else if (vignette_mode == false) {
+            super.entityManager.tick();
+            if (timer.isTimeOverDescendent()) {
+                launchGameEvent(new GameEvent(this, GameEventType.LEVEL_FAILED));
+            }
         }
-        //Stampa di prova per posizionare gli oggetti sulla mappa
-       // System.out.println("Cordinate X:" + entityManager.getPlayer().getX() + " Y:" + entityManager.getPlayer().getY());
+
+        if (timer_vignette_portal.isTimeOverDescendent()) {
+            vignette_portal = false;
+        }
     }
 
     @Override
     public void render(Graphics g) {
         super.render(g);
-        g.setColor(Color.white);
-        g.setFont(new Font("Monospaced", Font.BOLD, 25));
-        g.drawString(timer.getTimeDescendent(), 378, 50);
+
+        // Operations done when the vignette at the beginning of the level is active
+        if (vignette_mode) {
+            g.drawImage(vignette, 36, 390, null);
+            g.setFont(font);
+            g.drawString("There are many strange flowers around! They're trying to put you to sleep!", 70, 420);
+            g.drawString("Collect all the stars before the time's up and reach the Mage's dungeon.", 70, 440);
+        } else { // Operations done when the vignette at the beginning of the level isn't active anymore
+            g.setColor(Color.white);
+            g.setFont(new Font("Monospaced", Font.BOLD, 25));
+            g.drawString(timer.getTimeDescendent(), 378, 50);
+        }
+
+        // Operations done for the vignette that appears when the portal is unlocked
+        if (vignette_portal) {
+            g.drawImage(vignette, 36, 390, null);
+            g.setFont(font);
+            g.setColor(Color.black);
+            g.drawString("You've unlocked the portal! Find it and reach the Mage's dungeon!", 70, 420);
+            g.drawString("Be ready for your second battle!", 70, 440);
+        }
     }
 
     @Override
     public void update(Observable o, Object arg) {
         GrabbableStarCollection stars = (GrabbableStarCollection) o;
         if (stars.getSize() == 3) {
+            vignette_portal = true;
+            timer_vignette_portal = new UtilityTimer(4000, true);
             portal.setUnlocked(true);
-            System.out.println("Portale sbloccato");
         }
     }
 
@@ -195,5 +243,4 @@ public final class Garden extends World {
             launchGameEvent(new GameEvent(this, GameEventType.LEVEL_COMPLETED));
         }
     }
-
 }

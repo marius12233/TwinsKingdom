@@ -6,8 +6,10 @@
 package twinkingdom.worlds;
 
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import java.util.Observable;
 import java.util.Observer;
+import twinkingdom.game.GameHandler;
 import twinkingdom.entities.EntityManager;
 import twinkingdom.entities.mobs.enemies.level3.EnchantedArmor;
 import twinkingdom.entities.mobs.enemies.level3.Ghost;
@@ -22,10 +24,12 @@ import twinkingdom.events.GameEvent;
 import twinkingdom.events.GameEventType;
 import twinkingdom.gfx.ArmorAssets;
 import twinkingdom.gfx.GhostAssets;
+import twinkingdom.gfx.ImageLoader;
 import twinkingdom.gfx.Layer3Feature;
 import twinkingdom.gfx.SpikeAssets;
 import twinkingdom.policies.HorizontalPolicy;
 import twinkingdom.utils.GrabbableStarCollection;
+import twinkingdom.utils.UtilityTimer;
 
 /**
  *
@@ -36,6 +40,16 @@ public final class Castle extends World {
     public static Class thisClass;
     private final int STARS = 3;
     private Layer3Feature layerFeature;
+    
+    // Variables used to manage the vignette at the beginning of the level
+    private BufferedImage vignette;
+    private UtilityTimer timer_vignette;
+    private boolean vignette_mode = true;
+    
+    // Variables used to manage the vignette that appears when the portal is unlocked
+    private UtilityTimer timer_vignette_portal;
+    private boolean vignette_portal = false;
+    
     static {
         thisClass = Castle.class;
     }
@@ -51,11 +65,19 @@ public final class Castle extends World {
         starCollection.addObserver((Observer) this);
         layerFeature=new Layer3Feature(entityManager.getPlayer());
         
+        // Initialization of the variables used for the vignette at the beginning
+        vignette = ImageLoader.loadImage("/images/vignette.png");
+        timer_vignette = new UtilityTimer(8000, true);
+        
+        // Instance of the timer used for the vignette that appears when the portal is unlocked
+        timer_vignette_portal = new UtilityTimer();
     }
 
     @Override
     protected void setCreatures() {
         
+        // The player will face down when the level starts
+        entityManager.getPlayer().setState(entityManager.getPlayer().getDownState());
         
         entityManager.getPlayer().setX(600);
         entityManager.getPlayer().setY(500);
@@ -157,24 +179,48 @@ public final class Castle extends World {
 
     @Override
     public void tick() {
-        super.entityManager.tick();//super.tick();
+        GameHandler.getInstance().getGameCamera().centerOnEntity(super.entityManager.getPlayer());
         layerFeature.tick();
+        
+        if (timer_vignette.isTimeOverDescendent())
+            vignette_mode = false;
+        else if (vignette_mode == false) {
+            super.entityManager.tick();
+        }
+        
+        if (timer_vignette_portal.isTimeOverDescendent())
+            vignette_portal = false;
     }
-
     
     @Override
     public void render(Graphics g){
         super.render(g);
         layerFeature.render(g);
+        
+        // Operations done when the vignette at the beginning of the level is active
+        if (vignette_mode) {
+            g.drawImage(vignette, 36, 390, null);
+            g.setFont(font);
+            g.drawString("You're is in the castle and it's really dark! There's only a fading light around you!", 55, 420);
+            g.drawString("Collect all the stars to reach the Paladin's dungeon.", 55, 440);
+        }
+        
+        // Operations done for the vignette that appears when the portal is unlocked
+        if (vignette_portal) {
+            g.drawImage(vignette, 36, 390, null);
+            g.setFont(font);
+            g.drawString("You've unlocked the portal! Find it and reach the Paladin's dungeon!", 70, 420);
+            g.drawString("Be ready for your third battle!", 70, 440);
+        }
     }
-    
 
     @Override
     public void update(Observable o, Object arg) {
         GrabbableStarCollection stars = (GrabbableStarCollection) o;
         if (stars.getSize() == 3) {
+            vignette_portal = true;
+            timer_vignette_portal = new UtilityTimer(4000, true);
             portal.setUnlocked(true);
-            System.out.println("Portale sbloccato");
         }
     }
 
@@ -184,5 +230,4 @@ public final class Castle extends World {
             launchGameEvent(new GameEvent(this, GameEventType.LEVEL_COMPLETED));
         }
     }
-    
 }

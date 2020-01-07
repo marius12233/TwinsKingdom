@@ -101,7 +101,7 @@ public class Game implements Runnable, Observer, GameEventListener {
             checkpoint = new Checkpoint(3, 0);
         }
         
-        if(checkpoint.getLevelId()==6)
+        if(checkpoint.getLevelId()==7)
           player = new ArmoredPlayer(288, 320, new PlayerArmSwordAssets());
         else
         player = new Player(288, 320, new PlayerAssets());
@@ -360,7 +360,7 @@ public class Game implements Runnable, Observer, GameEventListener {
 
         this.entityManager.removeAllEntities();
         this.player.getHealth().setHealthPoints(300);
-        if(levelHandler.getCurrentWorldId()==6){
+        if(levelHandler.getCurrentWorldId()==7){
             this.player = new ArmoredPlayer(player);
         }
         this.entityManager.setPlayer(this.player);
@@ -387,7 +387,7 @@ public class Game implements Runnable, Observer, GameEventListener {
         player.getHealth().setHealthPoints(1000);
         player.getHealth().setLives(player.getHealth().getLives() - 1);
         checkpoint.setLives(player.getHealth().getLives());
-        if(levelHandler.getCurrentWorldId()==6){
+        if(levelHandler.getCurrentWorldId()==7){
             this.player = new ArmoredPlayer(player);
         }
         currentWorld.getEntityManager().setPlayer(player);
@@ -449,7 +449,7 @@ public class Game implements Runnable, Observer, GameEventListener {
                 break; // TO DO
             case WEAPON_SELECTED_SWORD:
                 player.getMana().removeObserver((Observer) gui.getManaBar());
-                if(levelHandler.getCurrentWorldId()<6){
+                if(levelHandler.getCurrentWorldId()<7){
                     player = new Player(player);
                 }
                 else{
@@ -462,12 +462,12 @@ public class Game implements Runnable, Observer, GameEventListener {
                 gui.getWeaponPanel().setWeapon(Weapons.SWORD);
                 break;
             case WEAPON_SELECTED_BOW:
-                if (levelHandler.getCurrentWorldId() < 2) {
+                if (levelHandler.getCurrentWorldId() < 3) {
                     return;
                 }
                 player.getMana().removeObserver((Observer) gui.getManaBar());
                 
-                if(levelHandler.getCurrentWorldId()<6){
+                if(levelHandler.getCurrentWorldId()<7){
                     System.out.println("PLAYER CLASSICO");
                     System.out.println("L'ID è:"+levelHandler.getCurrentWorldId());
                     player = new PlayerArcher(player);
@@ -483,13 +483,13 @@ public class Game implements Runnable, Observer, GameEventListener {
                 gui.getWeaponPanel().setWeapon(Weapons.BOW);
                 break;
             case WEAPON_SELECTED_SPELL:
-                if (levelHandler.getCurrentWorldId() < 4) {
+                if (levelHandler.getCurrentWorldId() < 5) {
                     return;
                 }
                 
                 player.getMana().removeObserver((Observer) gui.getManaBar());
                 
-                if(levelHandler.getCurrentWorldId()<6){
+                if(levelHandler.getCurrentWorldId()<7){
                     player = new PlayerMage(player);
                 }
                 else{
