@@ -8,9 +8,9 @@ package twinkingdom.entities.mobs.states.player;
 
 import twinkingdom.game.GameHandler;
 import twinkingdom.entities.mobs.Creature;
+import twinkingdom.entities.mobs.enemies.level2.FireBall;
 import twinkingdom.entities.mobs.player.PlayerMage;
 import twinkingdom.entities.mobs.states.RightMovementState;
-import twinkingdom.entities.statics.FireBall;
 import twinkingdom.gfx.EntityAssets;
 import twinkingdom.utils.UtilityTimer;
 

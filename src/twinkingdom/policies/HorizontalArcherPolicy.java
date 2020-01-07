@@ -10,6 +10,7 @@ import java.util.LinkedList;
 import twinkingdom.game.GameHandler;
 import twinkingdom.entities.mobs.Creature;
 import twinkingdom.entities.Entity;
+import twinkingdom.entities.mobs.Launchable;
 import twinkingdom.entities.mobs.Movable;
 import twinkingdom.entities.mobs.enemies.Boss;
 import twinkingdom.entities.mobs.enemies.level1.ArcherBoss;
@@ -20,18 +21,16 @@ import twinkingdom.utils.UtilityTimer;
  *
  * @author mario
  */
-public class HorizontalArcherPolicy<T> extends HorizontalPolicy {
-    private GameHandler handler;
+public class HorizontalArcherPolicy extends HorizontalPolicy {
     private UtilityTimer timer, timer2;
-    private LinkedList<T> arrows;
+    private LinkedList<Launchable> arrows;
     private Boss boss;
     
     public HorizontalArcherPolicy(Boss c, int startX, int endX) {
         super(c, startX, endX);
-        this.handler=handler;
         timer=new UtilityTimer(2000);
         timer2 = new UtilityTimer(1000);
-        arrows = (LinkedList<T>) c.getWeapons();
+        arrows = (LinkedList<Launchable>) c.getWeapons();
         boss = c;
         this.handler = GameHandler.instance;
     }
@@ -46,7 +45,7 @@ public class HorizontalArcherPolicy<T> extends HorizontalPolicy {
             attack();
         }
         if(timer2.isTimeOver())
-            arrows.add((T) boss.createWeapon());
+            arrows.add((Launchable) boss.createWeapon());
 
         super.getAction();        
     }

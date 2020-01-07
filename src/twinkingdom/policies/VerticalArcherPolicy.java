@@ -10,26 +10,28 @@ import java.util.LinkedList;
 import twinkingdom.game.GameHandler;
 import twinkingdom.entities.mobs.Creature;
 import twinkingdom.entities.Entity;
+import twinkingdom.entities.mobs.Launchable;
 import twinkingdom.entities.mobs.Movable;
 import twinkingdom.entities.mobs.enemies.Boss;
 import twinkingdom.entities.mobs.enemies.level1.ArcherBoss;
 import twinkingdom.entities.mobs.enemies.level1.Arrow;
+import twinkingdom.game.Launcher;
 import twinkingdom.utils.UtilityTimer;
 
 /**
  *
  * @author mario
  */
-public class VerticalArcherPolicy<T> extends VerticalPolicy{
+public class VerticalArcherPolicy extends VerticalPolicy{
     private UtilityTimer timer, timer2;
-    private LinkedList<T> arrows;
+    private LinkedList<Launchable> arrows;
     private Boss boss;
     
     public VerticalArcherPolicy(Boss c, int startX, int endX) {
         super(c, startX, endX);
         timer=new UtilityTimer(2000);
         timer2 = new UtilityTimer(1000);
-        arrows = (LinkedList<T>) c.getWeapons();
+        arrows = (LinkedList<Launchable>) c.getWeapons();
         boss = c;
     }
     
@@ -43,7 +45,7 @@ public class VerticalArcherPolicy<T> extends VerticalPolicy{
             attack();
         }
         if(timer2.isTimeOver())
-            arrows.add((T) boss.createWeapon());
+            arrows.add((Launchable) boss.createWeapon());
 
         super.getAction();        
     }
@@ -60,7 +62,7 @@ public class VerticalArcherPolicy<T> extends VerticalPolicy{
         int posY[] = new int[]{-80, 0, 80};
         int size = arrows.size();
         for(int i=0; i< Math.min(size, 3); i++){
-            Movable arrow = (Movable) arrows.pop();
+            Launchable arrow = (Launchable) arrows.pop();
             //arrows.add(boss.createArrow());
             int mul=+1;
             if(playerX >= (int) boss.getX()){
