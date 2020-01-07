@@ -423,7 +423,9 @@ public class Game implements Runnable, Observer, GameEventListener {
                 pause.setVisible(false);
                 this.gui.getFrame().setEnabled(true);
                 this.gui.getFrame().setVisible(true);
-                player.getMana().setEnabled(true);
+                if (levelHandler.getCurrentWorldId() > 3) {
+                    player.getMana().setEnabled(true);
+                }
                 break;
             case GAME_EXITED:
                 this.stopGame();
