@@ -33,12 +33,9 @@ import twinkingdom.events.GameEventType;
 
 /**
  * FXML Controller class
- *
- * @author bened
  */
 public class PauseController implements Initializable {
-
-   
+    
     @FXML
     private ImageView logoImg; 
     @FXML
@@ -79,14 +76,8 @@ public class PauseController implements Initializable {
     private final int FRAME_WIDTH = 797, FRAME_HEIGHT = 457;
     
     private static Parent root;
-
-   
-
-   
     
     protected EventListenerList listenerList = new EventListenerList();
-
-   
     
     public PauseController() throws IOException {
        
@@ -185,11 +176,7 @@ public class PauseController implements Initializable {
         
         resumeButton.setOnMouseClicked((Event event) -> {
             this.launchGameEvent(new GameEvent(this, GameEventType.GAME_RESUMED));
-        });
-        
-        
-        
-  
+        }); 
     }   
     
     public void initSettingsFields() {
@@ -205,10 +192,7 @@ public class PauseController implements Initializable {
         this.moveDownTextField.setText("" + gameSettings.getDownKey());
         this.moveRightTextField.setText("" + gameSettings.getRightKey());
         this.moveLeftTextField.setText("" + gameSettings.getLeftKey());
-
-      
     }
-    
     
     private void createFrame() {
         this.frame = new JFrame("Twins Kingdom - Pause");
@@ -220,13 +204,11 @@ public class PauseController implements Initializable {
     }
     
      private static void initFX(JFXPanel fxPanel) {
-                     Scene scene = createScene();
+        Scene scene = createScene();
         fxPanel.setScene(scene);
-
     }
 
     private static Scene createScene() {
-        
         Scene scene = new Scene(root, javafx.scene.paint.Color.ALICEBLUE);
         return (scene);
     }
@@ -237,7 +219,6 @@ public class PauseController implements Initializable {
     
     public void setVisible(boolean visible) {
         frame.setVisible(visible);
-        
     }
     
      public void addGameEventListener(GameEventListener listener) {

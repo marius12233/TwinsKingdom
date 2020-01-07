@@ -6,6 +6,7 @@
 package twinkingdom;
 
 import java.awt.Graphics;
+import twinkingdom.game.GameHandler;
 
 /**
  *

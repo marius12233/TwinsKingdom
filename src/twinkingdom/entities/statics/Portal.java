@@ -7,14 +7,10 @@ package twinkingdom.entities.statics;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.util.Observable;
-import java.util.Observer;
 import javax.swing.event.EventListenerList;
 import twinkingdom.entities.Entity;
 import twinkingdom.gfx.Animation;
 import twinkingdom.gfx.Assets;
-import twinkingdom.utils.GrabbableStarCollection;
-import twinkingdom.events.CompletedLevelEvent;
 import twinkingdom.events.GameEvent;
 import twinkingdom.events.GameEventListener;
 import twinkingdom.events.GameEventType;

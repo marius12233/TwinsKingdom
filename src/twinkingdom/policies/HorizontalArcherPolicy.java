@@ -5,14 +5,10 @@
  */
 package twinkingdom.policies;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import twinkingdom.GameHandler;
+import twinkingdom.game.GameHandler;
 import twinkingdom.entities.mobs.Creature;
-import twinkingdom.entities.Entity;
 import twinkingdom.entities.mobs.enemies.Boss;
-import twinkingdom.entities.mobs.enemies.level1.ArcherBoss;
-import twinkingdom.entities.mobs.enemies.level1.Arrow;
 import twinkingdom.utils.UtilityTimer;
 
 /**

@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package twinkingdom.gui;
 
 import java.awt.Graphics;
@@ -12,8 +13,7 @@ import java.util.Observable;
 import twinkingdom.gfx.ImageLoader;
 
 /**
- *
- * @author bened
+ * This class displays a panel for player weapons, that will be updated each time he/she decides to change weapon.
  */
 public class WeaponPanel extends ObservingPanel {
 
@@ -30,6 +30,10 @@ public class WeaponPanel extends ObservingPanel {
         this.setOpaque(false);
     }
 
+    /**
+     * Paints the chosen weapon on screen.
+     * @param g Graphics object used to draw.
+     */
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -47,6 +51,10 @@ public class WeaponPanel extends ObservingPanel {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    /**
+     * Sets and displays a new weapon.
+     * @param weapon Weapon to set.
+     */
     public void setWeapon(Weapons weapon) {
         this.chosenWeapon = weapon;
         repaint();

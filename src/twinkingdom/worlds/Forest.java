@@ -5,13 +5,9 @@
  */
 package twinkingdom.worlds;
 
-import twinkingdom.events.GameEventListener;
 import java.awt.Graphics;
-import java.util.EventObject;
 import java.util.Observable;
 import java.util.Observer;
-import twinkingdom.RenderableLayers;
-import twinkingdom.entities.Entity;
 import twinkingdom.entities.EntityManager;
 import twinkingdom.entities.statics.EnchantedTree;
 import twinkingdom.entities.mobs.enemies.level1.Bat;
@@ -20,7 +16,6 @@ import twinkingdom.entities.mobs.enemies.level1.Wolf;
 import twinkingdom.gfx.BatAssets;
 import twinkingdom.gfx.MonsterAssets;
 import twinkingdom.gfx.WolfAssets;
-import twinkingdom.gui.StarsPanel;
 import twinkingdom.policies.VerticalPolicy;
 import twinkingdom.entities.statics.Portal;
 import twinkingdom.entities.statics.grabbable.GrabbableHealthPotion;

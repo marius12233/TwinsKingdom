@@ -7,12 +7,10 @@ package twinkingdom.worlds;
 
 import java.util.Observable;
 import java.util.Observer;
-import twinkingdom.entities.mobs.enemies.level1.ArcherBoss;
 import twinkingdom.entities.mobs.enemies.level3.Boss3;
 import twinkingdom.entities.statics.Portal;
 import twinkingdom.events.GameEvent;
 import twinkingdom.events.GameEventType;
-import twinkingdom.gfx.ArcherAssets;
 import twinkingdom.gfx.Boss3Assets;
 import twinkingdom.gui.Health;
 import twinkingdom.utils.GrabbableStarCollection;

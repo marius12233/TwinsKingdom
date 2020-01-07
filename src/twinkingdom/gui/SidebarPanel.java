@@ -10,13 +10,16 @@ import java.io.IOException;
 import javax.swing.JPanel;
 
 /**
- *
- * @author bened
+ * This class represents a side panel, where the WeaponPanel and the LevelNamePanel are located.
  */
 public class SidebarPanel extends JPanel {
 
     private WeaponPanel weaponPanel;
 
+    /**
+     * Sets all the configurations for the SidebarPanel and the relative WeaponPanel.
+     * @throws IOException 
+     */
     public SidebarPanel() throws IOException {
         this.setOpaque(false);
         createWeaponPanel();
@@ -27,6 +30,10 @@ public class SidebarPanel extends JPanel {
         weaponPanel.repaint();
     }
 
+    /**
+     * Creates a new WeaponPanel for this SidebarPanel.
+     * @throws IOException 
+     */
     public void createWeaponPanel() throws IOException {
         this.weaponPanel = new WeaponPanel();
     }

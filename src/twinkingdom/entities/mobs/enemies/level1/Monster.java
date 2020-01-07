@@ -7,10 +7,7 @@ package twinkingdom.entities.mobs.enemies.level1;
 
 import twinkingdom.entities.mobs.enemies.Enemy;
 import java.awt.Graphics;
-import java.awt.Rectangle;
-import twinkingdom.GameHandler;
 import twinkingdom.entities.mobs.Creature;
-import twinkingdom.gfx.Boss2Assets;
 import twinkingdom.entities.statics.Portal;
 import twinkingdom.gfx.MonsterAssets;
 import twinkingdom.utils.UtilityTimer;

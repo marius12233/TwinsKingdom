@@ -12,8 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 /**
- *
- * @author bened
+ * This class is used to display the entire game scene, where all the maps and characters are displayed.
  */
 public class GameScenePanel extends JPanel {
 

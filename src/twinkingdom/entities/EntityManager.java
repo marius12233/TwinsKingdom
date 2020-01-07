@@ -11,7 +11,7 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
-import twinkingdom.GameHandler;
+import twinkingdom.game.GameHandler;
 
 /**
  *

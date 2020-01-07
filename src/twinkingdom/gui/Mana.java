@@ -13,8 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author bened
+ * This class contains the descrition of the mana points of the player, constantly monitoring and updating them during the game.
  */
 public class Mana extends Observable {
 
@@ -25,9 +24,12 @@ public class Mana extends Observable {
     private List<Observer> observers;
     private Thread t;
 
+    /**
+     * Creates a Mana object and starts its timer.
+     */
     public Mana() {
         this.maxMana = 120;
-        this.mana = 120;
+        this.mana = 0;
         this.enabled = false;
         this.manaPerSecond = 5;
         this.observers = new LinkedList<>();
@@ -40,8 +42,15 @@ public class Mana extends Observable {
         this.observers.add(o);
         o.update(this, this);
     }
+    
+    public void removeObserver(Observer o) {
+        this.observers.remove(o);
+        System.out.println("Observer removed...");
+    }
 
     public void setMana(int mana) {
+        if(!enabled)
+            return;
         
         this.mana = Math.max(0, Math.min(mana, this.maxMana));
         for (Observer o : observers) 
@@ -69,14 +78,20 @@ public class Mana extends Observable {
         return enabled;
     }
 
+    /**
+     * Inner class used to implement a timer for mana regeneration.
+     */
     class ManaTimer implements Runnable {
-
+        
         private Mana mana;
         private boolean running = true;
         private ManaTimer(Mana mana) {
             this.mana = mana;
         }
 
+        /**
+         * Starts a thread that increases mana each second.
+         */
         @Override
         public void run() {
             while(running) {

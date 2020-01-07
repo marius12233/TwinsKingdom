@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package twinkingdom.game;
 
 import java.awt.Color;
@@ -10,14 +5,12 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.BufferStrategy;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.application.Platform;
-import javax.swing.SwingUtilities;
 import javax.swing.event.EventListenerList;
+import twinkingdom.State;
 import twinkingdom.entities.EntityManager;
 import twinkingdom.entities.mobs.player.Player;
 import twinkingdom.entities.mobs.player.PlayerArcher;
@@ -104,6 +97,10 @@ public class Game implements Runnable, Observer, GameEventListener {
         player = new Player(288, 320, new PlayerAssets());
         player.getHealth().setLives(checkpoint.getLives());
         handler.setPlayer(player);
+        
+        if (checkpoint.getLevelId() > 3) {
+            player.getMana().setEnabled(true);
+        }
 
         // gameState = new GameState(handler);
         //State.setState(gameState);
@@ -115,6 +112,8 @@ public class Game implements Runnable, Observer, GameEventListener {
         this.gui = new GameGUI(title);
         this.width = gui.getCanvas().getSize().width;
         this.height = gui.getCanvas().getSize().height;
+        
+        player.getMana().addObserver((Observer) this.gui.getManaBar());
 
         //pause.setVisible(false);
         pause.addGameEventListener(this);
@@ -171,10 +170,11 @@ public class Game implements Runnable, Observer, GameEventListener {
 
             if (loadingImage != null) {
                 g.drawImage(gameOverImage, (width - gameOverImage.getWidth(null))/2, (height - gameOverImage.getHeight(null))/2, null);
+                g.drawString("Going back to starting menu...", (width - gameOverImage.getWidth(null))/2 + 220, (height - gameOverImage.getHeight(null))/2 + 300);
             }
 
             bs.show();
-            return; 
+            return;
         }
         
         if (changingLevel) {
@@ -336,6 +336,10 @@ public class Game implements Runnable, Observer, GameEventListener {
             return;
         }
         checkpoint.setLevelId(levelHandler.getCurrentWorldId());
+        
+        if(levelHandler.getCurrentWorldId() > 3) {
+            player.getMana().setEnabled(true);
+        }
 
         render();
         render();
@@ -422,8 +426,11 @@ public class Game implements Runnable, Observer, GameEventListener {
             case GAME_START:
                 break; // TO DO
             case WEAPON_SELECTED_SWORD:
+                player.getMana().removeObserver((Observer) gui.getManaBar());
                 player = new Player(player);
                 entityManager.setPlayer(player);
+                player.getHealth().addObserver((Observer) this);
+                player.getMana().addObserver((Observer) gui.getManaBar());
                 handler.setPlayer(player);
                 gui.getWeaponPanel().setWeapon(Weapons.SWORD);
                 break;
@@ -431,22 +438,26 @@ public class Game implements Runnable, Observer, GameEventListener {
                 if (levelHandler.getCurrentWorldId() < 2) {
                     return;
                 }
+                player.getMana().removeObserver((Observer) gui.getManaBar());
                 player = new PlayerArcher(player);
                 entityManager.setPlayer(player);
                 handler.setPlayer(player);
                 player.getHealth().addObserver((Observer) this);
+                player.getMana().addObserver((Observer) gui.getManaBar());
                 gui.getWeaponPanel().setWeapon(Weapons.BOW);
                 break;
             case WEAPON_SELECTED_SPELL:
                 if (levelHandler.getCurrentWorldId() < 4) {
                     return;
                 }
+                
+                player.getMana().removeObserver((Observer) gui.getManaBar());
                 player = new PlayerMage(player);
                 entityManager.setPlayer(player);
                 entityManager.getPlayer().getHealth().addObserver((Observer) this);
                 handler.setPlayer(player);
                 //PlayerMage playerMage = (PlayerMage) player;
-                ((PlayerMage) player).getMana().addObserver((Observer) gui.getManaBar());
+                player.getMana().addObserver((Observer) gui.getManaBar());
                 gui.getWeaponPanel().setWeapon(Weapons.SPELL);
                 break;
 
@@ -471,5 +482,4 @@ public class Game implements Runnable, Observer, GameEventListener {
             }
         }
     }
-
 }

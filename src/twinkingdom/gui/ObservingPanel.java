@@ -15,9 +15,8 @@ import javax.swing.JPanel;
  * java.util.Observer interface is meant to be implemented by child classes in
  * order to have a general mechanism to detect changes in some values (e.g.
  * life, weapon, items) and properly update their graphic representation.
- *
- * @author Ginestra Benedetto Salvatore
  */
+
 public abstract class ObservingPanel extends JPanel implements Observer {
 
 }

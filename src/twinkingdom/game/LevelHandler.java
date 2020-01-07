@@ -11,7 +11,6 @@ import twinkingdom.worlds.*;
 
 /**
  *
- * @author bened
  */
 public class LevelHandler {
 

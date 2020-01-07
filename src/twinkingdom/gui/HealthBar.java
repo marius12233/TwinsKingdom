@@ -13,8 +13,7 @@ import java.util.Observable;
 import javax.imageio.ImageIO;
 
 /**
- *
- * @author bened
+ * This class is used to display and update player's health bar during the game.
  */
 public class HealthBar extends ObservingPanel {
     
@@ -34,9 +33,12 @@ public class HealthBar extends ObservingPanel {
         
         healthTrapeze = ImageIO.read(this.getClass().getResource("/gui/healthbg.png"));
         heartIcon = ImageIO.read(this.getClass().getResource("/gui/heart_icon.png"));
-
     }
     
+    /**
+     * Renders the bar with respect to player's health.
+     * @param g Graphics object used to draw.
+     */
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -66,8 +68,6 @@ public class HealthBar extends ObservingPanel {
         for(int i = 0; i < this.lives; i++) {
             g.drawImage(heartIcon, 10 + i * 40, 50, null);
         }
-
-        
     }
 
     @Override
@@ -78,5 +78,4 @@ public class HealthBar extends ObservingPanel {
         this.max = v.getMaxHealthPoints();
         this.repaint();
     }
-    
 }

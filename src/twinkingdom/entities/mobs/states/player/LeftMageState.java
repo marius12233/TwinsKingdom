@@ -6,10 +6,8 @@
 package twinkingdom.entities.mobs.states.player;
 
 
-import twinkingdom.GameHandler;
-import twinkingdom.entities.mobs.Creature;
+import twinkingdom.game.GameHandler;
 import twinkingdom.entities.mobs.player.PlayerMage;
-import twinkingdom.entities.mobs.states.LeftMovementState;
 import twinkingdom.entities.mobs.states.LeftMovementState;
 import twinkingdom.entities.statics.FireBall;
 import twinkingdom.gfx.EntityAssets;

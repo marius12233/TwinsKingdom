@@ -7,8 +7,6 @@ package twinkingdom.entities.mobs.enemies.level3;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.Optional;
-import twinkingdom.game.GameHandler;
 import twinkingdom.entities.mobs.enemies.Enemy;
 import twinkingdom.gfx.ArmorAssets;
 

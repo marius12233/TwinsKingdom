@@ -19,8 +19,6 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import twinkingdom.gui.GameGUI.FrameDragListener;
@@ -50,9 +48,9 @@ public class Launcher implements Initializable {
     private static final int SIDEBAR_WIDTH = 192, SIDEBAR_HEIGHT = 518;
     private JFrame frame;
 
-    private Parent root;
+    public Parent root;
     
-     @FXML private ImageView logoImg;
+    @FXML private ImageView logoImg;
     @FXML private Button newGameButton, loadGameButton, settingsButton, exitButton, confirmButton, cancelButton;
     @FXML Pane exitPopup;
     @Override
@@ -135,30 +133,6 @@ public class Launcher implements Initializable {
         jfxp.addMouseListener(frameDragListener);
         jfxp.addMouseMotionListener(frameDragListener);
         jfxp.setVisible(true);
-       
-
-        jfxp.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-                if (e.getKeyChar() == 'q') {
-                    System.exit(0);//To change body of generated methods, choose Tools | Templates.
-                }
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyChar() == 'q') {
-                    System.exit(0); //To change body of generated methods, choose Tools | Templates.
-                }
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-                if (e.getKeyChar() == 'q') {
-                    System.exit(0); //To change body of generated methods, choose Tools | Templates.
-                }
-            }
-        });
         
         JPanel panel = new MotionPanel(frame);
         jfxp.setBounds(10, 10, 300, 300);

@@ -5,11 +5,8 @@
  */
 package twinkingdom.entities.mobs.enemies.level1;
 import java.awt.Graphics;
-import twinkingdom.GameHandler;
-import twinkingdom.entities.Entity;
 import twinkingdom.entities.mobs.enemies.Enemy;
 import twinkingdom.gfx.WolfAssets;
-import twinkingdom.utils.UtilityTimer;
 
 /**
  *

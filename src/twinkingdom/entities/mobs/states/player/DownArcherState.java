@@ -5,10 +5,9 @@
  */
 package twinkingdom.entities.mobs.states.player;
 
-import twinkingdom.GameHandler;
+import twinkingdom.game.GameHandler;
 import twinkingdom.entities.mobs.Creature;
 import twinkingdom.entities.mobs.enemies.level1.Arrow;
-import twinkingdom.entities.mobs.states.DownMovementState;
 import twinkingdom.entities.mobs.states.DownMovementState;
 import twinkingdom.gfx.EntityAssets;
 import twinkingdom.utils.UtilityTimer;

@@ -11,7 +11,7 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.Observable;
 import java.util.Observer;
-import twinkingdom.GameHandler;
+import twinkingdom.game.GameHandler;
 import twinkingdom.gui.Health;
 
 /**

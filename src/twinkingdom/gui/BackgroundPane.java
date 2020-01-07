@@ -14,8 +14,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 
 /**
- *
- * @author bened
+ * This class is used to set a background for the entire gui, where all the graphic components must be placed.
  */
 public class BackgroundPane extends JPanel {
 
@@ -29,7 +28,11 @@ public class BackgroundPane extends JPanel {
     public Dimension getPreferredSize() {
         return img == null ? super.getPreferredSize() : new Dimension(img.getWidth(), img.getHeight());
     }
-
+    
+    /**
+     * Sets an image on the background.
+     * @param value The image that must be painted.
+     */
     public void setBackground(BufferedImage value) {
         if (value != img) {
             this.img = value;
@@ -47,6 +50,10 @@ public class BackgroundPane extends JPanel {
         }
     }
 
+    /**
+     * Paints a graphic component on the background pane.
+     * @param g Graphics object used to draw on the pane.
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -57,6 +64,12 @@ public class BackgroundPane extends JPanel {
         }
     }
 
+    /**
+     * Scales an image to fill a generic pane.
+     * @param img Image to display.
+     * @param size Size of the pane.
+     * @return Scaled image.
+     */
     public static BufferedImage getScaledInstanceToFill(BufferedImage img, Dimension size) {
 
         double scaleFactor = getScaleFactorToFill(img, size);
@@ -65,6 +78,12 @@ public class BackgroundPane extends JPanel {
 
     }
 
+    /**
+     * Calculates the scaling factor for an image that must fill a generic pane.
+     * @param img Image to display.
+     * @param size Size of the pane.
+     * @return The scaling factor of the image, in order to fill the pane.
+     */
     public static double getScaleFactorToFill(BufferedImage img, Dimension size) {
 
         double dScale = 1;
@@ -85,6 +104,12 @@ public class BackgroundPane extends JPanel {
 
     }
 
+    /**
+     * Calculates the scaling factor between master and target.
+     * @param iMasterSize Master size.
+     * @param iTargetSize Target size.
+     * @return The scaling factor.
+     */
     public static double getScaleFactor(int iMasterSize, int iTargetSize) {
 
         double dScale = (double) iTargetSize / (double) iMasterSize;

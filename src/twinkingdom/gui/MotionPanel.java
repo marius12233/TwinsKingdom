@@ -13,8 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
- *
- * @author bened
+ * 
  */
 public class MotionPanel extends JPanel {
 

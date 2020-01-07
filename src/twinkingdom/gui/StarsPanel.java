@@ -14,8 +14,7 @@ import twinkingdom.gfx.ImageLoader;
 import twinkingdom.utils.GrabbableStarCollection;
 
 /**
- *
- * @author bened
+ * This class describes a panel that must painted on GameGUI, where all the stars collected by the player are displayed.
  */
 public class StarsPanel extends ObservingPanel {
 
@@ -29,6 +28,10 @@ public class StarsPanel extends ObservingPanel {
         this.img = ImageLoader.loadImage("/gui/star_icon.png");
     }
 
+    /**
+     * Paints the number of stars collected.
+     * @param g Graphics object used to draw.
+     */
     @Override
     public void paint(Graphics g) {
         //super.paint(g);
@@ -37,6 +40,11 @@ public class StarsPanel extends ObservingPanel {
         g.drawString(actualStars + "/" + targetStars, 18, 55);
     }
 
+    /**
+     * Updates the number of stars collected.
+     * @param o
+     * @param arg
+     */
     @Override
     public void update(Observable o, Object arg) {
         
