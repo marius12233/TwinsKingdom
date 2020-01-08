@@ -74,6 +74,8 @@ public class ThroneRoom extends World {
         vignette_final_7 = ImageLoader.loadImage("/images/cutscenes/Player_and_Queen_7.png"); // Good Ending 1
         vignette_final_8 = ImageLoader.loadImage("/images/cutscenes/Player_and_Queen_8.png"); // Good Ending 2
         timer_vignette = new UtilityTimer(5000, true);
+        wave1 = true;
+        wave2 = true;
     }
 
     @Override
@@ -177,8 +179,10 @@ public class ThroneRoom extends World {
         entities.add(lp);
         lp.getLifeObservable().addObserver((Observer) this);
         lpInitLife = lp.getHealthPoints();
+        
+        System.out.println("LP HEALTH POINTS: " + lpInitLife);
 
-        // The player will face up when the level starts
+        // The player will be face up when the level starts
         entityManager.getPlayer().setState(entityManager.getPlayer().getUpState());
         entityManager.getPlayer().setX(593);
         entityManager.getPlayer().setY(567);
