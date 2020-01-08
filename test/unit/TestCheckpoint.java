@@ -18,12 +18,12 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import twinkingdom.saves.Checkpoint;
-import static twinkingdom.saves.Checkpoint.saveCheckpoint;
+import  twinskingdom.saves.Checkpoint;
+import static  twinskingdom.saves.Checkpoint.saveCheckpoint;
 
 /**
  *
- * @author aless
+ *  
  */
 public class TestCheckpoint {
     
@@ -164,6 +164,5 @@ public class TestCheckpoint {
         
         return checkpoint;
     }
-    
     
 }

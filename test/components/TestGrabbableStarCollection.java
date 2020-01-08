@@ -13,12 +13,12 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import twinkingdom.entities.statics.grabbable.GrabbableStar;
-import twinkingdom.utils.GrabbableStarCollection;
+import  twinskingdom.entities.statics.grabbable.GrabbableStar;
+import  twinskingdom.utils.GrabbableStarCollection;
 
 /**
  *
- * @author aless
+ *  
  */
 public class TestGrabbableStarCollection implements Observer{
     

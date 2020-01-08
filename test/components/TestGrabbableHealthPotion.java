@@ -11,13 +11,13 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import twinkingdom.entities.mobs.player.Player;
-import twinkingdom.gfx.PlayerAssets;
-import twinkingdom.entities.statics.grabbable.GrabbableHealthPotion;
+import  twinskingdom.entities.mobs.player.Player;
+import  twinskingdom.gfx.PlayerAssets;
+import  twinskingdom.entities.statics.grabbable.GrabbableHealthPotion;
 
 /**
  *
- * @author aless
+ *  
  */
 public class TestGrabbableHealthPotion {
     
@@ -59,20 +59,20 @@ public class TestGrabbableHealthPotion {
     public void testActionOnCollision() {
         System.out.println("---------actionOnCollision()---------");
         
-        player.setHealthPoints(60);
+        player.setHealthPoints(6);
         System.out.println("Health: " + player.getHealthPoints());
         System.out.println("Max health: " + player.getMaxHealthPoints());
         System.out.println("");
         
         System.out.println("First test");
-        potion.actionOnCollision(player);
-        assertEquals(player.getHealthPoints(), 90);
+        potion.touchEntity(player);
+        assertEquals(player.getHealthPoints(), 9);
         System.out.println("Health: " + player.getHealthPoints());
         System.out.println("Max health: " + player.getMaxHealthPoints());
         System.out.println("");
         
         System.out.println("Second test");
-        potion.actionOnCollision(player);
+        potion.touchEntity(player);
         assertEquals(player.getHealthPoints(), player.getMaxHealthPoints());
         System.out.println("Health: " + player.getHealthPoints());
         System.out.println("Max health: " + player.getMaxHealthPoints());

@@ -12,15 +12,14 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import twinkingdom.game.GameHandler;
-import twinkingdom.entities.mobs.enemies.level1.Arrow;
-import twinkingdom.entities.mobs.player.PlayerArcher;
-import twinkingdom.gfx.PlayerBowAssets;
-import twinkingdom.utils.UtilityTimer;
+import  twinskingdom.entities.mobs.enemies.level1.Arrow;
+import  twinskingdom.entities.mobs.player.PlayerArcher;
+import  twinskingdom.gfx.PlayerBowAssets;
+import  twinskingdom.utils.UtilityTimer;
 
 /**
  *
- * @author aless
+ *  
  */
 public class TestDownArcherState {
     private static UtilityTimer timer;

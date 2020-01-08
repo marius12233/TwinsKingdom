@@ -5,9 +5,7 @@
  */
 package components;
 
-import java.util.Collection;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.SortedSet;
 import java.util.TreeSet;
 import org.junit.After;
@@ -16,12 +14,12 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import twinkingdom.saves.Checkpoint;
-import twinkingdom.saves.MemoryCard;
+import  twinskingdom.saves.Checkpoint;
+import  twinskingdom.saves.MemoryCard;
 
 /**
  *
- * @author aless
+ *  
  */
 public class TestMemoryCard {
     

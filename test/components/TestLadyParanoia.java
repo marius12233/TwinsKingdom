@@ -11,16 +11,16 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import twinkingdom.entities.mobs.enemies.finalLevel.LadyParanoia;
-import twinkingdom.entities.statics.BlackSpell;
-import twinkingdom.entities.mobs.states.LeftMovementState;
-import twinkingdom.entities.mobs.states.RightMovementState;
-import twinkingdom.gfx.BlackSpellAssets;
-import twinkingdom.gfx.LadyParanoiaAssets;
+import  twinskingdom.entities.mobs.enemies.finalLevel.LadyParanoia;
+import  twinskingdom.entities.statics.BlackSpell;
+import  twinskingdom.entities.mobs.states.LeftMovementState;
+import  twinskingdom.entities.mobs.states.RightMovementState;
+import  twinskingdom.gfx.BlackSpellAssets;
+import  twinskingdom.gfx.LadyParanoiaAssets;
 
 /**
  *
- * @author aless
+ *  
  */
 public class TestLadyParanoia {
     

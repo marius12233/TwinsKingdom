@@ -1,22 +1,22 @@
 .container {
-	-fx-background-image: url("./start-menu_bg.png");
-	-fx-background-repeat: stretch;
+    -fx-background-image: url("./start-menu_bg.png");
+    -fx-background-repeat: stretch;
 }
 
 .menuButton {
 
-	-fx-min-width: 295px;
-	-fx-max-width: 295px;
-	-fx-min-height: 57px;
-	-fx-max-height: 57px;
-	-fx-background-color: rgba(255,255,255,0.37);
-	-fx-font-family: 'Maiandra GD' !important;
-	-fx-font-size: 24px;
-	-fx-text-fill: rgb(46,46,46);
+    -fx-min-width: 295px;
+    -fx-max-width: 295px;
+    -fx-min-height: 57px;
+    -fx-max-height: 57px;
+    -fx-background-color: rgba(255,255,255,0.37);
+    -fx-font-family: 'Maiandra GD' !important;
+    -fx-font-size: 24px;
+    -fx-text-fill: rgb(46,46,46);
 }
 
 .menuButton:hover {
-	-fx-text-fill: rgb(240,204,147);
+    -fx-text-fill: rgb(240,204,147);
 }
 
 .scroll-bar:horizontal .track,
@@ -44,14 +44,14 @@
 
 }
 
- .scroll-bar .increment-arrow,
- .scroll-bar .decrement-arrow{
+.scroll-bar .increment-arrow,
+.scroll-bar .decrement-arrow{
     -fx-shape : " ";    
     -fx-padding :0.15em 0.0;
 }
 
- .scroll-bar:vertical .increment-arrow,
- .scroll-bar:vertical .decrement-arrow{
+.scroll-bar:vertical .increment-arrow,
+.scroll-bar:vertical .decrement-arrow{
     -fx-shape : " ";    
     -fx-padding :0.0 0.15em;
 }
@@ -71,17 +71,17 @@
 }
 
 .keyboard-button {
-	-fx-min-width: 20px;
-	-fx-max-width: 20px;
-	-fx-background-color: transparent;
+    -fx-min-width: 20px;
+    -fx-max-width: 20px;
+    -fx-background-color: transparent;
 }
 
 .keyboard-button-selected {
-	-fx-background-radius: .5em;
-	-fx-background-color: rgba(240,204,147,0.6);
+    -fx-background-radius: .5em;
+    -fx-background-color: rgba(240,204,147,0.6);
 }
 
 .keyboard-button-normal {
-	-fx-background-radius: .5em;
-	-fx-background-color: transparent;
+    -fx-background-radius: .5em;
+    -fx-background-color: transparent;
 }

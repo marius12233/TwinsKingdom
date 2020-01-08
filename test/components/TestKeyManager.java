@@ -6,10 +6,8 @@
 package components;
 
 import java.awt.AWTException;
-import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.Observable;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -18,13 +16,11 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
-import twinkingdom.input.KeyManager;
-import twinkingdom.utils.UtilityTimer;
+import  twinskingdom.input.KeyManager;
 
 /**
  *
- * @author aless
+ *  
  */
 public class TestKeyManager implements KeyListener{
     

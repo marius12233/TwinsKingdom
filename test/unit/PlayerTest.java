@@ -11,13 +11,13 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import twinkingdom.gfx.PlayerAssets;
-import twinkingdom.entities.statics.grabbable.GrabbableHealthPotion;
-import twinkingdom.entities.mobs.player.Player;
+import  twinskingdom.gfx.PlayerAssets;
+import  twinskingdom.entities.statics.grabbable.GrabbableHealthPotion;
+import  twinskingdom.entities.mobs.player.Player;
 
 /**
  *
- * @author aless
+ *  
  */
 public class PlayerTest {
     
@@ -106,7 +106,7 @@ public class PlayerTest {
         System.out.println("Potion is active: " + ph.isActive);
         System.out.println("");
         
-        player.touchGrabbable(ph);
+        player.touchEntity(ph);
         
         assertFalse(ph.isActive);
         System.out.println("Potion is active: " + ph.isActive);

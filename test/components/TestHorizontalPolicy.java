@@ -11,19 +11,19 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import twinkingdom.entities.mobs.enemies.level1.Bat;
-import twinkingdom.entities.mobs.player.Player;
-import twinkingdom.entities.mobs.states.DownMovementState;
-import twinkingdom.entities.mobs.states.LeftMovementState;
-import twinkingdom.entities.mobs.states.MovementState;
-import twinkingdom.entities.mobs.states.RightMovementState;
-import twinkingdom.gfx.BatAssets;
-import twinkingdom.gfx.PlayerAssets;
-import twinkingdom.policies.HorizontalPolicy;
+import  twinskingdom.entities.mobs.enemies.level1.Bat;
+import  twinskingdom.entities.mobs.player.Player;
+import  twinskingdom.entities.mobs.states.DownMovementState;
+import  twinskingdom.entities.mobs.states.LeftMovementState;
+import  twinskingdom.entities.mobs.states.MovementState;
+import  twinskingdom.entities.mobs.states.RightMovementState;
+import  twinskingdom.gfx.BatAssets;
+import  twinskingdom.gfx.PlayerAssets;
+import  twinskingdom.policies.HorizontalPolicy;
 
 /**
  *
- * @author aless
+ *  
  */
 public class TestHorizontalPolicy {
     
@@ -102,3 +102,4 @@ public class TestHorizontalPolicy {
         System.out.println("");
     }
 }
+

@@ -11,18 +11,18 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import twinkingdom.entities.mobs.enemies.level3.EnchantedArmor;
-import twinkingdom.gfx.PlayerAssets;
-import twinkingdom.policies.VerticalPolicy;
-import twinkingdom.entities.mobs.player.Player;
-import twinkingdom.entities.mobs.states.DownMovementState;
-import twinkingdom.entities.mobs.states.MovementState;
-import twinkingdom.entities.mobs.states.UpMovementState;
-import twinkingdom.gfx.ArmorAssets;
+import  twinskingdom.entities.mobs.enemies.level3.EnchantedArmor;
+import  twinskingdom.gfx.PlayerAssets;
+import  twinskingdom.policies.VerticalPolicy;
+import  twinskingdom.entities.mobs.player.Player;
+import  twinskingdom.entities.mobs.states.DownMovementState;
+import  twinskingdom.entities.mobs.states.MovementState;
+import  twinskingdom.entities.mobs.states.UpMovementState;
+import  twinskingdom.gfx.ArmorAssets;
 
 /**
  *
- * @author aless
+ *  
  */
 public class TestVerticalPolicy {
     

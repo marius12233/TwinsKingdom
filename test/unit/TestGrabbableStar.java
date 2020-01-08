@@ -11,11 +11,11 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import twinkingdom.entities.statics.grabbable.GrabbableStar;
+import  twinskingdom.entities.statics.grabbable.GrabbableStar;
 
 /**
  *
- * @author aless
+ *  
  */
 public class TestGrabbableStar {
     
@@ -55,7 +55,7 @@ public class TestGrabbableStar {
         System.out.println("Star is active: " + star.isActive);
         System.out.println("");
         
-        star.actionOnCollision(star);
+        star.touchEntity(star);
         assertTrue(star.isActive);
     }
 }
