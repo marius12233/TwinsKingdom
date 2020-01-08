@@ -207,7 +207,7 @@ public final class Garden extends World {
             timer = new UtilityTimer(180000, true);
         } else if (vignette_mode == false) {
             super.entityManager.tick();
-            if (timer.isTimeOverDescendent()) {
+            if (timer != null && timer.isTimeOverDescendent()) {
                 launchGameEvent(new GameEvent(this, GameEventType.LEVEL_FAILED));
             }
         }
