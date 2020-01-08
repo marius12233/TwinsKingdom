@@ -179,8 +179,6 @@ public class ThroneRoom extends World {
         entities.add(lp);
         lp.getLifeObservable().addObserver((Observer) this);
         lpInitLife = lp.getHealthPoints();
-        
-        System.out.println("LP HEALTH POINTS: " + lpInitLife);
 
         // The player will be face up when the level starts
         entityManager.getPlayer().setState(entityManager.getPlayer().getUpState());
