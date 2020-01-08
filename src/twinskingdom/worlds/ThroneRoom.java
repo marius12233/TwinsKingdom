@@ -343,7 +343,7 @@ public class ThroneRoom extends World {
                 this.entityManager.addEntity(gargoyle);
                 this.entityManager.addEntity(redSnake1);
 
-                //finalManager.addEntity(ea);
+                finalManager.addEntity(ea);
                 finalManager.addEntity(bat);
                 finalManager.addEntity(ea1);
                 finalManager.addEntity(bat);
