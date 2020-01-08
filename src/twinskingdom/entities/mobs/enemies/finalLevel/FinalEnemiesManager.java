@@ -13,7 +13,7 @@ import java.util.Observer;
 import  twinskingdom.entities.Entity;
 
 /**
- * This class has been created to manage the enemies' waves in the final boss
+ * This class has been created to manage the enemies' waves in the final boss level.
  * level
  *
  */
@@ -27,17 +27,32 @@ public class FinalEnemiesManager extends Observable implements Observer {
         observers = new LinkedList<>();
     }
 
+    /***
+     * This method, recalled by the final boss level, adds its enemies to entities list.
+     * @param e represents the entity to add to the list
+     */
     public void addEntity(Entity e) {
         entities.add(e);
         e.addObserver(this);
     }
 
+    /**
+     * This method sets the class observer.
+     * @param o represents the observer to add to the observers list
+     */
     @Override
     public void addObserver(Observer o) {
         observers.add(o);
     }
 
-    //entity deletion in the structure entities
+   /**
+     * The update method removes the observable entity to entities list, checking
+     * its size. If it reaches 0 value, the class observer is recalled. This latter
+     * is represented by the game final boss, which re-appears when all the 
+     * wave enemies die. 
+     * @param o
+     * @param arg 
+     */
     @Override
     public void update(Observable o, Object arg) {
         entities.remove((Entity) o);

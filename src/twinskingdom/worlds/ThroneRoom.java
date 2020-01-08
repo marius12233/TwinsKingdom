@@ -34,8 +34,8 @@ import  twinskingdom.utils.GrabbableStarCollection;
 import  twinskingdom.utils.UtilityTimer;
 
 /**
- *
- *  
+  This class implements the final level boss, setting their own characters and managing
+ * vignettes appearance.  
  */
 public class ThroneRoom extends World {
 
@@ -57,6 +57,9 @@ public class ThroneRoom extends World {
         this.starCollection = new GrabbableStarCollection(0);
     }
 
+    /***
+     * This method initializes vignettes' features and timers.
+     */
     @Override
     public void init() {
         super.init();
@@ -75,7 +78,11 @@ public class ThroneRoom extends World {
         vignette_final_8 = ImageLoader.loadImage("/images/cutscenes/Player_and_Queen_8.png"); // Good Ending 2
         timer_vignette = new UtilityTimer(5000, true);
     }
-
+    
+    /**
+     * The tick method chooses the vignettes to make appear, depending on their relative
+     * timers and on their represting numbers. 
+     */
     @Override
     public void tick() {
 
@@ -136,6 +143,11 @@ public class ThroneRoom extends World {
 
     }
 
+    /**
+     * For ThroneRoom class, the render method provides to make vignettes' images 
+     * appear.
+     * @param g 
+     */
     @Override
     public void render(Graphics g) {
 
@@ -170,6 +182,10 @@ public class ThroneRoom extends World {
         }
     }
 
+    /**
+     * The method populates the level with its own characters, in particular the
+     * level boss (Lady Paronia). Also player positions are setted. 
+     */
     @Override
     protected void setCreatures() {
 
@@ -185,6 +201,14 @@ public class ThroneRoom extends World {
 
     }
 
+    /***
+     * The update method depends on Lady Paranoia life, in order to ublock
+     * enemies waves and to make vignette appear. These operations are done
+     * for specific health points' values; in the last case, Queen Ansia character appears 
+     * and the player has to choose the boss to hurt.
+     * @param o
+     * @param arg 
+     */
     @Override
     public void update(Observable o, Object arg) {
         Health h = (Health) o;
@@ -202,6 +226,7 @@ public class ThroneRoom extends World {
                 entityManager.getPlayer().setX(593);
                 entityManager.getPlayer().setY(567);
 
+                //first enemies wave
                 monsters(1);
 
                 lp.setState(lp.getDownState());
@@ -220,7 +245,8 @@ public class ThroneRoom extends World {
                 wave2 = false;
                 number_vignette = 3;
                 timer_vignette = new UtilityTimer(5000, true);
-
+                
+                //second enemies wave
                 monsters(2);
 
                 entityManager.getPlayer().setState(entityManager.getPlayer().getUpState());
@@ -244,7 +270,8 @@ public class ThroneRoom extends World {
 
                 // Settings state player
                 entityManager.getPlayer().setState(entityManager.getPlayer().getUpState());
-
+                
+                //Queen Ansia appearance
                 qa = new QueenAnsia(535, 435, new QueenAnsiaAssets());
                 this.entityManager.addEntity(qa);
                 finalManager.addEntity(qa);
@@ -260,6 +287,7 @@ public class ThroneRoom extends World {
                 
         }
         
+        //Lady Paranoia death and Game Over state setting
         if(h.getHealthPoints() <= 0){
             number_vignette = 5;
             timer_vignette = new UtilityTimer(5000, true);
@@ -267,6 +295,12 @@ public class ThroneRoom extends World {
         
     }
     
+    /***
+     * This method receives the number of the enemies wave, in order to populate 
+     * the world with the correct characters. Their death unblocks Lady Paranoia,
+     * who resumes fighting with the player.
+     * @param wave 
+     */
     public void monsters(int wave){
         
         Bat bat;

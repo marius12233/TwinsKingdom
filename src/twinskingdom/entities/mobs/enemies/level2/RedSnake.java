@@ -14,12 +14,22 @@ import  twinskingdom.game.LevelHandler;
 import  twinskingdom.gfx.RedSnakeAssets;
 
 /**
- *
+ * This class implements one of the second level enemies: the red snake. The 
+ * creature is also included in the final level boss.
  */
 public class RedSnake extends Enemy {
 
     protected Collection<Observer> observers;
 
+    /**
+     * The constructor provides to set the healthpoints values, the horizontal/
+     * vertical bounds for the collisions management and the damage attack.
+     * Also the observers list is initialized, in order to include the creature
+     * in the observable enemies of the final level.
+     * @param x horizontal position
+     * @param y vertical position
+     * @param entityAssets character asset
+     */
     public RedSnake(float x, float y, int width, int height, RedSnakeAssets entityAssets) {
         super(x, y, width, height, entityAssets);
         bounds.x = 1;
@@ -34,6 +44,10 @@ public class RedSnake extends Enemy {
         observers = new LinkedList<>();
     }
 
+    /**
+     * The tick method only provides to recall the tick method of the setted state
+     * and to manage the character movements.
+     */
     @Override
     public void tick() {
 
@@ -42,6 +56,11 @@ public class RedSnake extends Enemy {
         move();
     }
 
+    /***
+     * The die method recalls the observer update method to correctly update the
+     * size of the final enemies manager (this condition is valid only for the 6th
+     * level).
+     */
     @Override
     public void die() {
         if (LevelHandler.getWorldId() == 7) {
@@ -51,11 +70,19 @@ public class RedSnake extends Enemy {
         }
     }
 
+    /**
+     * This method provides to add the observer to observers list of the class.
+     * @param o is the observer to add to observer list
+     */
     @Override
     public void addObserver(Observer o) {
         observers.add(o);
     }
 
+    /**
+     * The render method provides only to recall the render method of the state.
+     * @param g represents the graphics
+     */
     @Override
     public void render(Graphics g) {
         state.render(g);

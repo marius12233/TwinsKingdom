@@ -27,8 +27,9 @@ import  twinskingdom.utils.GrabbableStarCollection;
 import  twinskingdom.utils.UtilityTimer;
 
 /**
- *
- *  
+  This class implements the Forest level, setting their own characters and managing
+ * vignettes appearance. Moreover, game dynamics depend on the observable object 
+ * Grabbable Star Collection, whose size has to be 3 to complete the level. 
  */
 public final class Forest extends World {
 
@@ -53,6 +54,10 @@ public final class Forest extends World {
         this.starCollection = new GrabbableStarCollection(STARS);
     }
 
+    /***
+     * This method initializes vignettes' features, star collection observer and
+     * the level layer feature.
+     */
     @Override
     public void init() {
         super.init();
@@ -66,6 +71,11 @@ public final class Forest extends World {
         timer_vignette_portal = new UtilityTimer();
     }
 
+    /**
+     * The method populates the level with its own characters and items, adding
+     * them to entities list and setting their own policies. Bats, enchanted 
+     * trees and spiders represent this level enemies.
+     */
     @Override
     protected void setCreatures() {
 
@@ -160,6 +170,10 @@ public final class Forest extends World {
         super.entityManager = entityManager;
     }
 
+    /***
+     * The tick method is used to manage vignettes setting and to center the game
+     * camera on the player, getted by entity manager structure. 
+     */
     @Override
     public void tick() {
         GameHandler.getInstance().getGameCamera().centerOnEntity(super.entityManager.getPlayer());
@@ -174,6 +188,11 @@ public final class Forest extends World {
         }
     }
 
+    /***
+     * The render method provides to make the vignettes appear and to render also
+     * world's layer features.
+     * @param g 
+     */
     @Override
     public void render(Graphics g) {
         super.render(g);
@@ -195,6 +214,13 @@ public final class Forest extends World {
         }
     }
 
+    /***
+     * The update method depends on star collection size, in order to ublock the
+     * portal and to make vignette appear. These latter operations are done only
+     * if 3 stars have been collected by the player, representing level completion. 
+     * @param o
+     * @param arg 
+     */
     @Override
     public void update(Observable o, Object arg) {
         GrabbableStarCollection stars = (GrabbableStarCollection) o;

@@ -27,8 +27,10 @@ import  twinskingdom.tiles.Tile;
 import  twinskingdom.utils.Utils;
 
 /**
- *
- *  
+ * This class is used to initialize the level worlds and their internal 
+ * features/characters. The class also provides to load the layer textual files of
+ * the world and to set their internal tiles. Entity Manager list and other support data structures 
+ * are used for this purpose.
  */
 public abstract class World implements Observer, GameEventListener, GameEventSource {
 
@@ -44,18 +46,20 @@ public abstract class World implements Observer, GameEventListener, GameEventSou
     protected EntityManager entityManager;
     protected Portal portal;
 
-    //protected LinkedList<Creature> creatures;
-    protected LinkedList<Entity> entities;
+    //this list is used by the extending worlds to set their own characters
+    protected LinkedList<Entity> entities; 
 
     protected int portalX;
     protected int portalY;
 
     protected EventListenerList listenerList = new EventListenerList();
 
+    //the following attributes are used for vignettes' features setting 
     protected InputStream in;
     protected Font font;
     private float dimensionFont = 14;
 
+    //the following methods are used for worlds' events management 
     @Override
     public void addGameEventListener(GameEventListener listener) {
         listenerList.add(GameEventListener.class, listener);
@@ -80,6 +84,12 @@ public abstract class World implements Observer, GameEventListener, GameEventSou
         return starCollection;
     }
 
+    /***
+     * The constructor is used to create the entities' list, destinated to be
+     * populated by the specific extending world, and to initialize vignettes' 
+     * images and font features. 
+     * @param path represents the path of the representing worlds' files
+     */
     protected World(String path) {
         this.handler = GameHandler.instance;
         this.path = path;
@@ -97,17 +107,27 @@ public abstract class World implements Observer, GameEventListener, GameEventSou
     public World() {
     }
 
+    /***
+     * This method will be implemented by the extending worlds to set their own 
+     * creatures.
+     */
     protected abstract void setCreatures();
 
+    /***
+     * This metod is used to initialize the support structures, used to manage
+     * worlds' internal creatures. 
+     */
     public void init() {
         this.entities.clear();
         this.starCollection.removeAllStars();
         this.setCreatures();
 
+        //the entity manager is populated by the specific worlds' entities
         for (Entity e : this.entities) {
             this.entityManager.addEntity(e);
         }
 
+        //world loading
         loadWorld(path);
         this.rl = new RenderableLayers(this.tiles[0].length, this.tiles.length, path);
         this.rl.loadLayers();
@@ -122,11 +142,20 @@ public abstract class World implements Observer, GameEventListener, GameEventSou
         this.entityManager = entityManager;
     }
 
+    /**
+     * This tick method recalls Entity Manager tick own method, in order to
+     * update the correct characters in the world.
+     */
     public void tick() {
         //this.rl.loadLayers();
         this.entityManager.tick();
     }
 
+    /***
+     * This method is used to set the correct starting and ending map indices, 
+     * depending on game camera positions.
+     * @param g represents the game graphic
+     */
     public void render(Graphics g) {
         //Servono per non far disegnare ogni volta tutta la mappa
         int xStart = (int) Math.max(0, handler.getGameCamera().getxOffset() / Tile.TILEWIDTH);
@@ -147,6 +176,11 @@ public abstract class World implements Observer, GameEventListener, GameEventSou
         entityManager.render(g);
     }
 
+    /***
+     * @param x row tile index 
+     * @param y column tile index
+     * @return Tile object specified by the indices
+     */
     public Tile getTile(int x, int y) {
         if (x < 0 || y < 0 || x >= width || y >= height) {
             return Tile.invisibleTile;
@@ -160,7 +194,11 @@ public abstract class World implements Observer, GameEventListener, GameEventSou
         return t;
     }
 
-    //Carica un file per costruire il mondo
+     /**
+     * This method provides to load the world through its own layers' files.  
+     * @param path represents the path of the specific directory, containing the
+     * layers textual files loaded for the world.
+     */
     protected void loadWorld(String path) {
         String file = Utils.loadFileAsString(path + "layer1.txt");
         String[] tokens = file.split("\\s+");
@@ -175,6 +213,14 @@ public abstract class World implements Observer, GameEventListener, GameEventSou
         }
     }
 
+    /***
+     * This method is used to set worlds' tiles, related to specific 
+     * IDs. This tiles represent worlds internal components. 
+     * @param tileNum
+     * @param x is the returned tile row index 
+     * @param y is the returned tile column index 
+     * @return the tile specified by x and y matrix indices
+     */
     public Tile getLayerTile(int tileNum, int x, int y) {
 
         Layer layer = this.rl.getLayer(tileNum);

@@ -14,9 +14,10 @@ import  twinskingdom.gfx.ImageLoader;
 import  twinskingdom.utils.GrabbableStarCollection;
 import  twinskingdom.utils.UtilityTimer;
 
-/**
- *
- *  
+/** 
+ * This class implements the Intro level, setting its vignettes appearance and
+ * their relative timers and images.
+ * 
  */
 public final class Intro extends World {
 
@@ -30,6 +31,10 @@ public final class Intro extends World {
         this.starCollection = new GrabbableStarCollection(0);
     }
 
+    /**
+     * This method initializes intro vignettes, loading their relative images, 
+     * and their appearance timers.
+     */
     @Override
     public void init() {
         super.init();
@@ -48,6 +53,10 @@ public final class Intro extends World {
     protected void setCreatures() {
     }
 
+    /**
+     * The tick method chooses the vignettes to make appear, depending on their relative
+     * timers and on their represting numbers. 
+     */
     @Override
     public void tick() {
         switch (number_vignette) {
@@ -86,6 +95,11 @@ public final class Intro extends World {
         }
     }
 
+    /**
+     * For Intro class, the render method provides to make vignettes' images 
+     * appear.
+     * @param g 
+     */
     @Override
     public void render(Graphics g) {
         switch (number_vignette) {

@@ -10,10 +10,17 @@ import  twinskingdom.entities.mobs.enemies.Enemy;
 import  twinskingdom.gfx.CrowAssets;
 
 /**
- *
+ * This class implements one of the second level enemies: the crow. 
  */
 public class Crow extends Enemy {
 
+    /**
+     * The constructor provides to set the healthpoints values, the horizontal/
+     * vertical bounds for the collisions management and the damage attack.
+     * @param x horizontal position
+     * @param y vertical position
+     * @param entityAssets character asset
+     */
     public Crow(float x, float y, int width, int height, CrowAssets entityAssets) {
         super(x, y, width, height, entityAssets);
         bounds.x = 1;
@@ -23,10 +30,14 @@ public class Crow extends Enemy {
         setState(leftState);
         health.setHealthPoints(4);
         health.setLives(1);
-        speed = 5;
+        speed = 5; //speed setting
         this.setDamageAttack(2);
     }
 
+    /**
+     * The tick method only provides to recall the tick method of the setted state
+     * and to manage the character movements.
+     */
     @Override
     public void tick() {
 
@@ -39,6 +50,10 @@ public class Crow extends Enemy {
     public void die() {
     }
 
+    /**
+     * The render method provides only to recall the render method of the state.
+     * @param g represents the graphics
+     */
     @Override
     public void render(Graphics g) {
         state.render(g);

@@ -19,7 +19,9 @@ import  twinskingdom.utils.UtilityTimer;
 import  twinskingdom.entities.mobs.states.RightMovementState;
 
 /**
- *
+ This class implements the first level boss, setting their movement policies
+ * (horizontal or vertical) according to the timer value. 
+ * Meanwhile, boss weapons are continuously fired.
  */
 public class ArcherBoss extends Boss {
 
@@ -30,21 +32,27 @@ public class ArcherBoss extends Boss {
     private VerticalArcherPolicy verticalPolicy;
     private HorizontalArcherPolicy horizontalPolicy;
 
+    /**
+     * The constructor provides to set the healthpoints values, the horizontal/
+     * vertical bounds for the collisions management and the movement policy. 
+     * @param x horizontal position
+     * @param y vertical position
+     * @param boss2Assets character asset
+     */
     public ArcherBoss(float x, float y, ArcherAssets boss2Assets) {
         super(x, y, 80, Creature.DEFAULT_HEIGHT, boss2Assets);
         weapons = new LinkedList();
         for (int i = 0; i < 10; i++) {
             weapons.add(createWeapon());
         }
-        //verticalPolicy = new VerticalArcherPolicy(handler, this,(int) (getY()-300), (int)(getY()+300));
-        //horizontalPolicy = new HorizontalArcherPolicy(handler, this,(int) (getX()-300), (int)(getX()+300));
+        
         setMovementPolicy(new HorizontalArcherPolicy(this, (int) (getX() - 300), (int) (getX() + 300)));
-        //setMovementPolicy(verticalPolicy);
+        
         bounds.x = 25;
         bounds.y = 30;
         bounds.width = 15;
         bounds.height = 22;
-        //setState(leftState); 
+         
         health.setMaxHealthPoints(3);
         health.setHealthPoints(3);
         health.setLives(1);
@@ -52,13 +60,13 @@ public class ArcherBoss extends Boss {
         policyTimer = new UtilityTimer(10000);
     }
 
+   /**
+     * The tick method sets the character movement policies, according to timer
+     * reached value. 
+     */
     @Override
-    //Deve fare l'update dello stato dell'oggetto
     public void tick() {
-        //Cambio policy dopo un certo tempo
-
-        //Animations
-        //Per update the index
+        
         state.tick();
         //Movement
         getMovement();
@@ -76,6 +84,10 @@ public class ArcherBoss extends Boss {
         }
     }
 
+    /***
+     * The render method sets the graphic features.
+     * @param g 
+     */
     @Override
     public void render(Graphics g) {
         state.render(g);
@@ -85,12 +97,25 @@ public class ArcherBoss extends Boss {
                 (int) Math.floor((double) getWidth() / (double) health.getMaxHealthPoints() * (double) health.getHealthPoints()), 7);
     }
 
+    /***
+     * This method creates the character weapons, used to defeate the player.
+     * @return weapon object
+     */
     @Override
     public Arrow createWeapon() {
         Arrow arrow = createWeapon((int) getX() + 50, (int) getY() + 50, 10, 10);
         return arrow;
     }
 
+    /***
+     * This method also creates the characher weapon, depending also on its 
+     * position coordinates. 
+     * @param x is the horizontal index position
+     * @param y is the vertical index position
+     * @param width is the character width
+     * @param height is the character height
+     * @return Arrow object
+     */
     @Override
     public Arrow createWeapon(int x, int y, int width, int height) {
         Arrow arrow = new Arrow(x, y, width, height);

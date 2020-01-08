@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -21,7 +21,9 @@ import  twinskingdom.policies.VerticalArcherPolicy;
 import  twinskingdom.utils.UtilityTimer;
 
 /**
- *
+ * This class implements the game final boss, setting their movement policies 
+ * (horizontal or vertical) according to timer value and to its freezing conditions. 
+ * These latter depend on the final level wave enemies dying.
  */
 public class LadyParanoia extends Boss implements Observer {
 
@@ -33,6 +35,13 @@ public class LadyParanoia extends Boss implements Observer {
     private boolean freeze; //this attribute is used to manage the character freeze 
     private boolean finalPosition; //this attribute is used to manage the character final setting 
 
+    /**
+     * The constructor provides to set the healthpoints values and the horizontal/
+     * vertical bounds for the collisions management. 
+     * @param x horizontal position
+     * @param y vertical position
+     * @param ladyParanoiaAssets character asset
+     */
     public LadyParanoia(float x, float y, LadyParanoiaAssets ladyParanoiaAssets) {
         super(x, y, 80, Creature.DEFAULT_HEIGHT, ladyParanoiaAssets);
         weapons = new LinkedList();
@@ -53,11 +62,14 @@ public class LadyParanoia extends Boss implements Observer {
         blackspellAsset.init();
         freeze = false;
         finalPosition = false;
-        policyTimer = new UtilityTimer(100000);
+        policyTimer = new UtilityTimer(10000); //timer setting
     }
 
+    /**
+     * The tick method sets the character movement policies, according to timer
+     * reached value. 
+     */
     @Override
-    //Deve fare l'update dello stato dell'oggetto
     public void tick() {
 
         //if the character is not frozen, all the movements can be reproduced 
@@ -80,6 +92,10 @@ public class LadyParanoia extends Boss implements Observer {
         }
     }
 
+    /***
+     * The render method sets the graphic features.
+     * @param g 
+     */
     @Override
     public void render(Graphics g) {
         state.render(g);
@@ -89,12 +105,25 @@ public class LadyParanoia extends Boss implements Observer {
                 (int) Math.floor((double) getWidth() / (double) health.getMaxHealthPoints() * (double) health.getHealthPoints()), 7);
     }
 
+    /***
+     * This method creates the character weapons, used to defeate the player.
+     * @return weapon object
+     */
     @Override
     public BlackSpell createWeapon() {
         BlackSpell blackSpell = createWeapon((int) getX() + 300, (int) getY() - 300, 48, 48);
         return blackSpell;
     }
 
+    /***
+     * This method also creates the characher weapon, depending also on its 
+     * position coordinates. 
+     * @param x is the horizontal index position
+     * @param y is the vertical index position
+     * @param width is the character width
+     * @param height is the character height
+     * @return BlackSpell object
+     */
     @Override
     public BlackSpell createWeapon(int x, int y, int width, int height) {
         BlackSpell blackSpell = new BlackSpell(x, y, width, height);
@@ -102,17 +131,25 @@ public class LadyParanoia extends Boss implements Observer {
         return blackSpell;
     }
 
+    /***
+     * This method freezes the character, setting the relative boolean attribute
+     */
     public void freeze() {
         freeze = true;
     }
 
-    //This method is used to restore the normal character movements
+    /***
+     * This method is used to restore the normal character movements
+     */
     public void setFinalPosition() {
         finalPosition = true;
         setState(downState);
     }
 
-    //hurt method override,implemented in order to manage the freeze condition
+    /***
+     * hurt method override,implemented in order to manage the freeze condition
+     * @param amt 
+     */
     @Override
     public void hurt(int amt) {
         if (!freeze || finalPosition) {
@@ -120,6 +157,14 @@ public class LadyParanoia extends Boss implements Observer {
         }
     }
 
+    /***
+     * The update method sets the freeze variable to false, unblocking the character
+     * movements. A resetting of the position coordinates is done.
+     * The method is called according to all the final level enemies dying, for
+     * a particular wave. 
+     * @param o
+     * @param arg 
+     */
     @Override
     public void update(Observable o, Object arg) {
         freeze = false;

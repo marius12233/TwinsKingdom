@@ -21,9 +21,10 @@ import  twinskingdom.gui.Health;
 import  twinskingdom.utils.GrabbableStarCollection;
 import  twinskingdom.utils.UtilityTimer;
 
-/**
- *
- *  
+/** 
+ * This class implements the first dungeon level, setting their own characters and managing
+ * vignettes appearance. Moreover, game dynamics depend on the observable boss
+ * life, whose health points has to be equal to 0 to complete the level. 
  */
 public final class Dungeon1 extends World {
 
@@ -47,6 +48,9 @@ public final class Dungeon1 extends World {
         this.starCollection = new GrabbableStarCollection(0);
     }
 
+    /***
+     * This method initializes vignettes' features and timers.
+     */
     @Override
     public void init() {
         super.init();
@@ -62,6 +66,10 @@ public final class Dungeon1 extends World {
         vignette_boss_2 = ImageLoader.loadImage("/images/cutscenes/Player_and_Archer_2.png");
     }
 
+    /**
+     * The method populates the level with its own characters, in particular the
+     * level boss (the archer). Also player positions are setted. 
+     */
     @Override
     protected void setCreatures() {
 
@@ -83,6 +91,10 @@ public final class Dungeon1 extends World {
         portal.addGameEventListener(this);
     }
 
+    /***
+     * The tick method is used to manage vignettes setting and to center the game
+     * camera on the player, getted by entity manager structure. 
+     */
     @Override
     public void tick() {
         GameHandler.getInstance().getGameCamera().centerOnEntity(super.entityManager.getPlayer());
@@ -110,6 +122,11 @@ public final class Dungeon1 extends World {
         }
     }
 
+    /***
+     * The render method provides to make the vignettes appear and their related
+     * images.
+     * @param g is the graphics
+     */
     @Override
     public void render(Graphics g) {
         super.render(g);
@@ -133,6 +150,13 @@ public final class Dungeon1 extends World {
 
     }
 
+    /***
+     * The update method depends on boss level life, in order to ublock the
+     * portal and to make vignettes appear. These operations are done only
+     * if 0 boss health points have reached, representing level completion. 
+     * @param o
+     * @param arg 
+     */
     @Override
     public void update(Observable o, Object arg) {
         Health h = (Health) o;
@@ -144,6 +168,10 @@ public final class Dungeon1 extends World {
         }
     }
 
+    /**
+     * This method provides to launch the event relative to the level completion.
+     * @param evt is the event
+     */
     @Override
     public void onGameEventActionPerformed(GameEvent evt) {
         if (evt.getType() == GameEventType.PORTAL_PASSED) {

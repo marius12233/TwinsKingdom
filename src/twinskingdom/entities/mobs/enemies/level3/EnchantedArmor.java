@@ -14,12 +14,22 @@ import  twinskingdom.game.LevelHandler;
 import  twinskingdom.gfx.ArmorAssets;
 
 /**
- *
+ * This class implements one of the third level enemies: the enchanted armor. The 
+ * creature is also included in the final level boss.
  */
 public class EnchantedArmor extends Enemy {
 
     protected Collection<Observer> observers;
 
+    /**
+     * The constructor provides to set the healthpoints values, the horizontal/
+     * vertical bounds for the collisions management and the damage attack.
+     * Also the observers list is initialized, in order to include the creature
+     * in the observable enemies of the final level.
+     * @param x horizontal position
+     * @param y vertical position
+     * @param entityAssets character asset
+     */
     public EnchantedArmor(float x, float y, int width, int height, ArmorAssets entityAssets) {
         super(x, y, width, height, entityAssets);
         bounds.x = 1;
@@ -34,17 +44,24 @@ public class EnchantedArmor extends Enemy {
         observers = new LinkedList<>();
     }
 
+    /**
+     * The tick method only provides to recall the tick method of the setted state
+     * and to manage the character movements.
+     */
     @Override
-    //Deve fare l'update dello stato dell'oggetto
     public void tick() {
-        //Animations
-        //Per update the index
+        
         state.tick();
         //Movement
         getMovement();
         move();
     }
 
+    /***
+     * The die method recalls the observer update method to correctly update the
+     * size of the final enemies manager (this condition is valid only for the 6th
+     * level).
+     */
     @Override
     public void die() {
         if (LevelHandler.getWorldId() == 7) {
@@ -54,11 +71,19 @@ public class EnchantedArmor extends Enemy {
         }
     }
 
+    /**
+     * This method provides to add the observer to observers list of the class.
+     * @param o is the observer to add to observer list
+     */
     @Override
     public void addObserver(Observer o) {
         observers.add(o);
     }
 
+    /**
+     * The render method provides only to recall the render method of the state.
+     * @param g represents the graphics
+     */
     @Override
     public void render(Graphics g) {
         state.render(g);

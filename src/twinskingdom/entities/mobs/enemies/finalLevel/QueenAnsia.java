@@ -14,7 +14,9 @@ import  twinskingdom.policies.VerticalArcherPolicy;
 import  twinskingdom.utils.UtilityTimer;
 
 /**
- *
+ * This class implements the game final boss twin, which appears corresponding
+ * to lady paranoia last health point remaining. It stands still until the level
+ * ending. 
  */
 public class QueenAnsia extends Creature {
 
@@ -48,8 +50,11 @@ public class QueenAnsia extends Creature {
         //policyTimer = new UtilityTimer(100000);
     }
 
+    /***
+     * This tick method only implements the class state tick because the character
+     * stands still until the level ending. 
+     */
     @Override
-    //Deve fare l'update dello stato dell'oggetto
     public void tick() {
         state.tick();
         //Cambio policy dopo un certo tempo
@@ -88,6 +93,11 @@ public class QueenAnsia extends Creature {
         fireBall.setState(new RightMovementState(fireBall, fireBallAsset));
         return fireBall;
     }  
+     */
+    
+    /***
+     * As the tick case, this method implements only the state render.
+     * @param g 
      */
     @Override
     public void render(Graphics g) {

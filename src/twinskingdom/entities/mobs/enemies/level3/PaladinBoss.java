@@ -21,7 +21,9 @@ import  twinskingdom.policies.VerticalPolicy;
 import  twinskingdom.utils.UtilityTimer;
 
 /**
- *
+ This class implements the third level boss, setting their movement policies 
+ * (horizontal or vertical) according to the timer value. 
+ * Meanwhile, boss weapons are continuously fired.
  */
 public class PaladinBoss extends Boss {
 
@@ -34,27 +36,28 @@ public class PaladinBoss extends Boss {
 
     private Animation animationAttackR, animationAttackL, animationAttackU, animationAttackD, actualAnimation;
 
+    /**
+     * The constructor provides to set the healthpoints values, the horizontal/
+     * vertical bounds for the collisions management, the movement policy and to
+     * set the correct attack animations.
+     * @param x horizontal position
+     * @param y vertical position
+     * @param paladinAssets character asset
+     */
     public PaladinBoss(float x, float y, PaladinAssets paladinAssets) {
         super(x, y, 80, Creature.DEFAULT_HEIGHT, paladinAssets);
-        // weapons = new LinkedList();
-        /*
-        for (int i = 0; i < 10; i++) {
-            weapons.add(createWeapon());
-        }
-         */
-        //verticalPolicy = new VerticalArcherPolicy(handler, this,(int) (getY()-300), (int)(getY()+300));
-        //horizontalPolicy = new HorizontalArcherPolicy(handler, this,(int) (getX()-300), (int)(getX()+300));
+        
         setMovementPolicy(new HorizontalPolicy(this, (int) (getX() - 300), (int) (getX() + 300)));
-        //setMovementPolicy(verticalPolicy);
+        
         bounds.x = 15;
         bounds.y = 10;
         bounds.width = 30;
         bounds.height = 50;
-        //setState(leftState); 
+       
         health.setMaxHealthPoints(10);
         health.setHealthPoints(10);
         health.setLives(1);
-        //arrowAsset.init();
+        
         setState(state);
 
         Map<String, BufferedImage[]> asr = paladinAssets.getAnimations().get("right");
@@ -69,14 +72,14 @@ public class PaladinBoss extends Boss {
         policyTimer = new UtilityTimer(10000);
     }
 
+    /**
+     * The tick method sets the character movement policies, according to timer
+     * reached value. It sets also the animation attacks, depending on the character
+     * state.
+     */
     @Override
-    //Deve fare l'update dello stato dell'oggetto
     public void tick() {
-        //Cambio policy dopo un certo tempo
-
-        //Animations
-        //Per update the index
-        //state.tick();
+        
         if (this.getState() == leftState) {
             actualAnimation = animationAttackL;
         }
@@ -91,7 +94,7 @@ public class PaladinBoss extends Boss {
         }
 
         actualAnimation.tick();
-        //checkAttacks();
+        
         //Movement
         getMovement();
         move();
@@ -99,17 +102,21 @@ public class PaladinBoss extends Boss {
         if (policyTimer.isTimeOver()) {
             if (vertical) {
                 setMovementPolicy(new HorizontalPolicy(this, (int) (getX() - 300), (int) (getX() + 300)));
-                // animationAttack.tick();
+                
                 vertical = false;
             } else {
 
                 setMovementPolicy(new VerticalPolicy(this, (int) (getY() - 300), (int) (getY() + 300)));
-                // animationAttack2.tick();
+                
                 vertical = true;
             }
         }
     }
 
+    /***
+     * The render method sets the graphic features.
+     * @param g 
+     */
     @Override
     public void render(Graphics g) {
 
@@ -123,12 +130,25 @@ public class PaladinBoss extends Boss {
                 (int) Math.floor((double) getWidth() / (double) health.getMaxHealthPoints() * (double) health.getHealthPoints()), 7);
     }
 
+    /***
+     * This method creates the character weapons, used to defeate the player.
+     * @return weapon object
+     */
     @Override
     public Arrow createWeapon() {
         Arrow arrow = createWeapon((int) getX() + 50, (int) getY() + 50, 10, 10);
         return arrow;
     }
 
+    /***
+     * This method also creates the characher weapon, depending also on its 
+     * position coordinates. 
+     * @param x is the horizontal index position
+     * @param y is the vertical index position
+     * @param width is the character width
+     * @param height is the character height
+     * @return Arrow object
+     */
     @Override
     public Arrow createWeapon(int x, int y, int width, int height) {
         Arrow arrow = new Arrow(x, y, width, height);

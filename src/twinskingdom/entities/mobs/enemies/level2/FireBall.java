@@ -9,10 +9,18 @@ import  twinskingdom.entities.mobs.Launchable;
 import  twinskingdom.gfx.FireBallAssets;
 
 /**
- *
+ * This class provides to implement the mage boss weapon.
  */
 public class FireBall extends Launchable {
 
+    /**
+     * The constructor sets the class state and the horizontal/vertical bounds
+     * used for the collisions' management.
+     * @param x
+     * @param y
+     * @param width
+     * @param height 
+     */ 
     public FireBall(float x, float y, int width, int height) {
         super(x, y, width, height, new FireBallAssets());
         bounds.x = 0;
@@ -20,7 +28,7 @@ public class FireBall extends Launchable {
         bounds.width = 24;
         bounds.height = 15;
         setState(rightState);
-        speed += speed * 2;
-        //animation = new Animation(500, Assets.enchantedLeaf);
+        speed += speed * 2; //speed setting
+        
     }
 }
