@@ -8,6 +8,7 @@ package  twinskingdom.entities.mobs;
 import java.awt.Rectangle;
 import  twinskingdom.entities.Entity;
 import  twinskingdom.gfx.EntityAssets;
+import twinskingdom.sounds.effects.SoundEffectManager;
 import  twinskingdom.utils.UtilityTimer;
 
 /**
@@ -52,6 +53,7 @@ public abstract class Creature extends Movable {
         if (!timerAttack.isTimeOver()) {
             return;
         }
+        this.playSound();
         Rectangle ar = state.getAttackRectangle();
         for (Entity e : handler.getWorld().getEntityManager().getEntities()) {
             if (e.equals(this)) {
@@ -65,6 +67,10 @@ public abstract class Creature extends Movable {
 
         }
 
+    }
+    
+    public void playSound(){
+        
     }
 
     public void attack(Entity e) {

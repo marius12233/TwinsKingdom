@@ -29,6 +29,7 @@ public class Sound {
     public Sound(String url) {
         this.url = url;
         this.audioClip = loadAudioClip();
+        
     }
 
     private AudioClip loadAudioClip() {
@@ -44,7 +45,8 @@ public class Sound {
     }
 
     public void play() {
-        this.audioClip.play();
+        if(SoundTrackManager.getInstance().isAudioEnabled())
+            this.audioClip.play();
     }
 
 }

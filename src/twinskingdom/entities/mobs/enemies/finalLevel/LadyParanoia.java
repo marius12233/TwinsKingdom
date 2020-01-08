@@ -10,15 +10,15 @@ import java.awt.Graphics;
 import java.util.LinkedList;
 import java.util.Observable;
 import java.util.Observer;
-import  twinskingdom.entities.mobs.Creature;
-import  twinskingdom.entities.mobs.enemies.Boss;
-import  twinskingdom.entities.mobs.states.RightMovementState;
-import  twinskingdom.entities.statics.BlackSpell;
-import  twinskingdom.gfx.BlackSpellAssets;
-import  twinskingdom.gfx.LadyParanoiaAssets;
-import  twinskingdom.policies.HorizontalArcherPolicy;
-import  twinskingdom.policies.VerticalArcherPolicy;
-import  twinskingdom.utils.UtilityTimer;
+import twinskingdom.entities.mobs.Creature;
+import twinskingdom.entities.mobs.enemies.Boss;
+import twinskingdom.entities.mobs.states.RightMovementState;
+import twinskingdom.entities.statics.BlackSpell;
+import twinskingdom.gfx.BlackSpellAssets;
+import twinskingdom.gfx.LadyParanoiaAssets;
+import twinskingdom.policies.HorizontalArcherPolicy;
+import twinskingdom.policies.VerticalArcherPolicy;
+import twinskingdom.utils.UtilityTimer;
 
 /**
  * This class implements the game final boss, setting their movement policies 

@@ -10,6 +10,7 @@ import  twinskingdom.entities.mobs.Creature;
 import  twinskingdom.gfx.EntityAssets;
 import  twinskingdom.policies.HorizontalPolicy;
 import  twinskingdom.policies.BasePolicy;
+import twinskingdom.sounds.effects.SoundEffectManager;
 
 /**
  *
@@ -27,6 +28,7 @@ public abstract class Enemy extends Creature {
     public void attack(Entity e) {
         if (e.isPlayer()) {
             super.attack(e);
+            SoundEffectManager.PLAYER_HURT.play();
         }
     }
 

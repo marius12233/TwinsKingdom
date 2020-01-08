@@ -6,6 +6,7 @@
 package  twinskingdom.entities.mobs.player;
 
 import  twinskingdom.gfx.PlayerArmSwordAssets;
+import twinskingdom.sounds.effects.SoundEffectManager;
 
 /**
  *
@@ -38,6 +39,10 @@ public class ArmoredPlayer extends Player{
         else {
             damage=true;
         }
+    }
+    public void playSound(){
+        
+        SoundEffectManager.SWORD.play();
     }
     
 }
