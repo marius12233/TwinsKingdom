@@ -12,7 +12,7 @@ import twinskingdom.sounds.effects.SoundEffectManager;
 import  twinskingdom.utils.UtilityTimer;
 
 /**
- *
+ *  This class extends Movable and add attack responsibilities.
  */
 public abstract class Creature extends Movable {
 

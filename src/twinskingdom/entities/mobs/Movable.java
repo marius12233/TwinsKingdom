@@ -18,7 +18,8 @@ import  twinskingdom.tiles.Tile;
 import  twinskingdom.worlds.World;
 
 /**
- *
+ * This class extends entity and adds responsibilities for its movement. 
+ * It checks for collisions with other elements and sets the state. 
  */
 public abstract class Movable extends Entity {
 

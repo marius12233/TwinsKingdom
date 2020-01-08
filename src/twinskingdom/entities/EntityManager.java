@@ -15,6 +15,8 @@ import  twinskingdom.game.GameHandler;
 
 /**
  *
+ * This class manages entities. It allows you to add new entities to the game, 
+ * render them and delete them when you set the isActive attribute of each entity to false.
  */
 public final class EntityManager {
 

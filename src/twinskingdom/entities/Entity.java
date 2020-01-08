@@ -15,9 +15,11 @@ import  twinskingdom.game.GameHandler;
 import  twinskingdom.gui.Health;
 
 /**
- *
+ *The Entity class represents the entities in the game. 
+ * An Entity object has the size of the character on the map. 
+ * Check when it hits another entity and call the impact routine.
+ * 
  */
-
 /* test test test */
 public abstract class Entity extends Observable {
 
@@ -76,6 +78,9 @@ public abstract class Entity extends Observable {
         return false;
     }
 
+    /***
+     * This method is called when this entity touches another entity.
+     */
     public void touchEntity(Entity e) {
         return;
     }

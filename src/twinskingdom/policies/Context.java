@@ -6,7 +6,8 @@
 package  twinskingdom.policies;
 
 /**
- *
+ * The Context class manages the current strategy to maintain.
+ * It is used by a client, which is the Enemy, and uses Strategy class.
  *
  */
 public class Context {
