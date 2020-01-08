@@ -9,7 +9,7 @@ import twinskingdom.sounds.Sound;
 
 /**
  *
- * @author SSQ1
+ *
  */
 public class SoundEffectManager {
     public static final Sound STAR = new Sound("/sounds/effects/STAR.wav");
