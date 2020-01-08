@@ -75,6 +75,8 @@ public final class Garden extends World {
 
         // Instance of the timer used for the vignette that appears when the portal is unlocked
         timer_vignette_portal = new UtilityTimer();
+        timer = null;
+        vignette_mode = true;
     }
 
     @Override
@@ -186,7 +188,7 @@ public final class Garden extends World {
     @Override
     public void tick() {
         GameHandler.getInstance().getGameCamera().centerOnEntity(super.entityManager.getPlayer());
-        if (timer_vignette.isTimeOverDescendent()) {
+        if (timer_vignette.isTimeOverDescendent() && timer == null) {
             vignette_mode = false;
             timer = new UtilityTimer(180000, true);
         } else if (vignette_mode == false) {

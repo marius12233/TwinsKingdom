@@ -74,6 +74,8 @@ public class ThroneRoom extends World {
         vignette_final_7 = ImageLoader.loadImage("/images/cutscenes/Player_and_Queen_7.png"); // Good Ending 1
         vignette_final_8 = ImageLoader.loadImage("/images/cutscenes/Player_and_Queen_8.png"); // Good Ending 2
         timer_vignette = new UtilityTimer(5000, true);
+        wave1 = true;
+        wave2 = true;
     }
 
     @Override
@@ -178,10 +180,11 @@ public class ThroneRoom extends World {
         lp.getLifeObservable().addObserver((Observer) this);
         lpInitLife = lp.getHealthPoints();
 
-        // The player will face up when the level starts
+        // The player will be face up when the level starts
         entityManager.getPlayer().setState(entityManager.getPlayer().getUpState());
         entityManager.getPlayer().setX(593);
         entityManager.getPlayer().setY(567);
+        entityManager.getPlayer().setHealthPoints(25);
 
     }
 
@@ -320,7 +323,7 @@ public class ThroneRoom extends World {
             case 2:
                 bat=new Bat(400, 920, 32, 32, new BatAssets());
                 ea=new EnchantedArmor(906, 840, 64, 64, new ArmorAssets());
-                ea1=new EnchantedArmor(214, 820, 64, 64, new ArmorAssets());
+                ea1=new EnchantedArmor(214, 870, 64, 64, new ArmorAssets());
                 ea2=new EnchantedArmor(190,1269, 64, 64, new ArmorAssets());
                 bat1=new Bat(583, 700, 32, 32, new BatAssets());
                 spider=new Spider(726, 800, 32, 32, new SpiderAssets());

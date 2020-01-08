@@ -7,14 +7,14 @@ package  twinskingdom.entities.statics;
 
 import java.awt.Graphics;
 import  twinskingdom.entities.Entity;
-import  twinskingdom.entities.mobs.Creature;
+import twinskingdom.entities.mobs.Launchable;
 import  twinskingdom.gfx.BlackSpellAssets;
 
 /**
  *
  *  
  */
-public class BlackSpell extends Creature {
+public class BlackSpell extends Launchable {
 
     public BlackSpell(float x, float y, int width, int height) {
         super(x, y, width, height, new BlackSpellAssets());
