@@ -325,7 +325,7 @@ public class ThroneRoom extends World {
             case 2:
                 bat=new Bat(400, 920, 32, 32, new BatAssets());
                 ea=new EnchantedArmor(906, 840, 64, 64, new ArmorAssets());
-                ea1=new EnchantedArmor(214, 820, 64, 64, new ArmorAssets());
+                ea1=new EnchantedArmor(214, 870, 64, 64, new ArmorAssets());
                 ea2=new EnchantedArmor(190,1269, 64, 64, new ArmorAssets());
                 bat1=new Bat(583, 700, 32, 32, new BatAssets());
                 spider=new Spider(726, 800, 32, 32, new SpiderAssets());
