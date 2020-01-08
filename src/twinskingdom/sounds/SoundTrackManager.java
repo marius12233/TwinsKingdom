@@ -29,6 +29,7 @@ public class SoundTrackManager implements Observer {
         this.currentSoundTrack = MAIN_DEFAULT_TRACK;
         this.audioEnabled = true;
         this.soundList = new LinkedList<>();
+        this.soundList.add("/sounds/ChopSuey_wave.wav");
         this.soundList.add("/sounds/OneMoreTime_wave.wav");
         this.soundList.add("/sounds/BadGuy_wave.wav");
         this.soundList.add("/sounds/WhatIsLove_wave.wav");
