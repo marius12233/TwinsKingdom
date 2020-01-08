@@ -182,6 +182,7 @@ public class ThroneRoom extends World {
         entityManager.getPlayer().setState(entityManager.getPlayer().getUpState());
         entityManager.getPlayer().setX(593);
         entityManager.getPlayer().setY(567);
+        entityManager.getPlayer().setHealthPoints(25);
 
     }
 
