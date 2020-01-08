@@ -45,7 +45,8 @@ public class Sound {
     }
 
     public void play() {
-        this.audioClip.play();
+        if(SoundTrackManager.getInstance().isAudioEnabled())
+            this.audioClip.play();
     }
 
 }

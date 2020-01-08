@@ -25,7 +25,7 @@ public class SoundTrackManager implements Observer {
     private static SoundTrackManager instance;
     private boolean audioEnabled;
 
-    public SoundTrackManager() {
+    private SoundTrackManager() {
         this.currentSoundTrack = MAIN_DEFAULT_TRACK;
         this.audioEnabled = true;
         this.soundList = new LinkedList<>();
@@ -37,6 +37,10 @@ public class SoundTrackManager implements Observer {
         this.soundList.add("/sounds/Blue_wave.wav");
         this.soundList.add("/sounds/Boss_theme_last.mid");
         this.soundList.add("/sounds/FinalBoss_wave.wav");
+    }
+
+    public boolean isAudioEnabled() {
+        return audioEnabled;
     }
 
     static {
