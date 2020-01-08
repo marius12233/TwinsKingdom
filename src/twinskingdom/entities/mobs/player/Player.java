@@ -3,18 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package  twinskingdom.entities.mobs.player;
+package twinskingdom.entities.mobs.player;
 
 import java.awt.Graphics;
-import  twinskingdom.entities.Entity;
-import  twinskingdom.entities.mobs.Creature;
-import  twinskingdom.gfx.EntityAssets;
-import  twinskingdom.gfx.PlayerAssets;
-import  twinskingdom.gui.Mana;
+import java.awt.Rectangle;
+import twinskingdom.entities.Entity;
+import twinskingdom.entities.mobs.Creature;
+import twinskingdom.gfx.EntityAssets;
+import twinskingdom.gfx.PlayerAssets;
+import twinskingdom.gui.Mana;
+import twinskingdom.sounds.effects.SoundEffectManager;
 
 /**
  *
- *  
+ *
  */
 public class Player extends Creature {
 
@@ -165,4 +167,11 @@ public class Player extends Creature {
             e.isActive=false*/
         e.touchEntity(this);
     }
+
+    public void playSound(){
+        
+        SoundEffectManager.SWORD.play();
+    }
+    
+      
 }

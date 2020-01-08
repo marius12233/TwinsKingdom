@@ -29,6 +29,7 @@ public class Sound {
     public Sound(String url) {
         this.url = url;
         this.audioClip = loadAudioClip();
+        
     }
 
     private AudioClip loadAudioClip() {

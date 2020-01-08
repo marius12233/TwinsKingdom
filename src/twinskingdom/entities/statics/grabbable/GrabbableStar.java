@@ -11,6 +11,7 @@ import java.util.Observer;
 import  twinskingdom.entities.Entity;
 import  twinskingdom.gfx.Animation;
 import  twinskingdom.gfx.Assets;
+import twinskingdom.sounds.effects.SoundEffectManager;
 
 /**
  *
@@ -53,6 +54,7 @@ public class GrabbableStar extends GrabbableStaticEntity {
             o.update(this, this);
         }
         super.touchEntity(e);
+        SoundEffectManager.STAR.play();
     }
 
     @Override

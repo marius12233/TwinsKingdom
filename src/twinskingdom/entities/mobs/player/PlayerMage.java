@@ -10,6 +10,7 @@ import  twinskingdom.entities.mobs.states.player.LeftMageState;
 import  twinskingdom.entities.mobs.states.player.RightMageState;
 import  twinskingdom.entities.mobs.states.player.UpMageState;
 import  twinskingdom.gfx.PlayerSpellAssets;
+import twinskingdom.sounds.effects.SoundEffectManager;
 
 /**
  *
@@ -31,6 +32,11 @@ public class PlayerMage extends Player {
         this(player.getX(), player.getY(), new PlayerSpellAssets(), player.getNumLives());
         this.setHealth(player.getHealth());
         this.setMana(player.getMana());
+    }
+    
+     public void playSound(){
+        
+        SoundEffectManager.MAGIC_BALL.play();
     }
 
 }

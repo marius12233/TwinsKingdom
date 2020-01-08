@@ -11,6 +11,7 @@ import  twinskingdom.entities.mobs.states.player.LeftArcherState;
 import  twinskingdom.entities.mobs.states.player.RightArcherState;
 import  twinskingdom.entities.mobs.states.player.UpArcherState;
 import  twinskingdom.gfx.PlayerBowAssets;
+import twinskingdom.sounds.effects.SoundEffectManager;
 
 /**
  *
@@ -32,6 +33,11 @@ public class PlayerArcher extends Player {
         this(player.getX(), player.getY(), new PlayerBowAssets(), player.getNumLives());
         this.setHealth(player.getHealth());
         this.setMana(player.getMana());
+    }
+    
+    public void playSound(){
+        
+        SoundEffectManager.ARROW.play();
     }
 
 }
